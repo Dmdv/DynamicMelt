@@ -62,9 +62,9 @@ namespace DynamicMelt.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("meltdata.mdb")]
-        public string MelpMdb {
+        public string MeltDataMdb {
             get {
-                return ((string)(this["MelpMdb"]));
+                return ((string)(this["MeltDataMdb"]));
             }
         }
     }

@@ -3,10 +3,10 @@ using DynamicMelt.Providers;
 
 namespace DynamicMelt.Model
 {
-	public class MeltMdb : MdbReader
+	public class MeltDataMdb : MdbReader
 	{
-		public MeltMdb()
-			: base(Settings.Default.MelpMdb)
+		public MeltDataMdb()
+			: base(Settings.Default.MeltDataMdb)
 		{
 		}
 	}

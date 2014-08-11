@@ -116,7 +116,7 @@
     <Compile Include="Model\LooseMdb.cs" />
     <Compile Include="Helpers\Mapper.cs" />
     <Compile Include="Types\Materials.cs" />
-    <Compile Include="Model\MeltMdb.cs" />
+    <Compile Include="Model\MeltDataMdb.cs" />
     <Compile Include="Model\ParamsMdb.cs" />
     <Compile Include="Model\TeploPhysConstantsMdb.cs" />
     <Compile Include="Pages\Page1.xaml.cs">
