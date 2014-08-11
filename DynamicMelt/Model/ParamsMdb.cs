@@ -1,7 +1,7 @@
-using MeltCalc.Properties;
-using MeltCalc.Providers;
+using DynamicMelt.Properties;
+using DynamicMelt.Providers;
 
-namespace MeltCalc.Model
+namespace DynamicMelt.Model
 {
 	public class ParamsMdb : MdbReader
 	{

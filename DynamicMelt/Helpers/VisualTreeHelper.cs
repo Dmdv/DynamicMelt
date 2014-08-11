@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-namespace MeltCalc.Helpers
+namespace DynamicMelt.Helpers
 {
 	public static class VisualTreeHelper
 	{

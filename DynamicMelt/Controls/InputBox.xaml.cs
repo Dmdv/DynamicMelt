@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MeltCalc.Controls
+namespace DynamicMelt.Controls
 {
 	/// <summary>
 	/// Interaction logic for InputBox.xaml

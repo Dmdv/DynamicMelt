@@ -1,27 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data;
+using System.Linq;
 
-namespace MeltCalc.Providers
+namespace DynamicMelt.Providers
 {
 	public class TableCacheReader : TableReader
 	{
-		public TableCacheReader(string file) : 
-			base(file)
+		public TableCacheReader(string file)
+			: base(file)
 		{
+		}
+
+		public override DataTable FetchTable(string table)
+		{
+			var datatable = TableCache.Get(new TableKey(table, SubKey));
+			if (datatable == null)
+			{
+				datatable = base.FetchTable(table);
+				TableCache.Put(new TableKey(table, SubKey), datatable);
+			}
+			return datatable;
+		}
+
+		public IEnumerable<string[]> SelectAllRows(string table)
+		{
+			return
+				FetchTableSafe(table).Rows
+					.Cast<DataRow>()
+					.Select(row => row.ItemArray.Select(item => item.ToString()).ToArray())
+					.ToList();
 		}
 
 		public EnumerableRowCollection<T> SelectColumnRange<T>(string table, string column)
 		{
 			var dataTable = FetchTableSafe(table);
 			return dataTable.AsEnumerable().Select(row => row.Field<T>(column));
-		}
-
-		public string[] SelectRowRange(string table, int index)
-		{
-			var dataTable = FetchTableSafe(table);
-			return dataTable.Rows[index].ItemArray.Select(item => item.ToString()).ToArray();
 		}
 
 		public Dictionary<string, string> SelectRowDictionary(string table, int index)
@@ -31,27 +45,13 @@ namespace MeltCalc.Providers
 			return
 				dataTable.Columns.OfType<DataColumn>()
 					.ToDictionary(column => column.ColumnName,
-					              column => dataRow[column.ColumnName].ToString());
+						column => dataRow[column.ColumnName].ToString());
 		}
 
-		public IEnumerable<string[]> SelectAllRows(string table)
+		public string[] SelectRowRange(string table, int index)
 		{
-			return 
-				FetchTableSafe(table).Rows
-				.Cast<DataRow>()
-				.Select(row => row.ItemArray.Select(item => item.ToString()).ToArray())
-				.ToList();
-		}
-
-		public override DataTable FetchTable(string table)
-		{
-			var datatable = TableCache.Get(new Key(table, SubKey));
-			if (datatable == null)
-			{
-				datatable = base.FetchTable(table);
-				TableCache.Put(new Key(table, SubKey), datatable);
-			}
-			return datatable;
+			var dataTable = FetchTableSafe(table);
+			return dataTable.Rows[index].ItemArray.Select(item => item.ToString()).ToArray();
 		}
 
 		private DataTable FetchTableSafe(string table)

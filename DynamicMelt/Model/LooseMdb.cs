@@ -1,12 +1,11 @@
 ﻿using DynamicMelt.Properties;
-using MeltCalc.Properties;
-using MeltCalc.Providers;
+using DynamicMelt.Providers;
 
-namespace MeltCalc.Model
+namespace DynamicMelt.Model
 {
 	public class LooseMdb : MdbReader
 	{
-		public LooseMdb() 
+		public LooseMdb()
 			: base(Settings.Default.LooseMdb)
 		{
 		}

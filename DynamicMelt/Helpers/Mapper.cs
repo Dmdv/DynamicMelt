@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using DynamicMelt.Model;
+using DynamicMelt.Types;
 
-namespace MeltCalc.Model
+namespace DynamicMelt.Helpers
 {
 	public static class Mapper
 	{
@@ -24,7 +26,12 @@ namespace MeltCalc.Model
 			_genitives[Materials.ВлажныйДоломит] = "Сырого Доломита";
 			_genitives[Materials.Руда] = "Руды";
 		}
-  
+
+		public static string ToGenitive(this Materials material)
+		{
+			return _genitives[material];
+		}
+
 		public static string ToName(this Materials materials)
 		{
 			switch (materials)
@@ -38,11 +45,6 @@ namespace MeltCalc.Model
 				default:
 					return materials.ToString();
 			}
-		}
-
-		public static string ToGenitive(this Materials material)
-		{
-			return _genitives[material];
 		}
 
 		public static string ToTableName(this Materials materials)

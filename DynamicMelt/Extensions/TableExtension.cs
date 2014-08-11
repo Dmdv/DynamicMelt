@@ -1,7 +1,7 @@
 using System.Data;
 using System.Linq;
 
-namespace MeltCalc.Helpers
+namespace DynamicMelt.Extensions
 {
 	public static class TableExtension
 	{

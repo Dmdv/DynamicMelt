@@ -47,12 +47,38 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Providers\TableKey.cs" />
+    <Compile Include="Providers\MdbReader.cs" />
+    <Compile Include="Providers\MdbTable.cs" />
+    <Compile Include="Providers\TableCache.cs" />
+    <Compile Include="Providers\TableCacheReader.cs" />
+    <Compile Include="Providers\TableReader.cs" />
+    <Compile Include="Providers\TablesSchema.cs" />
+    <Compile Include="Providers\TableWriter.cs" />
     <Page Include="Controls\InputBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,12 +94,13 @@
     <Compile Include="Controls\InputBox.xaml.cs">
       <DependentUpon>InputBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ArrayExtension.cs" />
-    <Compile Include="Helpers\InputBoxExtension.cs" />
-    <Compile Include="Helpers\Map.cs" />
-    <Compile Include="Helpers\MdbHelper.cs" />
-    <Compile Include="Helpers\StringExtensions.cs" />
-    <Compile Include="Helpers\TableExtension.cs" />
+    <Compile Include="Converters\StringToDoubleConverter.cs" />
+    <Compile Include="Extensions\ArrayExtension.cs" />
+    <Compile Include="Extensions\InputBoxExtension.cs" />
+    <Compile Include="Extensions\Map.cs" />
+    <Compile Include="Extensions\MdbHelper.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TableExtension.cs" />
     <Compile Include="Helpers\VisualHelper.cs" />
     <Compile Include="Helpers\VisualTreeHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -87,8 +114,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\LooseMdb.cs" />
-    <Compile Include="Model\Mapper.cs" />
-    <Compile Include="Model\Materials.cs" />
+    <Compile Include="Helpers\Mapper.cs" />
+    <Compile Include="Types\Materials.cs" />
     <Compile Include="Model\MeltMdb.cs" />
     <Compile Include="Model\ParamsMdb.cs" />
     <Compile Include="Model\TeploPhysConstantsMdb.cs" />
@@ -112,6 +139,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

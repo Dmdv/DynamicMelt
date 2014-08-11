@@ -1,28 +1,22 @@
 using System;
 using System.Data.OleDb;
 using System.IO;
-using MeltCalc.Properties;
+using DynamicMelt.Properties;
 
-namespace MeltCalc.Providers
+namespace DynamicMelt.Providers
 {
 	public class MdbTable
 	{
-		private const string ConnStr = "Provider=Microsoft.JET.OLEDB.4.0;data source={0};";
-
-		protected MdbTable(string file)
-		{
-			file = Path.Combine(Environment.CurrentDirectory, Settings.Default.DatabaseRelativePath, file);
-			ValidatePath(file);
-			MdbFile = file;
-			SubKey = Path.GetFileName(MdbFile);
-		}
+		private const string ConnectionStringFormat = "Provider=Microsoft.JET.OLEDB.4.0;data source={0};";
 
 		protected string SubKey { get; private set; }
 
 		protected OleDbConnection CreateConnection()
 		{
-			return new OleDbConnection(String.Format(ConnStr, MdbFile));
+			return new OleDbConnection(string.Format(ConnectionStringFormat, MdbFile));
 		}
+
+		private string MdbFile { get; set; }
 
 		private static void ValidatePath(string path)
 		{
@@ -32,6 +26,12 @@ namespace MeltCalc.Providers
 			}
 		}
 
-		private string MdbFile { get; set; }
+		protected MdbTable(string file)
+		{
+			file = Path.Combine(Environment.CurrentDirectory, Settings.Default.DatabaseRelativePath, file);
+			ValidatePath(file);
+			MdbFile = file;
+			SubKey = Path.GetFileName(MdbFile);
+		}
 	}
 }

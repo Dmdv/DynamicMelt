@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MeltCalc.Helpers
+namespace DynamicMelt.Extensions
 {
 	public static class ArrayExtension
 	{

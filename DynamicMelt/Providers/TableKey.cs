@@ -1,12 +1,10 @@
 using System.IO;
 
-namespace MeltCalc.Providers
+namespace DynamicMelt.Providers
 {
-	public class Key
+	public class TableKey
 	{
-		private readonly string _file;
-
-		public Key(string table, string file)
+		public TableKey(string table, string file)
 		{
 			Table = table;
 			_file = Path.GetFileName(file);
@@ -23,5 +21,7 @@ namespace MeltCalc.Providers
 		{
 			return Value;
 		}
+
+		private readonly string _file;
 	}
 }

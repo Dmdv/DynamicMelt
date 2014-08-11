@@ -1,4 +1,4 @@
-﻿namespace MeltCalc.Model
+﻿namespace DynamicMelt.Types
 {
 	public enum Materials
 	{

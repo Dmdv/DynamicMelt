@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using MeltCalc.Providers;
+using DynamicMelt.Providers;
 
-namespace MeltCalc.Helpers
+namespace DynamicMelt.Extensions
 {
 	public static class MdbHelper
 	{
-		public static void FillBoxes(this MdbReader reader, string tableName, int rowindex, IList<TextBox> boxes,
-		                             int shift = 0)
+		public static void FillBoxes(
+			this MdbReader reader,
+			string tableName,
+			int rowindex,
+			IList<TextBox> boxes,
+			int shift = 0)
 		{
 			var values = reader.Reader.SelectRowRange(tableName, rowindex);
 			if (boxes.Count + shift > values.Length)
@@ -36,8 +39,12 @@ namespace MeltCalc.Helpers
 			}
 			catch (Exception)
 			{
-				MessageBox.Show(string.Format("Ошибка при чтении из таблицы '{0}' и колонки '{1}'", 
-					tablename, columnname), "Ошибка чтения", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(string.Format("Ошибка при чтении из таблицы '{0}' и колонки '{1}'",
+					tablename,
+					columnname),
+					"Ошибка чтения",
+					MessageBoxButton.OK,
+					MessageBoxImage.Error);
 			}
 		}
 	}

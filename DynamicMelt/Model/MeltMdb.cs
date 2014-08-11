@@ -1,11 +1,11 @@
-using MeltCalc.Properties;
-using MeltCalc.Providers;
+using DynamicMelt.Properties;
+using DynamicMelt.Providers;
 
-namespace MeltCalc.Model
+namespace DynamicMelt.Model
 {
 	public class MeltMdb : MdbReader
 	{
-		public MeltMdb() 
+		public MeltMdb()
 			: base(Settings.Default.MelpMdb)
 		{
 		}

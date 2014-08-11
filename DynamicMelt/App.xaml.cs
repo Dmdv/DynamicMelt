@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DynamicMelt
@@ -11,7 +6,16 @@ namespace DynamicMelt
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class App : Application
+	public partial class App
 	{
+		public App()
+		{
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
+		}
+
+		private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			MessageBox.Show(string.Format("Unhandled exception: '{0}'", e.ExceptionObject));
+		}
 	}
 }

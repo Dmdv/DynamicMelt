@@ -3,14 +3,25 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MeltCalc.Converters;
-using MeltCalc.Model;
+using DynamicMelt.Converters;
+using DynamicMelt.Model;
+using DynamicMelt.Types;
 using Xceed.Wpf.Toolkit;
 
-namespace MeltCalc.Helpers
+namespace DynamicMelt.Helpers
 {
 	public static class VisualHelper
 	{
+		public static T FindButton<T>(IEnumerable<T> coll, Materials material) where T : ContentControl
+		{
+			return coll.Single(x => x.Tag is Materials && (Materials) x.Tag == material);
+		}
+
+		public static ContentControl FindByMaterial(this IEnumerable<ContentControl> coll, Materials materials)
+		{
+			return coll.Single(x => x.Material() == materials);
+		}
+
 		public static double GetDoubleValue(this ComboBox comboBox)
 		{
 			var converter = new StringToDoubleConverter();
@@ -20,28 +31,18 @@ namespace MeltCalc.Helpers
 		public static double GetDoubleValue(this TextBox comboBox)
 		{
 			var converter = new StringToDoubleConverter();
-			return (double)converter.ConvertBack(comboBox.Text, typeof(double), null, CultureInfo.InvariantCulture);
+			return (double) converter.ConvertBack(comboBox.Text, typeof (double), null, CultureInfo.InvariantCulture);
 		}
 
 		public static double GetDoubleValue(this DoubleUpDown comboBox)
 		{
 			var converter = new StringToDoubleConverter();
-			return (double)converter.ConvertBack(comboBox.Text, typeof(double), null, CultureInfo.InvariantCulture);
-		}
-
-		public static T FindButton<T>(IEnumerable<T> coll, Materials material) where T : ContentControl
-		{
-			return coll.Single(x => x.Tag is Materials && (Materials) x.Tag == material);
+			return (double) converter.ConvertBack(comboBox.Text, typeof (double), null, CultureInfo.InvariantCulture);
 		}
 
 		public static Materials Material(this ContentControl button)
 		{
 			return (Materials) button.Tag;
-		}
-
-		public static ContentControl FindByMaterial(this IEnumerable<ContentControl> coll, Materials materials)
-		{
-			return coll.Single(x => x.Material() == materials);
 		}
 
 		public static void UpdateEnabled(IEnumerable<ContentControl> controls, ICollection<Materials> disabledList)

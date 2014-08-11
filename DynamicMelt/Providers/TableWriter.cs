@@ -1,15 +1,15 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace MeltCalc.Providers
+namespace DynamicMelt.Providers
 {
 	public class TableWriter : MdbTable
 	{
-		public TableWriter(string file) :
-			base(file)
+		public TableWriter(string file)
+			: base(file)
 		{
 		}
 
@@ -38,7 +38,7 @@ namespace MeltCalc.Providers
 			}
 		}
 
-		protected void InitCommand(string tablename, IList<Tuple<string, double>> parameters, int row)
+		private void InitCommand(string tablename, IList<Tuple<string, double>> parameters, int row)
 		{
 			var cmdText = CreateCommandText(tablename, parameters, row);
 			var dbParameters = CreateCommandParameters(parameters);
