@@ -5,19 +5,19 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	  mc:Ignorable="d" 
 	  d:DesignHeight="393" d:DesignWidth="582"
-	Title="Динамическая модель ККП, шаг 1 - Ввод данных о процессе - OxyRun">
+	Title="Динамическая модель ККП, шаг 1 - Ввод данных о процессе - OxyRun" Width="600">
 
 	<Grid UseLayoutRounding="True">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto" MinHeight="165"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<GroupBox>
+		<GroupBox Header="Описание" Margin="5,0">
 		<TextBlock TextWrapping="Wrap" Text="В данной программе не предусмотрен ручной ввод многих данных, характеризующих агрегат и сам технологический процесс. Все необходимые данные будут введены автоматически и предложены Вам для просмотра и, возможно, для изменения. Большая часть информации, введенной Вами в системе расчета шихты OxyCharge, будет использована при моделировании" Padding="6"/>
 		</GroupBox>
-		<GroupBox Header="Введите номер плавки" Grid.Row="1">
+		<GroupBox Header="Введите номер плавки" Grid.Row="1" Margin="5,0">
 			<Grid UseLayoutRounding="True">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="361*"/>
@@ -32,7 +32,7 @@
 				<Button Content="Button" Grid.Column="1" Grid.Row="1" Width="120" Margin="2" Height="30"/>
 			</Grid>
 		</GroupBox>
-		<Grid Grid.Row="2">
+		<Grid Grid.Row="2" Margin="5,0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="64*"/>
 				<ColumnDefinition Width="35*"/>
@@ -54,10 +54,10 @@
 							<RowDefinition Height="21*"/>
 							<RowDefinition Height="103*"/>
 						</Grid.RowDefinitions>
-						<Slider Grid.Row="1"/>
-						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="110,0" Width="42">
-							<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Bottom" Margin="0,0,6,0" FontSize="26.667"/>
-							<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="%" VerticalAlignment="Bottom" FontSize="26.667"/>
+						<Slider x:Name="slider" Grid.Row="1" Maximum="100" TickFrequency="25" TickPlacement="BottomRight" IsSnapToTickEnabled="True"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+							<TextBlock TextWrapping="Wrap" Text="{Binding Value, ElementName=slider, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,0,6,0" FontSize="26.667"/>
+							<TextBlock TextWrapping="Wrap" Text="%" VerticalAlignment="Bottom" FontSize="26.667"/>
 						</StackPanel>
 						<Grid Grid.Row="2">
 							<Grid.ColumnDefinitions>
@@ -72,12 +72,12 @@
 			</GroupBox>
 			<GroupBox Grid.Column="1" Margin="5,0,0,0" Header="Варианты дистрибуции">
 				<StackPanel Orientation="Vertical">
-					<RadioButton VerticalAlignment="Top" Content="Научное исполнение" Margin="10,26,0,0"/>
+					<RadioButton VerticalAlignment="Top" Content="Научное исполнение" Margin="10,26,0,0" IsChecked="True"/>
 					<RadioButton Content="Тренажер" Margin="10,19,0,0"/>
 				</StackPanel>
 			</GroupBox>
 			
 		</Grid>
-		<Button Content="Шаг 2 &gt;" Grid.Row="3" Width="120" Height="30" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+		<Button Content="Шаг 2 &gt;" Grid.Row="3" Width="120" HorizontalAlignment="Right" Margin="0,5,20,5" Height="30"/>
 	</Grid>
 </Page>
