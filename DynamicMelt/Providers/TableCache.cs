@@ -29,7 +29,7 @@ namespace DynamicMelt.Providers
 			{
 				if (Get(tableKey) != null)
 				{
-					throw new Exception(string.Format("{0} doesn't exist", tableKey));
+					throw new Exception(string.Format("'{0}' already exists", tableKey));
 				}
 				_cache[tableKey.Value] = datatable;
 			}

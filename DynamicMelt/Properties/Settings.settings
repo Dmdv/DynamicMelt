@@ -17,5 +17,17 @@
     <Setting Name="MeltDataMdb" Type="System.String" Scope="Application">
       <Value Profile="(Default)">meltdata.mdb</Value>
     </Setting>
+    <Setting Name="MiscellaneousMdb" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Miscellaneous.mdb</Value>
+    </Setting>
+    <Setting Name="MapsMdb" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Maps.mdb</Value>
+    </Setting>
+    <Setting Name="RaspredelenieMdb" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">raspredelenie.mdb</Value>
+    </Setting>
+    <Setting Name="DinamicMdb" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Dinamic.mdb</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

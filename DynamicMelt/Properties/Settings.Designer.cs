@@ -67,5 +67,41 @@ namespace DynamicMelt.Properties {
                 return ((string)(this["MeltDataMdb"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Miscellaneous.mdb")]
+        public string MiscellaneousMdb {
+            get {
+                return ((string)(this["MiscellaneousMdb"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Maps.mdb")]
+        public string MapsMdb {
+            get {
+                return ((string)(this["MapsMdb"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("raspredelenie.mdb")]
+        public string RaspredelenieMdb {
+            get {
+                return ((string)(this["RaspredelenieMdb"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dinamic.mdb")]
+        public string DinamicMdb {
+            get {
+                return ((string)(this["DinamicMdb"]));
+            }
+        }
     }
 }

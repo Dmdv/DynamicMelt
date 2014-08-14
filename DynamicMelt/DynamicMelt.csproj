@@ -71,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DinamicMdb.cs" />
+    <Compile Include="Model\MapsMdb.cs" />
+    <Compile Include="Model\MiscellaneousMdb.cs" />
+    <Compile Include="Model\RaspredelenieMdb.cs" />
     <Compile Include="Providers\TableKey.cs" />
     <Compile Include="Providers\MdbReader.cs" />
     <Compile Include="Providers\MdbTable.cs" />
