@@ -17,10 +17,7 @@ namespace DynamicMelt.Providers
 			{
 				conn.Open();
 
-				using (var cmd = new OleDbCommand(string.Format("select * from {0}", table))
-				{
-					Connection = conn
-				})
+				using (var cmd = new OleDbCommand(string.Format("select * from {0}", table)) { Connection = conn })
 				{
 					using (var oleDbDataReader = cmd.ExecuteReader())
 					{

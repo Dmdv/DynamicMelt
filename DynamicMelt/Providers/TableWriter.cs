@@ -38,22 +38,15 @@ namespace DynamicMelt.Providers
 			}
 		}
 
-		private void InitCommand(string tablename, IList<Tuple<string, double>> parameters, int row)
-		{
-			var cmdText = CreateCommandText(tablename, parameters, row);
-			var dbParameters = CreateCommandParameters(parameters);
-			Command = new OleDbCommand(cmdText);
-			Command.Parameters.AddRange(dbParameters.ToArray());
-		}
-
 		private OleDbCommand Command { get; set; }
 
 		private static IEnumerable<OleDbParameter> CreateCommandParameters(IEnumerable<Tuple<string, double>> parameters)
 		{
 			return parameters
-				.Select(tuple => new OleDbParameter(
-					string.Format("@{0}", tuple.Item1),
-					tuple.Item2));
+				.Select(tuple =>
+					new OleDbParameter(
+						string.Format("@{0}", tuple.Item1),
+						tuple.Item2));
 		}
 
 		private static string CreateCommandText(string tablename, IEnumerable<Tuple<string, double>> parameters, int row)
@@ -84,6 +77,14 @@ namespace DynamicMelt.Providers
 			//    .Replace("%", string.Empty)
 			//        .Trim()
 			//        .ToLowerInvariant();
+		}
+
+		private void InitCommand(string tablename, IList<Tuple<string, double>> parameters, int row)
+		{
+			var cmdText = CreateCommandText(tablename, parameters, row);
+			var dbParameters = CreateCommandParameters(parameters);
+			Command = new OleDbCommand(cmdText);
+			Command.Parameters.AddRange(dbParameters.ToArray());
 		}
 	}
 }

@@ -83,6 +83,7 @@
     <Compile Include="Providers\TableReader.cs" />
     <Compile Include="Providers\TablesSchema.cs" />
     <Compile Include="Providers\TableWriter.cs" />
+    <Compile Include="ViewModel\Page1ViewModel.cs" />
     <Page Include="Controls\InputBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
