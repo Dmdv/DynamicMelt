@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.IO;
 using System.Linq;
 
 namespace DynamicMelt.Providers
@@ -16,6 +17,11 @@ namespace DynamicMelt.Providers
 
 		public TablesSchema(string file)
 		{
+			if (!File.Exists(file))
+			{
+				throw new FileNotFoundException(string.Format("File not found: '{0}'", file));
+			}
+
 			_file = file;
 		}
 

@@ -9,14 +9,14 @@ namespace DynamicMelt.Providers
 	{
 		private const string ConnectionStringFormat = "Provider=Microsoft.JET.OLEDB.4.0;data source={0};";
 
+		public string MdbFile { get; private set; }
+
 		protected string SubKey { get; private set; }
 
 		protected OleDbConnection CreateConnection()
 		{
 			return new OleDbConnection(string.Format(ConnectionStringFormat, MdbFile));
 		}
-
-		private string MdbFile { get; set; }
 
 		private static void ValidatePath(string path)
 		{

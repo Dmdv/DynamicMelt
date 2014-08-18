@@ -38,6 +38,12 @@ namespace DynamicMelt.Providers
 			return dataTable.AsEnumerable().Select(row => row.Field<T>(column));
 		}
 
+		public EnumerableRowCollection<T> SelectColumnRange<T>(string table, int columnIndex)
+		{
+			var dataTable = FetchTableSafe(table);
+			return dataTable.AsEnumerable().Select(row => row.Field<T>(columnIndex));
+		}
+
 		public Dictionary<string, string> SelectRowDictionary(string table, int index)
 		{
 			var dataTable = FetchTableSafe(table);

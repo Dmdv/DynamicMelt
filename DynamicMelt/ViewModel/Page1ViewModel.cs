@@ -12,5 +12,10 @@ namespace DynamicMelt.ViewModel
 		{
 			throw new NotImplementedException();
 		}
+
+		public int MeltNumber_Detect()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
