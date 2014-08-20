@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DynamicMelt.ViewModel
+﻿namespace DynamicMelt.ViewModel
 {
 	public class Page1ViewModel
 	{
-		public bool MeltNumber_ExistsCheck(int i)
+		public void Iznos_Refresh()
 		{
-			throw new NotImplementedException();
 		}
 
 		public int MeltNumber_Detect()
 		{
-			throw new NotImplementedException();
+			return 0;
+		}
+
+		public bool MeltNumber_ExistsCheck(int i)
+		{
+			return false;
 		}
 	}
 }

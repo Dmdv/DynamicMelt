@@ -1,83 +1,103 @@
 ﻿<Page x:Class="DynamicMelt.Pages.Page1"
-	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	  mc:Ignorable="d" 
-	  d:DesignHeight="393" d:DesignWidth="582"
-	Title="Динамическая модель ККП, шаг 1 - Ввод данных о процессе - OxyRun" Width="600">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="393" d:DesignWidth="582"
+      Title="Динамическая модель ККП, шаг 1 - Ввод данных о процессе - OxyRun" Width="600">
 
-	<Grid UseLayoutRounding="True">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto" MinHeight="165"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<GroupBox Header="Описание" Margin="5,0">
-		<TextBlock TextWrapping="Wrap" Text="В данной программе не предусмотрен ручной ввод многих данных, характеризующих агрегат и сам технологический процесс. Все необходимые данные будут введены автоматически и предложены Вам для просмотра и, возможно, для изменения. Большая часть информации, введенной Вами в системе расчета шихты OxyCharge, будет использована при моделировании" Padding="6"/>
-		</GroupBox>
-		<GroupBox Header="Введите номер плавки" Grid.Row="1" Margin="5,0">
-			<Grid UseLayoutRounding="True">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="361*"/>
-					<ColumnDefinition Width="219*"/>
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
-				</Grid.RowDefinitions>
-				<TextBlock TextWrapping="Wrap" Text="Моделирование возможно только при условии, что предварительно осуществлен расчет шихты. По умолчанию предлагается начать расчет для плавки, записанной в базе рассчитанных плавок с наибольшим порядковым номером" Grid.RowSpan="2" Padding="6"/>
-				<TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Width="120" Grid.Column="1"/>
-				<Button Content="Button" Grid.Column="1" Grid.Row="1" Width="120" Margin="2" Height="30"/>
-			</Grid>
-		</GroupBox>
-		<Grid Grid.Row="2" Margin="5,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="64*"/>
-				<ColumnDefinition Width="35*"/>
-			</Grid.ColumnDefinitions>
-			<GroupBox Header="Износ футеровки контейнера">
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="55*"/>
-						<ColumnDefinition Width="131*"/>
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="66"/>
-						<RowDefinition/>
-					</Grid.RowDefinitions>
-					<TextBlock TextWrapping="Wrap" Text="Укажите приблизительное состояние футеровки конвертера. Чем больше ее износ, тем правее должен быть ползунок" Grid.Column="1" Padding="6"/>
-					<Grid Grid.Column="1" Grid.Row="1">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="62*"/>
-							<RowDefinition Height="21*"/>
-							<RowDefinition Height="103*"/>
-						</Grid.RowDefinitions>
-						<Slider x:Name="slider" Grid.Row="1" Maximum="100" TickFrequency="25" TickPlacement="BottomRight" IsSnapToTickEnabled="True"/>
-						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-							<TextBlock TextWrapping="Wrap" Text="{Binding Value, ElementName=slider, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,0,6,0" FontSize="26.667"/>
-							<TextBlock TextWrapping="Wrap" Text="%" VerticalAlignment="Bottom" FontSize="26.667"/>
-						</StackPanel>
-						<Grid Grid.Row="2">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition/>
-								<ColumnDefinition/>
-							</Grid.ColumnDefinitions>
-							<TextBlock TextWrapping="Wrap" Text="0 %" FontSize="16"/>
-							<TextBlock TextWrapping="Wrap" Text="100 %" FontSize="16" Grid.Column="1" HorizontalAlignment="Right"/>
-						</Grid>
-					</Grid>
-				</Grid>
-			</GroupBox>
-			<GroupBox Grid.Column="1" Margin="5,0,0,0" Header="Варианты дистрибуции">
-				<StackPanel Orientation="Vertical">
-					<RadioButton VerticalAlignment="Top" Content="Научное исполнение" Margin="10,26,0,0" IsChecked="True"/>
-					<RadioButton Content="Тренажер" Margin="10,19,0,0"/>
-				</StackPanel>
-			</GroupBox>
-			
-		</Grid>
-		<Button Content="Шаг 2 &gt;" Grid.Row="3" Width="120" HorizontalAlignment="Right" Margin="0,5,20,5" Height="30"/>
-	</Grid>
+    <Page.CommandBindings>
+        <CommandBinding Command="NextPage" CanExecute="NextCanExecute" Executed="NextExecuted" />
+    </Page.CommandBindings>
+
+    <Grid UseLayoutRounding="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="165" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <GroupBox Header="Описание" Margin="5,0">
+            <TextBlock TextWrapping="Wrap"
+                       Text="В данной программе не предусмотрен ручной ввод многих данных, характеризующих агрегат и сам технологический процесс. Все необходимые данные будут введены автоматически и предложены Вам для просмотра и, возможно, для изменения. Большая часть информации, введенной Вами в системе расчета шихты OxyCharge, будет использована при моделировании"
+                       Padding="6" />
+        </GroupBox>
+        <GroupBox Header="Введите номер плавки" Grid.Row="1" Margin="5,0">
+            <Grid UseLayoutRounding="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="361*" />
+                    <ColumnDefinition Width="219*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock TextWrapping="Wrap"
+                           Text="Моделирование возможно только при условии, что предварительно осуществлен расчет шихты. По умолчанию предлагается начать расчет для плавки, записанной в базе рассчитанных плавок с наибольшим порядковым номером"
+                           Grid.RowSpan="2" Padding="6" />
+                <TextBox Height="23" TextWrapping="Wrap" Text="0" Width="120" Grid.Row="0" Grid.Column="1" />
+                <Button Content="Button" Grid.Column="1" Grid.Row="1" Width="120" Margin="2" Height="30" />
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="2" Margin="5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64*" />
+                <ColumnDefinition Width="35*" />
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Износ футеровки контейнера">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="55*" />
+                        <ColumnDefinition Width="131*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="66" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock TextWrapping="Wrap"
+                               Text="Укажите приблизительное состояние футеровки конвертера. Чем больше ее износ, тем правее должен быть ползунок"
+                               Grid.Column="1" Padding="6" />
+                    <Grid Grid.Column="1" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="62*" />
+                            <RowDefinition Height="21*" />
+                            <RowDefinition Height="103*" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="_sliderControl" Grid.Row="1" Maximum="100" TickFrequency="25"
+                                TickPlacement="BottomRight" IsSnapToTickEnabled="True" />
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="{Binding Value, ElementName=_sliderControl, Mode=OneWay}"
+                                       VerticalAlignment="Bottom" Margin="0,0,6,0" FontSize="26.667" />
+                            <TextBlock TextWrapping="Wrap" Text="%" VerticalAlignment="Bottom" FontSize="26.667" />
+                        </StackPanel>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="0 %" FontSize="16" />
+                            <TextBlock TextWrapping="Wrap" Text="100 %" FontSize="16" Grid.Column="1"
+                                       HorizontalAlignment="Right" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Margin="5,0,0,0" Header="Варианты дистрибуции">
+                <StackPanel Orientation="Vertical">
+                    <RadioButton VerticalAlignment="Top" Content="Научное исполнение" Margin="10,26,0,0"
+                                 IsChecked="True" />
+                    <RadioButton Content="Тренажер" Margin="10,19,0,0" />
+                </StackPanel>
+            </GroupBox>
+
+        </Grid>
+        <Button Command="NextPage"
+                Content="Шаг 2 &gt;"
+                Grid.Row="3"
+                Width="120"
+                HorizontalAlignment="Right"
+                Margin="0,5,20,5" Height="30" />
+    </Grid>
 </Page>
