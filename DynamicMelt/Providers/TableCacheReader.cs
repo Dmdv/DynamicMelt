@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
+using Common.Contracts;
+using DynamicMelt.Extensions;
 
 namespace DynamicMelt.Providers
 {
@@ -14,6 +15,8 @@ namespace DynamicMelt.Providers
 
 		public override DataTable FetchTable(string table)
 		{
+			Guard.CheckContainsText(table, "table");
+
 			var datatable = TableCache.Get(new TableKey(table, SubKey));
 			if (datatable == null)
 			{
@@ -25,43 +28,44 @@ namespace DynamicMelt.Providers
 
 		public IEnumerable<string[]> SelectAllRows(string table)
 		{
-			return
-				FetchTableSafe(table).Rows
-					.Cast<DataRow>()
-					.Select(row => row.ItemArray.Select(item => item.ToString()).ToArray())
-					.ToList();
+			Guard.CheckContainsText(table, "table");
+
+			return FetchTableSafe(table).SelectAllRows();
 		}
 
 		public EnumerableRowCollection<T> SelectColumnRange<T>(string table, string column)
 		{
-			var dataTable = FetchTableSafe(table);
-			return dataTable.AsEnumerable().Select(row => row.Field<T>(column));
+			Guard.CheckContainsText(table, "table");
+			Guard.CheckContainsText(column, "column");
+
+			return FetchTableSafe(table).SelectColumnRange<T>(column);
 		}
 
 		public EnumerableRowCollection<T> SelectColumnRange<T>(string table, int columnIndex)
 		{
-			var dataTable = FetchTableSafe(table);
-			return dataTable.AsEnumerable().Select(row => row.Field<T>(columnIndex));
+			Guard.CheckContainsText(table, "table");
+
+			return FetchTableSafe(table).SelectColumnRange<T>(columnIndex);
 		}
 
 		public Dictionary<string, string> SelectRowDictionary(string table, int index)
 		{
-			var dataTable = FetchTableSafe(table);
-			var dataRow = dataTable.Rows[index];
-			return
-				dataTable.Columns.OfType<DataColumn>()
-					.ToDictionary(column => column.ColumnName,
-						column => dataRow[column.ColumnName].ToString());
+			Guard.CheckContainsText(table, "table");
+
+			return FetchTableSafe(table).SelectRowDictionary(index);
 		}
 
 		public string[] SelectRowRange(string table, int index)
 		{
-			var dataTable = FetchTableSafe(table);
-			return dataTable.Rows[index].ItemArray.Select(item => item.ToString()).ToArray();
+			Guard.CheckContainsText(table, "table");
+
+			return FetchTableSafe(table).SelectRowRange(index);
 		}
 
 		private DataTable FetchTableSafe(string table)
 		{
+			Guard.CheckContainsText(table, "table");
+
 			var dataTable = FetchTable(table);
 			if (dataTable == null)
 			{

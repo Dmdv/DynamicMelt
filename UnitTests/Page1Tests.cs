@@ -63,8 +63,8 @@ namespace UnitTests
 				.Should()
 				.Contain(220024);
 
-			_page1ViewModel.MeltNumber_ExistsCheck(220024).Should().BeTrue();
-			_page1ViewModel.MeltNumber_ExistsCheck(3504460).Should().BeFalse();
+			_page1ViewModel.MeltNumber_Exists(220024).Should().BeTrue();
+			_page1ViewModel.MeltNumber_Exists(3504460).Should().BeFalse();
 		}
 
 		[TestMethod]

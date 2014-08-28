@@ -1,6 +1,4 @@
-using DynamicMelt.Chemistry;
-
-namespace MeltCalc.Chemistry
+namespace DynamicMelt.Chemistry
 {
 	public class Packets : Навеска
 	{

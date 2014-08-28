@@ -1,4 +1,4 @@
-namespace MeltCalc.Chemistry
+namespace DynamicMelt.Chemistry
 {
 	public static class Params
 	{

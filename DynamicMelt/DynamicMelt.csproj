@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common, Version=1.1.4.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Externals\Common.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF45">
       <HintPath>..\packages\MvvmLightLibs.4.3.31.1\lib\net45\GalaSoft.MvvmLight.Extras.WPF45.dll</HintPath>
     </Reference>
@@ -104,6 +108,7 @@
     <Compile Include="Providers\TableReader.cs" />
     <Compile Include="Providers\TablesSchema.cs" />
     <Compile Include="Providers\TableWriter.cs" />
+    <Compile Include="Shell\Run.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Page1ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -182,6 +187,11 @@
     <Resource Include="Images\image2.png" />
     <Resource Include="Images\image3.png" />
     <Resource Include="Images\image4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Externals\Castle.Core.dll" />
+    <Content Include="Externals\Castle.Windsor.dll" />
+    <Content Include="Externals\Common.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

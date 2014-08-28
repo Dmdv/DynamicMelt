@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DynamicMelt.Chemistry;
 using DynamicMelt.Types;
 
-namespace MeltCalc.Chemistry
+namespace DynamicMelt.Chemistry
 {
 	public class Tube
 	{
