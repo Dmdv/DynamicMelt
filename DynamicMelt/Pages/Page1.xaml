@@ -5,7 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
       d:DesignHeight="393" d:DesignWidth="582"
-      Title="Динамическая модель ККП, шаг 1 - Ввод данных о процессе - OxyRun" Width="600">
+      Title="Динамическая модель ККП, шаг 1 - Ввод данных о процессе - OxyRun"
+      Width="600"
+      DataContext="{Binding Source={StaticResource Locator}, Path=Page1Model}">
+
 
     <Page.CommandBindings>
         <CommandBinding Command="NextPage" CanExecute="NextCanExecute" Executed="NextExecuted" />
@@ -36,7 +39,7 @@
                 <TextBlock TextWrapping="Wrap"
                            Text="Моделирование возможно только при условии, что предварительно осуществлен расчет шихты. По умолчанию предлагается начать расчет для плавки, записанной в базе рассчитанных плавок с наибольшим порядковым номером"
                            Grid.RowSpan="2" Padding="6" />
-                <TextBox Height="23" TextWrapping="Wrap" Text="0" Width="120" Grid.Row="0" Grid.Column="1" />
+                <TextBox Height="23" TextWrapping="Wrap" Text="{Binding MeltNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Grid.Row="0" Grid.Column="1" />
                 <Button Content="Button" Grid.Column="1" Grid.Row="1" Width="120" Margin="2" Height="30" />
             </Grid>
         </GroupBox>

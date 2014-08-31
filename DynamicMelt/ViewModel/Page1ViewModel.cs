@@ -19,11 +19,26 @@ namespace DynamicMelt.ViewModel
 			}
 		}
 
+		public void NeededData_Load()
+		{
+			// TODO
+		}
+
+		public void OxyChargeStart()
+		{
+			
+		}
+
 		/// <summary>
 		/// Refresh image.
 		/// </summary>
 		public void Iznos_Refresh()
 		{
+		}
+
+		public void Data_Params_Load()
+		{
+			
 		}
 
 		public int MeltNumber_Detect()
@@ -46,5 +61,25 @@ namespace DynamicMelt.ViewModel
 
 		private readonly MeltDataMdb _meltDataMdb = new MeltDataMdb();
 		private int _meltNumber;
+
+		public void FutChem_Load()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public void ConvDiameter_Recalculate()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public void Fakel_Load()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public void LoadNornRasp()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

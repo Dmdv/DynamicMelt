@@ -91,11 +91,15 @@
     <Compile Include="Chemistry\AdaptationData.cs" />
     <Compile Include="Chemistry\Chemistry.cs" />
     <Compile Include="Chemistry\Cp.cs" />
+    <Compile Include="Chemistry\Converter.cs" />
+    <Compile Include="Chemistry\Dh.cs" />
     <Compile Include="Chemistry\Hp.cs" />
     <Compile Include="Chemistry\Lom.cs" />
+    <Compile Include="Chemistry\Metall.cs" />
     <Compile Include="Chemistry\Packets.cs" />
     <Compile Include="Chemistry\Params.cs" />
     <Compile Include="Chemistry\Tube.cs" />
+    <Compile Include="Chemistry\Загуститель.cs" />
     <Compile Include="Model\DinamicMdb.cs" />
     <Compile Include="Model\MapsMdb.cs" />
     <Compile Include="Model\MiscellaneousMdb.cs" />
@@ -109,6 +113,7 @@
     <Compile Include="Providers\TablesSchema.cs" />
     <Compile Include="Providers\TableWriter.cs" />
     <Compile Include="Shell\Run.cs" />
+    <Compile Include="ViewModel\DataLoad1.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Page1ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Common.Extensions;
+using DynamicMelt.Chemistry;
 using DynamicMelt.Shell;
 using DynamicMelt.ViewModel;
 
@@ -53,12 +54,29 @@ namespace DynamicMelt.Pages
 				_model.MeltNumber_Detect();
 			}
 
-			NeededData_Load();
-		}
+			_model.NeededData_Load();
 
-		private void NeededData_Load()
-		{
-			// TODO
+			if (Params.SelectedPlant == 0)
+			{
+				const string Msg = "Для плавки, номер которой Вы ввели, был произведен расчет шихты в ручном режиме.\r\n" +
+				                   "Повторите расчет шихты для этой плавки в автоматическом режиме.\r\n" +
+				                   "Запустить систему расчета шихты OxyCharge?";
+
+				if (MessageBox.Show(Msg, "Продолжение расчета невозможно") == MessageBoxResult.Yes)
+				{
+				}
+				return;
+			}
+
+			_model.Data_Params_Load();
+			_model.FutChem_Load();
+			_model.ConvDiameter_Recalculate();
+			_model.Fakel_Load();
+			_model.LoadNornRasp();
+
+			DataLoad1.Run();
+
+			//_model.
 		}
 
 		private void OnLoad(object sender, RoutedEventArgs e)

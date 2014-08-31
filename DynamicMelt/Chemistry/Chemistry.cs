@@ -374,12 +374,12 @@ namespace DynamicMelt.Chemistry
 	{
 		public double C { get; set; }
 		public double GYield { get; set; }
-		public double GYieldmemo { get; set; }
+		public double GYieldSave { get; set; }
 		public double Mn { get; set; }
 		public double P { get; set; }
-		public double PMAX { get; set; }
+		public double Pmax { get; set; }
 		public double S { get; set; }
-		public double SMax { get; set; }
+		public double Smax { get; set; }
 		public double Si { get; set; }
 		public double T { get; set; }
 		public double Tplav { get; set; }
@@ -423,6 +423,8 @@ namespace DynamicMelt.Chemistry
 		public float S { get; set; }
 		public float Si { get; set; }
 		public float Part { get; set; }
+		public float GEstimated { get; set; }
+		public float Nsov { get; set; }
 
 		private float ReadValue(string column)
 		{
