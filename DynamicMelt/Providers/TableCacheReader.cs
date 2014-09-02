@@ -52,7 +52,7 @@ namespace DynamicMelt.Providers
 		{
 			Guard.CheckContainsText(table, "table");
 
-			return FetchTableSafe(table).SelectRowDictionary(index);
+			return FetchTableSafe(table).SelectRowStringDictionary(index);
 		}
 
 		public string[] SelectRowRange(string table, int index)

@@ -26,7 +26,7 @@ namespace UnitTests
 			meltDataMdb.AdaptationData.Should().NotBeNull();
 			meltDataMdb.StraightCount.Should().NotBeNull();
 
-			var selectRowDictionary = meltDataMdb.StraightCount.SelectRowArray(0);
+			var selectRowDictionary = meltDataMdb.StraightCount.SelectRowDictionary(0);
 			selectRowDictionary.Count.Should().BeGreaterThan(0);
 
 			const int MeltColumnIndex = 1;

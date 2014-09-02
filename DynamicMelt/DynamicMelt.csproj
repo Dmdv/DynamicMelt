@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -90,16 +91,21 @@
     </ApplicationDefinition>
     <Compile Include="Chemistry\AdaptationData.cs" />
     <Compile Include="Chemistry\Chemistry.cs" />
+    <Compile Include="Chemistry\ConverterSize.cs" />
     <Compile Include="Chemistry\Cp.cs" />
     <Compile Include="Chemistry\Converter.cs" />
     <Compile Include="Chemistry\Dh.cs" />
     <Compile Include="Chemistry\Hp.cs" />
+    <Compile Include="Chemistry\Levels.cs" />
     <Compile Include="Chemistry\Lom.cs" />
     <Compile Include="Chemistry\Metall.cs" />
     <Compile Include="Chemistry\Packets.cs" />
     <Compile Include="Chemistry\Params.cs" />
     <Compile Include="Chemistry\Tube.cs" />
+    <Compile Include="Chemistry\Vars.cs" />
+    <Compile Include="Chemistry\Volumes.cs" />
     <Compile Include="Chemistry\Загуститель.cs" />
+    <Compile Include="Chemistry\Продувка.cs" />
     <Compile Include="Model\DinamicMdb.cs" />
     <Compile Include="Model\MapsMdb.cs" />
     <Compile Include="Model\MiscellaneousMdb.cs" />

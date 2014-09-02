@@ -9,7 +9,7 @@ namespace DynamicMelt.Chemistry
 		public static double StAndShlLoss;
 		public static double TAUprost;
 		public static double TAUprostREAL;
-		public static double TeplFutLoss;
+		public static double TeplLoss;
 		public static double TAPtime;
 		public static double Lp;
 		public static double[] Tog;
@@ -41,6 +41,14 @@ namespace DynamicMelt.Chemistry
 		public static double Q4;
 		public static double Q5;
 		public static double Q6;
+
+		public static double MeltNumber;
+
+		public static int Baselenth;
+		public static int dbLenth;
+
+		public static string dbName;
+		public static string tableName;
 
 		static Params()
 		{

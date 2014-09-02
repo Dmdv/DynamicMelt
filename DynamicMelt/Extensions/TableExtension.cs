@@ -48,7 +48,12 @@ namespace DynamicMelt.Extensions
 			return table.Rows[index].ItemArray.Select(item => item.ToString()).ToArray();
 		}
 
-		public static Dictionary<string, string> SelectRowDictionary(this DataTable table, int index)
+		public static double[] SelectRowNumbers(this DataTable table, int index)
+		{
+			return table.SelectRowRange(index).Select(x => x.ToDouble()).ToArray();
+		}
+
+		public static Dictionary<string, string> SelectRowStringDictionary(this DataTable table, int index)
 		{
 			Guard.CheckNotNull(table, "table");
 
@@ -60,7 +65,7 @@ namespace DynamicMelt.Extensions
 						column => dataRow[column.ColumnName].ToString());
 		}
 
-		public static Dictionary<int, string> SelectRowArray(this DataTable table, int index)
+		public static Dictionary<int, string> SelectRowDictionary(this DataTable table, int index)
 		{
 			Guard.CheckNotNull(table, "table");
 
