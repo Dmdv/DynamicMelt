@@ -91,9 +91,9 @@
     </ApplicationDefinition>
     <Compile Include="Chemistry\AdaptationData.cs" />
     <Compile Include="Chemistry\Chemistry.cs" />
+    <Compile Include="Chemistry\Converter.cs" />
     <Compile Include="Chemistry\ConverterSize.cs" />
     <Compile Include="Chemistry\Cp.cs" />
-    <Compile Include="Chemistry\Converter.cs" />
     <Compile Include="Chemistry\Dh.cs" />
     <Compile Include="Chemistry\Hp.cs" />
     <Compile Include="Chemistry\Levels.cs" />
