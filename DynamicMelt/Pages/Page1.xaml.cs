@@ -54,7 +54,7 @@ namespace DynamicMelt.Pages
 				_model.MeltNumber_Detect();
 			}
 
-			_model.NeededData_Load();
+			_model.NeededData_Load(_model.MeltNumber);
 
 			if (Params.SelectedPlant == 0)
 			{

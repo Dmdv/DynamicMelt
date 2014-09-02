@@ -1,6 +1,4 @@
-﻿using System;
-using DynamicMelt.Chemistry;
-using DynamicMelt.Extensions;
+﻿using DynamicMelt.Extensions;
 using DynamicMelt.Model;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +12,7 @@ namespace UnitTests
 		public void TestLoadParams()
 		{
 			var paramsMdb = new ParamsMdb();
-			var numbers = paramsMdb.CountData.SelectRowRange(Params.SelectedPlant);
+			var numbers = paramsMdb.CountData.SelectRowRange(0);
 			numbers[3].Should().Be("0,021");
 		}
 	}

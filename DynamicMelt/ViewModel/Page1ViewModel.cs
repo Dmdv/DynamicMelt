@@ -37,8 +37,7 @@ namespace DynamicMelt.ViewModel
 			var nums = _paramsMdb
 				.CountData
 				.SelectRowRange(Params.SelectedPlant)
-				.Skip(2)
-				.Select(x => x.ToDouble())
+				.Select(x => x.ToDoubleOrZero())
 				.ToArray();
 
 			Params.alfaFe = nums[3];
@@ -59,7 +58,7 @@ namespace DynamicMelt.ViewModel
 			Vars.Fkr = Math.PI*Math.Pow(Продувка.Dkr, 2)/4.0;
 
 			Продувка.Dexit = nums[32]/1000.0;
-			Продувка.Fexit = Math.PI * Math.Pow(Продувка.Dexit, 2)/4.0;
+			Продувка.Fexit = Math.PI*Math.Pow(Продувка.Dexit, 2)/4.0;
 			Продувка.Hfur[0] = nums[33];
 			Продувка.Qstandart = nums[34];
 
@@ -106,20 +105,21 @@ namespace DynamicMelt.ViewModel
 
 		public bool MeltNumber_Exists(int meltNumber)
 		{
-			return _meltDataMdb
-				.Reader
-				.SelectColumnRange<int>(StraightCountTable, meltNumber)
-				.Contains(meltNumber);
+			return _meltDataMdb.MeltNumberExists(meltNumber);
 		}
 
-		public void NeededData_Load()
+		public void NeededData_Load(int meltNumber)
 		{
-			var nums = _meltDataMdb
-				.FindMeltRange(MeltNumber)
-				.Select(x => x.ToDouble())
-				.ToArray();
+			var nums = _meltDataMdb.FindMeltRange(meltNumber);
 
-			Tube.Футеровка.G = nums[45];
+			Tube.Футеровка.G = nums[45].ToDouble();
+
+			Params.FutTypeSelected = nums[46].ToInt();
+			Params.SelectedPlant = nums[47].ToInt();
+
+			Tube.Дутье.O2 = nums[48].ToDouble();
+			Tube.Дутье.Ar = nums[49].ToDouble();
+			Tube.Дутье.N2 = nums[50].ToDouble();
 		}
 
 		public void OxyChargeStart()

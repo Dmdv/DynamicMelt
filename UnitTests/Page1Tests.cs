@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using DynamicMelt.Chemistry;
 using DynamicMelt.Model;
 using DynamicMelt.ViewModel;
 using FluentAssertions;
@@ -17,6 +18,7 @@ namespace UnitTests
 		[TestMethod]
 		public void Data_Params_Load()
 		{
+			_page1ViewModel.Data_Params_Load();
 		}
 
 		[TestMethod]
@@ -64,12 +66,24 @@ namespace UnitTests
 				.Contain(220024);
 
 			_page1ViewModel.MeltNumber_Exists(220024).Should().BeTrue();
-			_page1ViewModel.MeltNumber_Exists(3504460).Should().BeFalse();
+			_page1ViewModel.MeltNumber_Exists(3504460).Should().BeTrue();
+			_page1ViewModel.MeltNumber_Exists(3504).Should().BeFalse();
 		}
 
 		[TestMethod]
 		public void NeededData_Load()
 		{
+			_page1ViewModel.NeededData_Load(3504461);
+
+			Tube.Футеровка.G.Should().Be(0);
+
+			Params.FutTypeSelected.Should().Be(1);
+			Params.SelectedPlant.Should().Be(1);
+
+			Tube.Дутье.O2.Should().Be(99.732);
+			Tube.Дутье.Ar.Should().Be(0.226);
+			Tube.Дутье.N2.Should().Be(0.042);
+
 		}
 
 		[TestMethod]

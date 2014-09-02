@@ -37,5 +37,13 @@ namespace DynamicMelt.Model
 			var index = Array.FindIndex(strings, value => value == meltNumber);
 			return index == -1 ? null : StraightCount.SelectRowRange(index);
 		}
+
+		public bool MeltNumberExists(int meltNumber)
+		{
+			return
+				StraightCount
+					.SelectColumnRange<int>(MeltNumberColumn)
+					.Contains(meltNumber);
+		}
 	}
 }

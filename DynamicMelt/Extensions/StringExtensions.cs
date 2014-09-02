@@ -1,4 +1,5 @@
 using System;
+using Common.Contracts;
 
 namespace DynamicMelt.Extensions
 {
@@ -6,12 +7,16 @@ namespace DynamicMelt.Extensions
 	{
 		public static double ToDouble(this string value)
 		{
+			Guard.CheckContainsText(value, "value");
+
 			double outValue;
-			if (string.IsNullOrWhiteSpace(value) || !double.TryParse(value, out outValue))
+
+			if (double.TryParse(value, out outValue))
 			{
-				throw new ArgumentException(value, string.Format("value = '{0}'", value));
+				return outValue;
 			}
-			return outValue;
+
+			throw new ArgumentException(value, string.Format("value = '{0}'", value));
 		}
 
 		public static double ToDoubleOrDefault(this string value)
@@ -49,12 +54,16 @@ namespace DynamicMelt.Extensions
 
 		public static float ToFloat(this string value)
 		{
+			Guard.CheckContainsText(value, "value");
+
 			float outValue;
-			if (string.IsNullOrWhiteSpace(value) || !float.TryParse(value, out outValue))
+
+			if (float.TryParse(value, out outValue))
 			{
-				throw new ArgumentException(value, string.Format("value = '{0}'", value));
+				return outValue;
 			}
-			return outValue;
+
+			throw new ArgumentException(value, string.Format("value = '{0}'", value));
 		}
 
 		public static float ToFloatOrZero(this string value)
@@ -69,12 +78,16 @@ namespace DynamicMelt.Extensions
 
 		public static int ToInt(this string value)
 		{
+			Guard.CheckContainsText(value, "value");
+
 			int outValue;
-			if (string.IsNullOrWhiteSpace(value) || !int.TryParse(value, out outValue))
+
+			if (int.TryParse(value, out outValue))
 			{
-				throw new ArgumentException(value, string.Format("value = '{0}'", value));
+				return outValue;
 			}
-			return outValue;
+
+			throw new ArgumentException(value, string.Format("value = '{0}'.", value));
 		}
 
 		public static int ToIntOrZero(this string value)
