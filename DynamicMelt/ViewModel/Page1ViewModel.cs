@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Common.Extensions;
 using DynamicMelt.Chemistry;
 using DynamicMelt.Extensions;
 using DynamicMelt.Model;
@@ -15,6 +18,16 @@ namespace DynamicMelt.ViewModel
 		public Page1ViewModel()
 		{
 			_paramsMdb = new ParamsMdb();
+		}
+
+		public ImageSource ImageIznos
+		{
+			get { return _imageIznos; }
+			set
+			{
+				_imageIznos = value;
+				RaisePropertyChanged("ImageIznos");
+			}
 		}
 
 		public int MeltNumber
@@ -84,8 +97,17 @@ namespace DynamicMelt.ViewModel
 		/// <summary>
 		/// Refresh image.
 		/// </summary>
-		public void Iznos_Refresh()
+		/// <param name="newValue"></param>
+		/// <param name="intervals"></param>
+		public void Iznos_Refresh(double newValue, int intervals)
 		{
+			var bitmapImage = new BitmapImage();
+			bitmapImage.BeginInit();
+			bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+			bitmapImage.UriSource = new Uri(@"Images/image{0}.png".FormatString(newValue % intervals), UriKind.Relative);
+			bitmapImage.EndInit();
+			
+			ImageIznos = bitmapImage;
 		}
 
 		public void LoadNornRasp()
@@ -128,6 +150,7 @@ namespace DynamicMelt.ViewModel
 
 		private readonly MeltDataMdb _meltDataMdb = new MeltDataMdb();
 		private readonly ParamsMdb _paramsMdb;
+		private ImageSource _imageIznos;
 		private int _meltNumber;
 	}
 }

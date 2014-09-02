@@ -15,7 +15,7 @@ namespace DynamicMelt
 
 		private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
 		{
-			MessageBox.Show(string.Format("Unhandled exception: '{0}'", e.ExceptionObject));
+			MessageBox.Show(string.Format("Unhandled exception: '{0}'", e.ExceptionObject), "Unhandled exception");
 		}
 	}
 }

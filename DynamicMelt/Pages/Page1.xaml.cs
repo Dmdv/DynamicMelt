@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Common.Extensions;
 using DynamicMelt.Chemistry;
@@ -7,13 +8,27 @@ using DynamicMelt.ViewModel;
 
 namespace DynamicMelt.Pages
 {
+	// TODO: Здесь напрямую используется ViewModel. Это неправильно.
+	// Необходимо перенести весь отсюда в модель.
+
 	public partial class Page1
 	{
 		public Page1()
 		{
+			_model = ViewModelLocator.Page1Model;
+
 			InitializeComponent();
 
 			Loaded += OnLoad;
+		}
+
+		private int Intervals
+		{
+			get
+			{
+				var intervals = (_sliderControl.Maximum - _sliderControl.Minimum)/_sliderControl.TickFrequency;
+				return Convert.ToInt32(intervals);
+			}
 		}
 
 		private void NextCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -82,9 +97,14 @@ namespace DynamicMelt.Pages
 		private void OnLoad(object sender, RoutedEventArgs e)
 		{
 			_model.MeltNumber_Detect();
-			_model.Iznos_Refresh();
+			_model.Iznos_Refresh(_sliderControl.Value, Intervals);
 		}
 
-		private readonly Page1ViewModel _model = new Page1ViewModel();
+		private void OnSliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		{
+			_model.Iznos_Refresh(e.NewValue, Intervals);
+		}
+
+		private readonly Page1ViewModel _model;
 	}
 }
