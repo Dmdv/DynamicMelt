@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTests
 {
 	[TestClass]
+	[DeploymentItem(@"Database", @"Database")]
 	public class ParamsMdbTests
 	{
 		[TestMethod]

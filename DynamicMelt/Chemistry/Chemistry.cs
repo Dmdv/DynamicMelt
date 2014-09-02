@@ -285,7 +285,7 @@ namespace DynamicMelt.Chemistry
 		public double P2O5 { get; set; }
 		public double SiO2 { get; set; }
 
-		public void Load()
+		public new void Load()
 		{		
 			Load(Index);
 		}
@@ -329,7 +329,7 @@ namespace DynamicMelt.Chemistry
 		public double P2O5 { get; set; }
 		public double SiO2 { get; set; }
 
-		public void Load()
+		public new void Load()
 		{
 			Load(Index);
 		}

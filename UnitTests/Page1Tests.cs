@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTests
 {
 	[TestClass]
+	[DeploymentItem(@"Database", @"Database")]
 	public class Page1Tests
 	{
 		[TestMethod]
