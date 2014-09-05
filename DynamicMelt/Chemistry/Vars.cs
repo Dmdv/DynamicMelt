@@ -2,6 +2,12 @@
 {
 	public static class Vars
 	{
+
+		static Vars()
+		{
+			Raspredelenie = new int[2002];
+		}
+
 		/// <summary>
 		/// Энергия перемешивания струёй.
 		/// </summary>
@@ -40,5 +46,10 @@
 		/// Процент интегрального расхода продувки, с которого начинается учет модели конца продувки.
 		/// </summary>
 		public static double BlowFinishPoint;
+
+		/// <summary>
+		/// Массив нормального распределения.
+		/// </summary>
+		public static int[] Raspredelenie;
 	}
 }

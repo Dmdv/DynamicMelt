@@ -19,16 +19,6 @@ namespace DynamicMelt.Extensions
 			throw new ArgumentException(value, string.Format("value = '{0}'", value));
 		}
 
-		public static double ToDoubleOrDefault(this string value)
-		{
-			double outValue;
-			if (string.IsNullOrWhiteSpace(value) || !double.TryParse(value, out outValue))
-			{
-				return 0.0d;
-			}
-			return outValue;
-		}
-
 		public static double ToDoubleOrZero(this string value)
 		{
 			if (string.IsNullOrWhiteSpace(value))

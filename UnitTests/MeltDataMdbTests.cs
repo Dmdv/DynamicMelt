@@ -10,7 +10,7 @@ namespace UnitTests
 {
 	[TestClass]
 	[DeploymentItem(@"Database", @"Database")]
-	public class MeltDataTests
+	public class MeltDataMdbTests
 	{
 		[TestMethod]
 		public void TestAllMdbExist()

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Common.Contracts;
 using Common.Extensions;
 using DynamicMelt.Chemistry;
 using DynamicMelt.Extensions;
@@ -18,6 +20,7 @@ namespace DynamicMelt.ViewModel
 		public Page1ViewModel()
 		{
 			_paramsMdb = new ParamsMdb();
+			_meltDataMdb = new MeltDataMdb();
 		}
 
 		public ImageSource ImageIznos
@@ -40,16 +43,20 @@ namespace DynamicMelt.ViewModel
 			}
 		}
 
-		public void ConvDiameter_Recalculate()
+		public void ConvDiameter_Recalculate(double iznosValue)
 		{
-			throw new NotImplementedException();
+			ConverterSize.D = ConverterSize.DNew * (1 + 0.25 * iznosValue / 100.0);
 		}
 
 		public void Data_Params_Load()
 		{
+			Guard.CheckFalse(
+				Params.SelectedPlant <= 0,
+				"SelectedPlant should be greater than 0");
+
 			var nums = _paramsMdb
 				.CountData
-				.SelectRowRange(Params.SelectedPlant)
+				.SelectRowRange(Params.SelectedPlant - 1)
 				.Select(x => x.ToDoubleOrZero())
 				.ToArray();
 
@@ -66,12 +73,12 @@ namespace DynamicMelt.ViewModel
 			Продувка.Nsop = nums[28];
 			Продувка.SoploVerticalAngle = nums[29];
 			Продувка.SoploOpenHalfAngle = nums[30];
-			Продувка.Dkr = nums[31]/1000.0;
+			Продувка.Dkr = nums[31] / 1000.0;
 
-			Vars.Fkr = Math.PI*Math.Pow(Продувка.Dkr, 2)/4.0;
+			Vars.Fkr = Math.PI * Math.Pow(Продувка.Dkr, 2) / 4.0;
 
-			Продувка.Dexit = nums[32]/1000.0;
-			Продувка.Fexit = Math.PI*Math.Pow(Продувка.Dexit, 2)/4.0;
+			Продувка.Dexit = nums[32] / 1000.0;
+			Продувка.Fexit = Math.PI * Math.Pow(Продувка.Dexit, 2) / 4.0;
 			Продувка.Hfur[0] = nums[33];
 			Продувка.Qstandart = nums[34];
 
@@ -86,19 +93,17 @@ namespace DynamicMelt.ViewModel
 
 		public void Fakel_Load()
 		{
-			throw new NotImplementedException();
+			Fakel.Load(Params.SelectedPlant);
 		}
 
 		public void FutChem_Load()
 		{
-			throw new NotImplementedException();
+			Tube.Футеровка.Load(Params.FutTypeSelected);
 		}
 
 		/// <summary>
 		/// Refresh image.
 		/// </summary>
-		/// <param name="newValue"></param>
-		/// <param name="intervals"></param>
 		public void Iznos_Refresh(double newValue, int intervals)
 		{
 			var bitmapImage = new BitmapImage();
@@ -106,13 +111,24 @@ namespace DynamicMelt.ViewModel
 			bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
 			bitmapImage.UriSource = new Uri(@"Images/image{0}.png".FormatString(newValue % intervals), UriKind.Relative);
 			bitmapImage.EndInit();
-			
+
 			ImageIznos = bitmapImage;
 		}
 
+		/// <summary>
+		/// Создание массива зашумления.
+		/// </summary>
 		public void LoadNornRasp()
 		{
-			throw new NotImplementedException();
+			new RaspredelenieMdb().NormRasp
+				.SelectAllRows()
+				.ForEach(row =>
+				{
+					var index = row[0].ToInt();
+					var value = row[1].ToInt();
+
+					Vars.Raspredelenie[index] = value;
+				});
 		}
 
 		public int MeltNumber_Detect()
@@ -146,9 +162,14 @@ namespace DynamicMelt.ViewModel
 
 		public void OxyChargeStart()
 		{
+			MessageBox.Show(
+				"Расчет oxycharge в данной версии приложения отсутствует.",
+				"OxyCharge",
+				MessageBoxButton.OK,
+				MessageBoxImage.Information);
 		}
 
-		private readonly MeltDataMdb _meltDataMdb = new MeltDataMdb();
+		private readonly MeltDataMdb _meltDataMdb;
 		private readonly ParamsMdb _paramsMdb;
 		private ImageSource _imageIznos;
 		private int _meltNumber;

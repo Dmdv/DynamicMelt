@@ -21,8 +21,7 @@ namespace DynamicMelt.Extensions
 			return
 				table.Rows
 					.Cast<DataRow>()
-					.Select(row => row.ItemArray.Select(item => item.ToString()).ToArray())
-					.ToList();
+					.Select(row => row.ItemArray.Select(item => item.ToString()).ToArray());
 		}
 
 		public static EnumerableRowCollection<T> SelectColumnRange<T>(this DataTable table, string column)
@@ -50,7 +49,7 @@ namespace DynamicMelt.Extensions
 
 		public static double[] SelectRowNumbers(this DataTable table, int index)
 		{
-			return table.SelectRowRange(index).Select(x => x.ToDouble()).ToArray();
+			return table.SelectRowRange(index).Select(x => x.ToDoubleOrZero()).ToArray();
 		}
 
 		public static Dictionary<string, string> SelectRowStringDictionary(this DataTable table, int index)

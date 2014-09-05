@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using Common.Extensions;
 using DynamicMelt.Converters;
 using DynamicMelt.Extensions;
 using DynamicMelt.Helpers;
@@ -49,8 +50,12 @@ namespace DynamicMelt.Chemistry
 			Load(GetSavedSelection(ColumnNumberInSaveTable) - 1);
 		}
 
+		public virtual void Load(Dictionary<string, string> rowValues)
+		{
+		}
+
 		/// <summary>
-		/// Загрузка материала из БД
+		/// Загрузка материала из БД по номеру строки.
 		/// </summary>
 		public virtual void Load(int index)
 		{
@@ -111,20 +116,23 @@ namespace DynamicMelt.Chemistry
 		/// </summary>
 		private int GetSavedSelection(int columnNumber)
 		{
+			if (columnNumber < 0)
+			{
+				throw new InvalidOperationException(
+					"This kind of operation is not supported for '{0}'\r\n".FormatString(Material) +
+					"Material: '{0}' is not saved in save table in loose.mdb".FormatString(Material));
+			}
+
 			var idxs = _looseMdb.Reader
 				.SelectRowRange("save", 0)
 				.Select(x => x.ToInt())
 				.ToArray();
 
-			if (columnNumber < 0)
-			{
-				throw new InvalidOperationException(
-					string.Format("This kind of operation is not supported for '{0}'", Material));
-			}
 			if (columnNumber >= idxs.Length)
 			{
 				throw new ArgumentException(string.Format("Column number = '{0}' exceeds array lenght ", columnNumber));
 			}
+
 			return idxs[columnNumber];
 		}
 
@@ -467,6 +475,36 @@ namespace DynamicMelt.Chemistry
 		public double P2O5 { get; set; }
 		public double SiO2 { get; set; }
 		public double GTotal { get; set; }
+
+		public override void Load(Dictionary<string, string> row)
+		{
+			Al2O3 = row["Al2O3"].ToDoubleOrZero();
+			C = row["C"].ToDoubleOrZero();
+			CaO = row["CaO"].ToDoubleOrZero();
+			MgO = row["MgO"].ToDoubleOrZero();
+			P2O5 = row["P2O5"].ToDoubleOrZero();
+			SiO2 = row["SiO2"].ToDoubleOrZero();
+		}
+
+		public override void Load(int index)
+		{
+			if (index <= 0)
+			{
+				MessageBox.Show(
+					"Не загружен номер футеровки (начиная с 1)",
+					"Ошибка",
+					MessageBoxButton.OK,
+					MessageBoxImage.Error);
+
+				return;
+			}
+
+			var row = new ParamsMdb()
+				.FutData
+				.SelectRowStringDictionary(index - 1);
+
+			Load(row);
+		}
 	}
 
 	public class Дутье : Навеска

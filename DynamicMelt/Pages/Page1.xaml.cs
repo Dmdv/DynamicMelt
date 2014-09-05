@@ -79,13 +79,14 @@ namespace DynamicMelt.Pages
 
 				if (MessageBox.Show(Msg, "Продолжение расчета невозможно") == MessageBoxResult.Yes)
 				{
+					_model.OxyChargeStart();
 				}
 				return;
 			}
 
 			_model.Data_Params_Load();
 			_model.FutChem_Load();
-			_model.ConvDiameter_Recalculate();
+			_model.ConvDiameter_Recalculate(_sliderControl.Value);
 			_model.Fakel_Load();
 			_model.LoadNornRasp();
 
