@@ -16,7 +16,11 @@ namespace DynamicMelt.Chemistry
 		static Cp()
 		{
 			_constantsMdb = new TeploPhysConstantsMdb();
-			LoadConstants();	
+			LoadConstants();
+		}
+
+		public static void Init()
+		{
 		}
 
 		public static double H2O { get; set; }
@@ -29,7 +33,6 @@ namespace DynamicMelt.Chemistry
 		public static double FeO { get; set; }
 		public static double Fe { get; set; }
 		public static double IMF { get; set; }
-
 		public static double Alloy { get; set; }
 		public static double izv { get; set; }
 		public static double izk { get; set; }
@@ -42,17 +45,14 @@ namespace DynamicMelt.Chemistry
 		public static double agl { get; set; }
 		public static double dol { get; set; }
 		public static double vldol { get; set; }
-
-		// CpChugSolid, CpMetRZ - не используется!
-
 		public static double ChugSolid { get; set; }
 		public static double ChugLiquid { get; set; }
 		public static double LomSolid { get; set; }
 		public static double Met { get; set; }
-
+		public static double MetRZ { get; set; }
+		public static double FeORZ { get; set; }
 		//Что-то связанное с известью.
 		public static double Densing { get; set; }
-
 		public static double DUT { get; set; }
 
 		private static void LoadConstants()
@@ -61,11 +61,12 @@ namespace DynamicMelt.Chemistry
 				.SelectAllRows(CpTable)
 				.ToDictionary(row => row[0], row => row[1]);
 
-			// CpChugSolid, CpMetRZ - не используется!
-
 			ChugLiquid	= SafeValue("CpChugLiquid", rows);
-			LomSolid	= SafeValue("CpLomSolid", rows);
-			Met			= SafeValue("CpMet", rows);
+			ChugSolid = SafeValue("CpChugSolid", rows);
+			LomSolid = SafeValue("CpLomSolid", rows);
+			Met = SafeValue("CpMet", rows);
+			MetRZ = SafeValue("CpMetRZ", rows);
+			FeORZ = SafeValue("CpFeORZ", rows);
 		}
 
 		private static double SafeValue(string param, IDictionary<string, string> rows)

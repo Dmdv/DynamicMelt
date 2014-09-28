@@ -120,7 +120,7 @@
     <Compile Include="Providers\TablesSchema.cs" />
     <Compile Include="Providers\TableWriter.cs" />
     <Compile Include="Shell\Run.cs" />
-    <Compile Include="ViewModel\DataLoad1.cs" />
+    <Compile Include="ViewModel\DataLoad.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Page1ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

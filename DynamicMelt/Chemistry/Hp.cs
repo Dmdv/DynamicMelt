@@ -19,6 +19,10 @@ namespace DynamicMelt.Chemistry
 			LoadConstantSafe();
 		}
 
+		public static void Init()
+		{
+		}
+
 		public static double dSc_mno_mol { get; set; }
 		public static double dHc_mno_mol { get; set; }
 		public static double dSp_feo_mol { get; set; }
@@ -55,6 +59,7 @@ namespace DynamicMelt.Chemistry
 		public static double dHfe_fe2o3_o2_mol { get; set; }
 		public static double dHc_O2_mol { get; set; }
 		public static double dHco_co2_mol { get; set; }
+		public static double dHc_co2_mol { get; set; }
 
 		private static void LoadConstantSafe()
 		{
@@ -74,8 +79,13 @@ namespace DynamicMelt.Chemistry
 				.SelectAllRows(CpTable)
 				.ToDictionary(row => row[0], row => new Tuple<string, string>(row[1], row[2]));
 
+			dHchugPlavl = rows["dHchugPlavl"].Item1.ToDoubleOrZero();
+			dHlomPlavl = rows["dHlomPlavl"].Item1.ToDoubleOrZero();
+
 			dHfe_O2_mol = rows["fe_O2_mol"].Item1.ToDoubleOrZero();
 			dSfe_O2_mol = rows["fe_O2_mol"].Item2.ToDoubleOrZero();
+
+			dHfe_fe2o3_o2_mol = rows["fe_fe2o3_o2_mol"].Item1.ToDoubleOrZero();
 
 			dHmn_O2_mol = rows["mn_O2_mol"].Item1.ToDoubleOrZero();
 			dSmn_O2_mol = rows["mn_O2_mol"].Item2.ToDoubleOrZero();
@@ -95,6 +105,11 @@ namespace DynamicMelt.Chemistry
 			dHc_O2_mol = rows["c_o2_mol"].Item1.ToDoubleOrZero();
 			dSc_O2_mol = rows["c_o2_mol"].Item2.ToDoubleOrZero();
 
+			dHc_co2_mol = rows["c_co2_mol"].Item2.ToDoubleOrZero();
+
+			dHp2o5_3caop2o5 = rows["dHp2o5_3caop2o5"].Item1.ToDoubleOrZero();
+			dHsio2_2caosio2 = rows["dHsio2_2caosio2"].Item1.ToDoubleOrZero();
+
 			dHc_feo_mol = rows["c_feo_mol"].Item1.ToDoubleOrZero();
 			dSc_feo_mol = rows["c_feo_mol"].Item2.ToDoubleOrZero();
 
@@ -110,13 +125,7 @@ namespace DynamicMelt.Chemistry
 			dHc_mno_mol = rows["c_mno_mol"].Item1.ToDoubleOrZero();
 			dSc_mno_mol = rows["c_mno_mol"].Item2.ToDoubleOrZero();
 
-			dHfe_fe2o3_o2_mol = rows["fe_fe2o3_o2_mol"].Item1.ToDoubleOrZero();
-
-			dHchugPlavl = rows["dHchugPlavl"].Item1.ToDoubleOrZero();
-			dHlomPlavl = rows["dHlomPlavl"].Item1.ToDoubleOrZero();
-			dHizkPlavl = rows["dHizkPlavl"].Item1.ToDoubleOrZero();
-			dHsio2_2caosio2 = rows["dHsio2_2caosio2"].Item1.ToDoubleOrZero();
-			dHp2o5_3caop2o5 = rows["dHp2o5_3caop2o5"].Item1.ToDoubleOrZero();
+			dHizkPlavl = rows["dHizkPlavl"].Item1.ToDoubleOrZero();	
 		}
 	}
 }

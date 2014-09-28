@@ -90,7 +90,7 @@ namespace DynamicMelt.Pages
 			_model.Fakel_Load();
 			_model.LoadNornRasp();
 
-			DataLoad1.Run();
+			DataLoad.Run();
 
 			//_model.
 		}
