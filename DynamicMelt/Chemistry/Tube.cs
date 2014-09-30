@@ -4,7 +4,7 @@ using DynamicMelt.Types;
 
 namespace DynamicMelt.Chemistry
 {
-	public class Tube
+	public static class Tube
 	{
 		private static readonly List<Навеска> _registry = new List<Навеска>();
 

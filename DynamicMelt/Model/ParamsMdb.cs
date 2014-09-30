@@ -16,14 +16,19 @@ namespace DynamicMelt.Model
 			get { return Reader.FetchTable("CountData"); }
 		}
 
+		public DataTable Fakel
+		{
+			get { return Reader.FetchTable("Fakel"); }
+		}
+
 		public DataTable FutData
 		{
 			get { return Reader.FetchTable("FutData"); }
 		}
 
-		public DataTable Fakel
+		public DataTable Regressions
 		{
-			get { return Reader.FetchTable("Fakel"); }
+			get { return Reader.FetchTable("Regressions"); }
 		}
 	}
 }

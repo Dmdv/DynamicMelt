@@ -102,6 +102,7 @@
     <Compile Include="Chemistry\Metall.cs" />
     <Compile Include="Chemistry\Packets.cs" />
     <Compile Include="Chemistry\Params.cs" />
+    <Compile Include="Chemistry\Regress.cs" />
     <Compile Include="Chemistry\Tube.cs" />
     <Compile Include="Chemistry\Vars.cs" />
     <Compile Include="Chemistry\Volumes.cs" />
@@ -111,6 +112,9 @@
     <Compile Include="Model\MapsMdb.cs" />
     <Compile Include="Model\MiscellaneousMdb.cs" />
     <Compile Include="Model\RaspredelenieMdb.cs" />
+    <Compile Include="Pages\Page2.xaml.cs">
+      <DependentUpon>Page2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Providers\TableKey.cs" />
     <Compile Include="Providers\MdbReader.cs" />
     <Compile Include="Providers\MdbTable.cs" />
@@ -153,6 +157,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Page2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

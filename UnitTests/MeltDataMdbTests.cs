@@ -38,6 +38,7 @@ namespace UnitTests
 			var meltRange = meltDataMdb.FindMeltRange(MeltNumber);
 			meltRange[MeltColumnIndex].Should().Be(MeltNumber.ToStringWithInvariantCulture());
 
+			meltRange[2].Should().Be("4,7");
 			meltRange[45].Should().Be("0,1333333");
 			meltRange[48].Should().Be("99,732");
 		}

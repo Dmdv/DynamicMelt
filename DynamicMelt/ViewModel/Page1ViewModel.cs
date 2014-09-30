@@ -39,6 +39,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_meltNumber = value;
+				Params.MeltNumber = value;
 				RaisePropertyChanged("MeltNumber");
 			}
 		}
@@ -113,6 +114,71 @@ namespace DynamicMelt.ViewModel
 			bitmapImage.EndInit();
 
 			ImageIznos = bitmapImage;
+		}
+
+		public void LoadData()
+		{
+			DataLoad.Run();
+
+			var range = _meltDataMdb
+				.FindMeltRange(MeltNumber)
+				.Select(x => x.ToDouble())
+				.ToArray();
+
+			Tube.Чугун.C = range[2];
+			Tube.Чугун.Si = range[3];
+			Tube.Чугун.Mn = range[4];
+			Tube.Чугун.P = range[5];
+			Tube.Чугун.S = range[6];
+
+			Tube.Лом.C = range[7];
+			Tube.Лом.Si = range[8];
+			Tube.Лом.Mn = range[9];
+			Tube.Лом.P = range[10];
+			Tube.Лом.S = range[11];
+
+			Tube.Чугун.GEstimated = range[12];
+			Tube.Лом.GEstimated = range[13];
+
+			Tube.ОставленныйШлак.G = range[14] * 1000;
+			Tube.МиксерныйШлак.G = range[15] * 1000;
+			Tube.Шлак.GEnd = range[16] * 1000;
+
+			Tube.Сталь.GYield = range[17] * 1000;
+			Tube.Сталь.C = range[18];
+			Tube.Сталь.Si = range[19];
+			Tube.Сталь.Mn = range[20];
+			Tube.Сталь.P = range[21];
+			Tube.Сталь.S = range[22];
+
+			Tube.Шлак.FeOEnd = range[23];
+			Tube.Шлак.MnOEnd = range[24];
+			Tube.Шлак.P2O5End = range[25];
+			Tube.Шлак.BEnd = range[26];
+
+			Tube.Известь.G = range[27] * 1000;
+			Tube.Известняк.G = range[28] * 1000;
+
+			Tube.Доломит.G = range[29] * 1000;
+			Tube.ВлажныйДоломит.G = range[30] * 1000;
+			Tube.Имф.G = range[31] * 1000;
+			Tube.Песок.G = range[32] * 1000;
+			Tube.Кокс.G = range[33] * 1000;
+			Tube.Окатыши.G = range[34] * 1000;
+			Tube.Руда.G = range[35] * 1000;
+			Tube.Окалина.G = range[36] * 1000;
+			Tube.Агломерат.G = range[37] * 1000;
+			Tube.Шпат.G = range[38] * 1000;
+
+			Tube.Дутье.V = range[39];
+
+			Params.AirTemp = Convert.ToInt32(range[40]) + 273;
+			Tube.Чугун.T = range[41] + 273;
+			Tube.Сталь.T = range[42] + 273;
+			Tube.Дутье.VArBlow[0] = range[43];
+			Tube.Лом.DolyaLegkovesa = range[51];
+
+			Regress.Load();
 		}
 
 		/// <summary>

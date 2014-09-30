@@ -89,10 +89,7 @@ namespace DynamicMelt.Pages
 			_model.ConvDiameter_Recalculate(_sliderControl.Value);
 			_model.Fakel_Load();
 			_model.LoadNornRasp();
-
-			DataLoad.Run();
-
-			//_model.
+			_model.LoadData();
 		}
 
 		private void OnLoad(object sender, RoutedEventArgs e)

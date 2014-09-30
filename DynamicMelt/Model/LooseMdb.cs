@@ -1,5 +1,4 @@
-﻿using System.Data;
-using DynamicMelt.Properties;
+﻿using DynamicMelt.Properties;
 using DynamicMelt.Providers;
 
 namespace DynamicMelt.Model

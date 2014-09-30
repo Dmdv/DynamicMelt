@@ -1,17 +1,9 @@
-﻿using System;
-using DynamicMelt.Chemistry;
+﻿using DynamicMelt.Chemistry;
 
 namespace DynamicMelt.ViewModel
 {
-	public class DataLoad
+	public static class DataLoad
 	{
-		public static void LoadContants()
-		{
-			Load_Constants();
-			Load_Data();
-			RegressLoad();
-		}
-
 		public static void Run()
 		{
 			Tube.Известь.Load();
@@ -40,20 +32,10 @@ namespace DynamicMelt.ViewModel
 			LoadContants();
 		}
 
-		private static void Load_Constants()
+		private static void LoadContants()
 		{
 			Cp.Init();
 			Hp.Init();
-		}
-
-		private static void Load_Data()
-		{
-			throw new NotImplementedException();
-		}
-
-		private static void RegressLoad()
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

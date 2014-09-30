@@ -277,6 +277,16 @@ namespace DynamicMelt.Chemistry
 		public double SiO2 { get; set; }
 		public double TOTALFeO { get; set; }
 		public double V2O5 { get; set; }
+
+		public double GEnd { get; set; }
+		public double BEnd { get; set; }
+		public double FeOEnd { get; set; }
+		public double CaOEnd { get; set; }
+		public double SiO2End { get; set; }
+		public double MgOEnd { get; set; }
+		public double MnOEnd { get; set; }
+		public double P2O5End { get; set; }
+		public double Al2O3End { get; set; }
 	}
 
 	public class ОставленныйШлак : Навеска
@@ -376,6 +386,7 @@ namespace DynamicMelt.Chemistry
 		public double S { get; set; }
 		public double Si { get; set; }
 		public double T { get; set; }
+		public double GEstimated { get; set; }
 	}
 
 	public class Сталь : Навеска
@@ -424,15 +435,15 @@ namespace DynamicMelt.Chemistry
 			Part = ReadValue("Доля лома");
 		}
 
-		public float C { get; set; }
-		public float DolyaLegkovesa { get; set; }
-		public float Mn { get; set; }
-		public float P { get; set; }
-		public float S { get; set; }
-		public float Si { get; set; }
-		public float Part { get; set; }
-		public float GEstimated { get; set; }
-		public float Nsov { get; set; }
+		public double C { get; set; }
+		public double DolyaLegkovesa { get; set; }
+		public double Mn { get; set; }
+		public double P { get; set; }
+		public double S { get; set; }
+		public double Si { get; set; }
+		public double Part { get; set; }
+		public double GEstimated { get; set; }
+		public double Nsov { get; set; }
 
 		private float ReadValue(string column)
 		{
@@ -509,10 +520,16 @@ namespace DynamicMelt.Chemistry
 
 	public class Дутье : Навеска
 	{
+		public Дутье()
+		{
+			VArBlow = new double[3001];
+		}
+
 		public double Ar { get; set; }
 		public double N2 { get; set; }
 		public double O2 { get; set; }
 		public double V { get; set; }
+		public double[] VArBlow { get; set; }
 	}
 
 	public class Имф : Навеска

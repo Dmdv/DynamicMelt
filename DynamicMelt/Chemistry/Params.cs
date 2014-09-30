@@ -42,7 +42,7 @@ namespace DynamicMelt.Chemistry
 		public static double Q5;
 		public static double Q6;
 
-		public static double MeltNumber;
+		public static int MeltNumber;
 
 		public static int Baselenth;
 		public static int dbLenth;
