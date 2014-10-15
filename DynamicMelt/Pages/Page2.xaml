@@ -4,10 +4,41 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	  mc:Ignorable="d" 
-	  d:DesignHeight="300" d:DesignWidth="300"
-	Title="Page2">
+	  d:DesignHeight="514.24" d:DesignWidth="778.6"
+	Title="Page2" WindowTitle="Шаг 2 - Ввод информации о шихтовке - OxyRun">
 
 	<Grid>
-		
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="460*"/>
+				<RowDefinition Height="57*"/>
+			</Grid.RowDefinitions>
+			<GroupBox Header=" Результаты расчёта шихты на процесс для плавки № {} ">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="4*"/>
+							<ColumnDefinition Width="3*"/>
+							<ColumnDefinition Width="2*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="11*"/>
+							<RowDefinition Height="18*"/>
+						</Grid.RowDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="На данном этапе Вам предлагается ознакомиться с результатами расчёта шихты на данную плавку. Если Вам известны фактические значения масс лома в совке(ах) и чугуна в заливочном ковше, введите их в соответствующие окна. Вы также можете зашумить массы чугуна и лома, внося в их значения случайную составляющую." Grid.ColumnSpan="3"/>
+						<GroupBox Header=" Чугун " Grid.Row="1"/>
+						<GroupBox Header=" Падение тем-ры чугуна, С " Grid.Row="1" Grid.Column="1"/>
+						<GroupBox Header=" Кислород продувки " Grid.Row="1" Grid.Column="2"/>
+					</Grid>
+					<Grid Grid.Row="1"/>
+					<Grid Grid.Row="2"/>
+				</Grid>
+			</GroupBox>
+		</Grid>
 	</Grid>
 </Page>
