@@ -26,7 +26,7 @@ namespace DynamicMelt.Pages
 		{
 			get
 			{
-				var intervals = (_sliderControl.Maximum - _sliderControl.Minimum)/_sliderControl.TickFrequency;
+				var intervals = (_sliderControl.Maximum - _sliderControl.Minimum) / _sliderControl.TickFrequency;
 				return Convert.ToInt32(intervals);
 			}
 		}
@@ -90,6 +90,11 @@ namespace DynamicMelt.Pages
 			_model.Fakel_Load();
 			_model.LoadNornRasp();
 			_model.LoadData();
+
+			if (NavigationService != null)
+			{
+				NavigationService.Navigate(new Page2());
+			}
 		}
 
 		private void OnLoad(object sender, RoutedEventArgs e)
