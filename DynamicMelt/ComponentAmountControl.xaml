@@ -1,0 +1,43 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="DynamicMelt.ComponentAmountControl"
+	x:Name="UserControl"
+	d:DesignWidth="471.877" d:DesignHeight="95.093">
+
+	<Grid x:Name="LayoutRoot" UseLayoutRounding="True">
+		<GroupBox Header="Component">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="153*"/>
+					<ColumnDefinition Width="155*"/>
+					<ColumnDefinition Width="127*"/>
+				</Grid.ColumnDefinitions>
+				<Grid Grid.RowSpan="2">
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<TextBlock TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+					<TextBlock TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
+					<Slider VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,5,0,0"/>
+				</Grid>
+				<TextBlock TextWrapping="Wrap" Text="Масса полная, кг" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="26"/>
+				<TextBox TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Height="23" Margin="5,5,5,0"/>
+				<TextBlock TextWrapping="Wrap" Text="Масса на лом, кг" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="26"/>
+				<TextBox Height="22.999" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" Margin="5,5,5,0"/>
+			</Grid>
+		</GroupBox>
+	</Grid>
+</UserControl>
