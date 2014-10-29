@@ -1,26 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DynamicMelt
 {
 	/// <summary>
-	/// Interaction logic for ComponentAmountControl.xaml
+	/// Component, responsible for each component.
 	/// </summary>
 	public partial class ComponentAmountControl : UserControl
 	{
+		public static readonly DependencyProperty ComponentNameProperty = DependencyProperty.Register(
+			"ComponentName",
+			typeof (string),
+			typeof (ComponentAmountControl),
+			new PropertyMetadata(default(string),
+				OnPropertyChangedCallback));
+
 		public ComponentAmountControl()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
+		}
+
+		public string ComponentName
+		{
+			get { return (string) GetValue(ComponentNameProperty); }
+			set { SetValue(ComponentNameProperty, value); }
+		}
+
+		public string Header
+		{
+			get { return _groupBoxControl.Header.ToString(); }
+			set { _groupBoxControl.Header = value ?? "GenericName"; }
+		}
+
+		private static void OnPropertyChangedCallback(
+			DependencyObject o,
+			DependencyPropertyChangedEventArgs args)
+		{
+			var control = (ComponentAmountControl) o;
+			control.Header = args.NewValue.ToString();
 		}
 	}
 }
