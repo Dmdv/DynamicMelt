@@ -55,9 +55,64 @@ namespace DynamicMelt.ViewModel
 			}
 		}
 
+		public string Oxygen
+		{
+			get { return _oxygen; }
+			set
+			{
+				_oxygen = value;
+				RaisePropertyChanged("Oxygen");
+			}
+		}
+
+		public string PParam
+		{
+			get { return _pParam; }
+			set
+			{
+				RaisePropertyChanged("PParam");
+				_pParam = value;
+			}
+		}
+
+		public string TempDelta
+		{
+			get { return _tempDelta; }
+			set
+			{
+				_tempDelta = value;
+				RaisePropertyChanged("TempDelta");
+			}
+		}
+
+		public string Temperature
+		{
+			get { return _temperature; }
+			set
+			{
+				_temperature = value;
+				RaisePropertyChanged("Temperature");
+			}
+		}
+
+		public string TemperatureSet
+		{
+			get { return _temperatureSet; }
+			set
+			{
+				_temperatureSet = value;
+				RaisePropertyChanged("TemperatureSet");
+			}
+		}
+
 		private string _chugunEstimated;
 		private string _chugunFact;
 		private string _lomEstimated;
 		private string _lomFact;
+		private string _oxygen;
+		private string _pParam;
+		private string _tempDelta;
+		private string _temperature;
+		private string _temperatureSet;
 	}
 }
