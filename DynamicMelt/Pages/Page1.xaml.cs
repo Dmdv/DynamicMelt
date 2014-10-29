@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using Common.Extensions;
-using DynamicMelt.Chemistry;
-using DynamicMelt.Shell;
 using DynamicMelt.ViewModel;
 
 namespace DynamicMelt.Pages
 {
 	// TODO: Здесь напрямую используется ViewModel. Это неправильно.
-	// Необходимо перенести весь отсюда в модель.
+	// Необходимо перенести все отсюда в модель.
 
 	public partial class Page1
 	{
@@ -19,7 +16,7 @@ namespace DynamicMelt.Pages
 
 			InitializeComponent();
 
-			Loaded += OnLoad;
+			Loaded += (o, args) => _model.Load(_sliderControl.Value, Intervals);
 		}
 
 		private int Intervals
@@ -38,69 +35,12 @@ namespace DynamicMelt.Pages
 
 		private void NextExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
-			if (_model.MeltNumber <= 0)
-			{
-				const string Message = "Плавка не может иметь порядковый номер: '{0}'.";
-
-				MessageBox.Show(
-					Message.FormatString(_model.MeltNumber),
-					"Ошибка в номере плавки");
-
-				return;
-			}
-
-			if (!_model.MeltNumber_Exists(_model.MeltNumber))
-			{
-				const string Message = "Плавки с номером '{0}' в базе данных не существует. \r\n" +
-				                       "Скорее всего, для неё не производился расчёт шихты или результаты не были сохранены. \r\n" +
-				                       "Запустить систему расчёта шихты OxyCharge?";
-
-				var result = MessageBox.Show(
-					Message.FormatString(_model.MeltNumber),
-					"Внимание!",
-					MessageBoxButton.YesNo,
-					MessageBoxImage.Question);
-
-				if (result == MessageBoxResult.Yes)
-				{
-					Run.OxyCharge();
-				}
-
-				_model.MeltNumber_Detect();
-			}
-
-			_model.NeededData_Load(_model.MeltNumber);
-
-			if (Params.SelectedPlant == 0)
-			{
-				const string Msg = "Для плавки, номер которой Вы ввели, был произведен расчет шихты в ручном режиме.\r\n" +
-				                   "Повторите расчет шихты для этой плавки в автоматическом режиме.\r\n" +
-				                   "Запустить систему расчета шихты OxyCharge?";
-
-				if (MessageBox.Show(Msg, "Продолжение расчета невозможно") == MessageBoxResult.Yes)
-				{
-					_model.OxyChargeStart();
-				}
-				return;
-			}
-
-			_model.Data_Params_Load();
-			_model.FutChem_Load();
-			_model.ConvDiameter_Recalculate(_sliderControl.Value);
-			_model.Fakel_Load();
-			_model.LoadNornRasp();
-			_model.LoadData();
+			_model.ExecuteNext();
 
 			if (NavigationService != null)
 			{
 				NavigationService.Navigate(new Page2());
 			}
-		}
-
-		private void OnLoad(object sender, RoutedEventArgs e)
-		{
-			_model.MeltNumber_Detect();
-			_model.Iznos_Refresh(_sliderControl.Value, Intervals);
 		}
 
 		private void OnSliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

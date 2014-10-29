@@ -8,10 +8,12 @@ using Common.Extensions;
 using DynamicMelt.Chemistry;
 using DynamicMelt.Extensions;
 using DynamicMelt.Model;
+using DynamicMelt.Shell;
 using GalaSoft.MvvmLight;
 
 namespace DynamicMelt.ViewModel
 {
+	// TODO: Sync operation should be parallel if an execution order in not important.
 	public class Page1ViewModel : ViewModelBase
 	{
 		private const int ColumnNumberOfMelt = 1;
@@ -92,6 +94,62 @@ namespace DynamicMelt.ViewModel
 			ConverterSize.Dgorl = nums[40];
 		}
 
+		public void ExecuteNext()
+		{
+			if (MeltNumber <= 0)
+			{
+				const string Message = "Плавка не может иметь порядковый номер: '{0}'.";
+
+				MessageBox.Show(
+					Message.FormatString(MeltNumber),
+					"Ошибка в номере плавки");
+
+				return;
+			}
+
+			if (!MeltNumber_Exists(MeltNumber))
+			{
+				const string Message = "Плавки с номером '{0}' в базе данных не существует. \r\n" +
+				                       "Скорее всего, для неё не производился расчёт шихты или результаты не были сохранены. \r\n" +
+				                       "Запустить систему расчёта шихты OxyCharge?";
+
+				var result = MessageBox.Show(
+					Message.FormatString(MeltNumber),
+					"Внимание!",
+					MessageBoxButton.YesNo,
+					MessageBoxImage.Question);
+
+				if (result == MessageBoxResult.Yes)
+				{
+					Run.OxyCharge();
+				}
+
+				MeltNumber_Detect();
+			}
+
+			NeededData_Load(MeltNumber);
+
+			if (Params.SelectedPlant == 0)
+			{
+				const string Msg = "Для плавки, номер которой Вы ввели, был произведен расчет шихты в ручном режиме.\r\n" +
+				                   "Повторите расчет шихты для этой плавки в автоматическом режиме.\r\n" +
+				                   "Запустить систему расчета шихты OxyCharge?";
+
+				if (MessageBox.Show(Msg, "Продолжение расчета невозможно") == MessageBoxResult.Yes)
+				{
+					OxyChargeStart();
+				}
+				return;
+			}
+
+			Data_Params_Load();
+			FutChem_Load();
+			ConvDiameter_Recalculate(_iznos);
+			Fakel_Load();
+			LoadNornRasp();
+			LoadData();
+		}
+
 		public void Fakel_Load()
 		{
 			Fakel.Load(Params.SelectedPlant);
@@ -114,6 +172,13 @@ namespace DynamicMelt.ViewModel
 			bitmapImage.EndInit();
 
 			ImageIznos = bitmapImage;
+			_iznos = newValue;
+		}
+
+		public void Load(double newValue, int intervals)
+		{
+			MeltNumber_Detect();
+			Iznos_Refresh(newValue, intervals);
 		}
 
 		public void LoadData()
@@ -226,7 +291,7 @@ namespace DynamicMelt.ViewModel
 			Tube.Дутье.N2 = nums[50].ToDouble();
 		}
 
-		public void OxyChargeStart()
+		private static void OxyChargeStart()
 		{
 			MessageBox.Show(
 				"Расчет oxycharge в данной версии приложения отсутствует.",
@@ -238,6 +303,7 @@ namespace DynamicMelt.ViewModel
 		private readonly MeltDataMdb _meltDataMdb;
 		private readonly ParamsMdb _paramsMdb;
 		private ImageSource _imageIznos;
+		private double _iznos;
 		private int _meltNumber;
 	}
 }

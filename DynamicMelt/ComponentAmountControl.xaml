@@ -8,7 +8,7 @@
     x:Name="_userControl"
     d:DesignWidth="471.877" d:DesignHeight="95.093">
 
-    <Grid x:Name="_layoutRootControl" UseLayoutRounding="True">
+    <Grid UseLayoutRounding="True">
         <GroupBox x:Name="_groupBoxControl" Header="Component">
             <Grid>
                 <Grid.RowDefinitions>
