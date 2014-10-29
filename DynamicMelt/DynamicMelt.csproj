@@ -134,6 +134,7 @@
     <Compile Include="ViewModel\DataLoad.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Page1ViewModel.cs" />
+    <Compile Include="ViewModel\Page2ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="ComponentAmountControl.xaml">
       <Generator>MSBuild:Compile</Generator>

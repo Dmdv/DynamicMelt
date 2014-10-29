@@ -16,6 +16,7 @@ namespace DynamicMelt.ViewModel
 
 			SimpleIoc.Default.Register<MainViewModel>();
 			SimpleIoc.Default.Register<Page1ViewModel>();
+			SimpleIoc.Default.Register<Page2ViewModel>();
 		}
 
 		/// <summary>
@@ -28,11 +29,6 @@ namespace DynamicMelt.ViewModel
 				// Create design time view services and models
 				// SimpleIoc.Default.Register<IDataService, DesignDataService>();
 			}
-			else
-			{
-				// Create run time view services and models
-				// SimpleIoc.Default.Register<IDataService, DataService>();
-			}
 		}
 
 		public static MainViewModel Main
@@ -43,6 +39,11 @@ namespace DynamicMelt.ViewModel
 		public static Page1ViewModel Page1Model
 		{
 			get { return ServiceLocator.Current.GetInstance<Page1ViewModel>(); }
+		}
+
+		public static Page2ViewModel Page2Model
+		{
+			get { return ServiceLocator.Current.GetInstance<Page2ViewModel>(); }
 		}
 
 		public static void Cleanup()

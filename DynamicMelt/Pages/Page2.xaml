@@ -1,11 +1,14 @@
 ﻿<Page x:Class="DynamicMelt.Pages.Page2"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	  mc:Ignorable="d" 
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  mc:Ignorable="d"
 	  d:DesignHeight="473.24" d:DesignWidth="912.6"
-	Title="Page2" WindowTitle="Шаг 2 - Ввод информации о шихтовке - OxyRun" Height="474">
+	  Title="Page2" 
+	  WindowTitle="Шаг 2 - Ввод информации о шихтовке - OxyRun" 
+	  Height="474"
+	  DataContext="{Binding Source={StaticResource Locator}, Path=Page2Model}">
 
 	<Page.CommandBindings>
 		<CommandBinding Command="NextPage" CanExecute="NextCanExecute" Executed="NextExecuted" />
