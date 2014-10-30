@@ -77,46 +77,6 @@ namespace DynamicMelt.ViewModel
 			}
 		}
 
-		public double GIzvest
-		{
-			get { return _gIzvest; }
-			set
-			{
-				_gIzvest = value;
-				RaisePropertyChanged("GIzvest");
-			}
-		}
-
-		public double GIzvestNoise
-		{
-			get { return _gIzvestNoise; }
-			set
-			{
-				_gIzvestNoise = value;
-				RaisePropertyChanged("GIzvestNoise");
-			}
-		}
-
-		public double GIzvestnyak
-		{
-			get { return _gIzvestnyak; }
-			set
-			{
-				_gIzvestnyak = value;
-				RaisePropertyChanged("GIzvestnyak");
-			}
-		}
-
-		public double GIzvestnyakNoise
-		{
-			get { return _gIzvestnyakNoise; }
-			set
-			{
-				_gIzvestnyakNoise = value;
-				RaisePropertyChanged("GIzvestnyakNoise");
-			}
-		}
-
 		public double Imf
 		{
 			get { return _imf; }
@@ -134,6 +94,46 @@ namespace DynamicMelt.ViewModel
 			{
 				_imfNoise = value;
 				RaisePropertyChanged("ImfNoise");
+			}
+		}
+
+		public double Izvest
+		{
+			get { return _izvest; }
+			set
+			{
+				_izvest = value;
+				RaisePropertyChanged("Izvest");
+			}
+		}
+
+		public double IzvestNoise
+		{
+			get { return _izvestNoise; }
+			set
+			{
+				_izvestNoise = value;
+				RaisePropertyChanged("IzvestNoise");
+			}
+		}
+
+		public double Izvestnyak
+		{
+			get { return _izvestnyak; }
+			set
+			{
+				_izvestnyak = value;
+				RaisePropertyChanged("Izvestnyak");
+			}
+		}
+
+		public double IzvestnyakNoise
+		{
+			get { return _izvestnyakNoise; }
+			set
+			{
+				_izvestnyakNoise = value;
+				RaisePropertyChanged("IzvestnyakNoise");
 			}
 		}
 
@@ -353,12 +353,12 @@ namespace DynamicMelt.ViewModel
 		private double _chugunFact;
 		private double _dolomit;
 		private double _dolomitNoise;
-		private double _gIzvest;
-		private double _gIzvestNoise;
-		private double _gIzvestnyak;
-		private double _gIzvestnyakNoise;
 		private double _imf;
 		private double _imfNoise;
+		private double _izvest;
+		private double _izvestNoise;
+		private double _izvestnyak;
+		private double _izvestnyakNoise;
 		private double _koks;
 		private double _koksNoise;
 		private double _lomEstimated;

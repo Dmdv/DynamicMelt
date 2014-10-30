@@ -217,21 +217,39 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap" Text="Известь" VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Row="0" Grid.Column="1"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Известняк" Grid.Row="1" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="1"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Доломит" Grid.Row="2" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="2"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Ср. доломит" Grid.Row="3" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="3"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+
+                                    <TextBlock Text="Известь"
+                                               Grid.Row="0" Grid.Column="0"
+                                               VerticalAlignment="Center"
+                                               TextWrapping="Wrap" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Izvest}"
+                                             Grid.Row="0" Grid.Column="1"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Известняк"
+                                               Grid.Row="1" Grid.Column="0"
+                                               VerticalAlignment="Center" TextWrapping="Wrap" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Izvestnyak}"
+                                             Grid.Column="1" Grid.Row="1"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Доломит"
+                                               Grid.Row="2" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Dolomit}"
+                                             Grid.Column="1" Grid.Row="2"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Ср. доломит"
+                                               Grid.Row="3" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding SrDolomit}"
+                                             Grid.Column="1" Grid.Row="3"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
                                 <Grid Margin="2,2,2,0" Grid.Column="1" d:IsLocked="True">
                                     <Grid.RowDefinitions>
@@ -244,21 +262,38 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap" Text="Имф" VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Row="0" Grid.Column="1"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Песок" Grid.Row="1" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="1"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Кокс" Grid.Row="2" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="2"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Окатыши" Grid.Row="3" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="3"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Имф"
+                                               Grid.Row="0" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Imf}"
+                                             Grid.Row="0" Grid.Column="1"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Песок"
+                                               Grid.Row="1" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Pesok}"
+                                             Grid.Column="1" Grid.Row="1"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Кокс"
+                                               Grid.Row="2" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Koks}"
+                                             Grid.Column="1" Grid.Row="2"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Окатыши"
+                                               Grid.Row="3" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Okatyshi}"
+                                             Grid.Column="1" Grid.Row="3"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
                                 <Grid Margin="2,2,2,0" Grid.Column="2" d:IsLocked="True">
                                     <Grid.RowDefinitions>
@@ -271,21 +306,38 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap" Text="Руда" VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Row="0" Grid.Column="1"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Окалина" Grid.Row="1" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="1"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Агломерат" Grid.Row="2" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="2"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
-                                    <TextBlock TextWrapping="Wrap" Text="Плав. шпат" Grid.Row="3" Grid.Column="0"
-                                               VerticalAlignment="Center" d:IsLocked="True" />
-                                    <TextBox TextWrapping="Wrap" Text="0" Grid.Column="1" Grid.Row="3"
-                                             VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Руда"
+                                               Grid.Row="0" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Ruda}"
+                                             Grid.Row="0" Grid.Column="1"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Окалина"
+                                               Grid.Row="1" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Okalina}"
+                                             Grid.Column="1" Grid.Row="1"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Агломерат"
+                                               Grid.Row="2" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding Aglomerat}"
+                                             Grid.Column="1" Grid.Row="2"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
+                                    
+                                    <TextBlock Text="Плав. шпат"
+                                               Grid.Row="3" Grid.Column="0"
+                                               TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
+                                    
+                                    <TextBox Text="{Binding PlavShpat}" 
+                                             Grid.Column="1" Grid.Row="3"
+                                             TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
                             </Grid>
                         </GroupBox>
