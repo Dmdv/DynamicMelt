@@ -267,7 +267,7 @@
                                                Grid.Row="0" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding Imf}"
+                                    <TextBox Text="{Binding Imf, Mode=OneWay}"
                                              Grid.Row="0" Grid.Column="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -275,7 +275,7 @@
                                                Grid.Row="1" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding Pesok}"
+                                    <TextBox Text="{Binding Pesok, Mode=OneWay}"
                                              Grid.Column="1" Grid.Row="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -283,7 +283,7 @@
                                                Grid.Row="2" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding Koks}"
+                                    <TextBox Text="{Binding Koks, Mode=OneWay}"
                                              Grid.Column="1" Grid.Row="2"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -291,7 +291,7 @@
                                                Grid.Row="3" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding Okatyshi}"
+                                    <TextBox Text="{Binding Okatyshi, Mode=OneWay}"
                                              Grid.Column="1" Grid.Row="3"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
@@ -311,7 +311,7 @@
                                                Grid.Row="0" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding Ruda}"
+                                    <TextBox Text="{Binding Ruda, Mode=OneTime}"
                                              Grid.Row="0" Grid.Column="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -319,7 +319,7 @@
                                                Grid.Row="1" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding Okalina}"
+                                    <TextBox Text="{Binding Okalina, Mode=OneWay}"
                                              Grid.Column="1" Grid.Row="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -327,7 +327,7 @@
                                                Grid.Row="2" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding Aglomerat}"
+                                    <TextBox Text="{Binding Aglomerat, Mode=OneWay}"
                                              Grid.Column="1" Grid.Row="2"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -335,7 +335,7 @@
                                                Grid.Row="3" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding PlavShpat}" 
+                                    <TextBox Text="{Binding PlavShpat, Mode=OneWay}" 
                                              Grid.Column="1" Grid.Row="3"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
