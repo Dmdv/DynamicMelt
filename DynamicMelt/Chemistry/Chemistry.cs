@@ -387,6 +387,7 @@ namespace DynamicMelt.Chemistry
 		public double Si { get; set; }
 		public double T { get; set; }
 		public double GEstimated { get; set; }
+		public double TCool { get; set; }
 	}
 
 	public class Сталь : Навеска

@@ -1,8 +1,12 @@
 ﻿using Common.Annotations;
+using DynamicMelt.Chemistry;
 using GalaSoft.MvvmLight;
 
 namespace DynamicMelt.ViewModel
 {
+	// ReSharper disable InconsistentNaming
+	// ReSharper disable UnusedMember.Local
+
 	[UsedImplicitly]
 	public class Page2ViewModel : ViewModelBase
 	{
@@ -15,6 +19,8 @@ namespace DynamicMelt.ViewModel
 				LomEstimated = 0.0;
 				LomFact = 0.0;
 			}
+
+			TСhugCool = 150;
 		}
 
 		public double Aglomerat
@@ -39,10 +45,10 @@ namespace DynamicMelt.ViewModel
 
 		public double ChugunEstimated
 		{
-			get { return _chugunEstimated; }
-			set
+			get { return Tube.Чугун.GEstimated; }
+			private set
 			{
-				_chugunEstimated = value;
+				Tube.Чугун.GEstimated = value;
 				RaisePropertyChanged("ChugunEstimated");
 			}
 		}
@@ -59,10 +65,10 @@ namespace DynamicMelt.ViewModel
 
 		public double Dolomit
 		{
-			get { return _dolomit; }
-			set
+			get { return Tube.Доломит.G / 1000; }
+			private set
 			{
-				_dolomit = value;
+				Tube.Доломит.G = value;
 				RaisePropertyChanged("Dolomit");
 			}
 		}
@@ -74,6 +80,16 @@ namespace DynamicMelt.ViewModel
 			{
 				_dolomitNoise = value;
 				RaisePropertyChanged("DolomitNoise");
+			}
+		}
+
+		public double Dutie
+		{
+			get { return Tube.Дутье.V; }
+			private set
+			{
+				Tube.Дутье.V = value;
+				RaisePropertyChanged("Dutie");
 			}
 		}
 
@@ -99,8 +115,8 @@ namespace DynamicMelt.ViewModel
 
 		public double Izvest
 		{
-			get { return _izvest; }
-			set
+			get { return Tube.Известь.G / 1000; }
+			private set
 			{
 				_izvest = value;
 				RaisePropertyChanged("Izvest");
@@ -119,10 +135,10 @@ namespace DynamicMelt.ViewModel
 
 		public double Izvestnyak
 		{
-			get { return _izvestnyak; }
-			set
+			get { return Tube.Известняк.G / 1000; }
+			private set
 			{
-				_izvestnyak = value;
+				Tube.Известняк.G = value;
 				RaisePropertyChanged("Izvestnyak");
 			}
 		}
@@ -159,10 +175,10 @@ namespace DynamicMelt.ViewModel
 
 		public double LomEstimated
 		{
-			get { return _lomEstimated; }
-			set
+			get { return Tube.Лом.GEstimated; }
+			private set
 			{
-				_lomEstimated = value;
+				Tube.Лом.GEstimated = value;
 				RaisePropertyChanged("LomEstimated");
 			}
 		}
@@ -214,26 +230,6 @@ namespace DynamicMelt.ViewModel
 			{
 				_okatyshiNoise = value;
 				RaisePropertyChanged("OkatyshiNoise");
-			}
-		}
-
-		public double Oxygen
-		{
-			get { return _oxygen; }
-			set
-			{
-				_oxygen = value;
-				RaisePropertyChanged("Oxygen");
-			}
-		}
-
-		public double PParam
-		{
-			get { return _pParam; }
-			set
-			{
-				RaisePropertyChanged("PParam");
-				_pParam = value;
 			}
 		}
 
@@ -297,59 +293,69 @@ namespace DynamicMelt.ViewModel
 			}
 		}
 
-		public double SrDolomit
+		public double DolomitVlaga
 		{
-			get { return _srDolomit; }
-			set
+			get { return Tube.ВлажныйДоломит.G / 1000; }
+			private set
 			{
-				_srDolomit = value;
-				RaisePropertyChanged("SrDolomit");
+				Tube.ВлажныйДоломит.G = value;
+				RaisePropertyChanged("DolomitVlaga");
 			}
 		}
 
-		public double SrDolomitNoise
+		public double DolomitVlagaNoise
 		{
-			get { return _srDolomitNoise; }
+			get { return _dolomitVlagaNoise; }
 			set
 			{
-				_srDolomitNoise = value;
-				RaisePropertyChanged("SrDolomitNoise");
+				_dolomitVlagaNoise = value;
+				RaisePropertyChanged("DolomitVlagaNoise");
 			}
 		}
 
-		public double TempDelta
+		public double SteelCarbon
 		{
-			get { return _tempDelta; }
-			set
+			get { return Tube.Сталь.C; }
+			private set
 			{
-				_tempDelta = value;
-				RaisePropertyChanged("TempDelta");
+				Tube.Сталь.C = value;
+				RaisePropertyChanged("SteelCarbon");
 			}
 		}
 
-		public double Temperature
+		public double SteelPhosphor
 		{
-			get { return _temperature; }
-			set
+			get { return Tube.Сталь.P; }
+			private set
 			{
-				_temperature = value;
-				RaisePropertyChanged("Temperature");
+				Tube.Сталь.P = value;
+				RaisePropertyChanged("SteelPhosphor");
+				
 			}
 		}
 
-		public double TemperatureSet
+		public double SteelTemperature
 		{
-			get { return _temperatureSet; }
+			get { return Tube.Сталь.T - 273; }
+			private set
+			{
+				Tube.Сталь.T = value + 273;
+				RaisePropertyChanged("SteelTemperature");
+			}
+		}
+
+		public double TСhugCool
+		{
+			get { return Tube.Чугун.TCool; }
 			set
 			{
-				_temperatureSet = value;
-				RaisePropertyChanged("TemperatureSet");
+				Tube.Чугун.TCool = value;
+				RaisePropertyChanged("TСhugCool");
 			}
 		}
 
 		private double _aglomerat;
 		private double _aglomeratNoise;
-		private double _chugunEstimated;
 		private double _chugunFact;
 		private double _dolomit;
 		private double _dolomitNoise;
@@ -361,14 +367,11 @@ namespace DynamicMelt.ViewModel
 		private double _izvestnyakNoise;
 		private double _koks;
 		private double _koksNoise;
-		private double _lomEstimated;
 		private double _lomFact;
 		private double _okalina;
 		private double _okalinaNoise;
 		private double _okatyshi;
 		private double _okatyshiNoise;
-		private double _oxygen;
-		private double _pParam;
 		private double _pesok;
 		private double _pesokNoise;
 		private double _plavShpat;
@@ -376,9 +379,6 @@ namespace DynamicMelt.ViewModel
 		private double _ruda;
 		private double _rudaNoise;
 		private double _srDolomit;
-		private double _srDolomitNoise;
-		private double _tempDelta;
-		private double _temperature;
-		private double _temperatureSet;
+		private double _dolomitVlagaNoise;
 	}
 }
