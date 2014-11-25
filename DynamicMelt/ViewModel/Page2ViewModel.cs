@@ -1,4 +1,6 @@
-﻿using Common.Annotations;
+﻿using System;
+using System.ComponentModel;
+using Common.Annotations;
 using DynamicMelt.Chemistry;
 using GalaSoft.MvvmLight;
 
@@ -8,7 +10,7 @@ namespace DynamicMelt.ViewModel
 	// ReSharper disable UnusedMember.Local
 
 	[UsedImplicitly]
-	public class Page2ViewModel : ViewModelBase
+	public class Page2ViewModel : ViewModelBase, IDataErrorInfo
 	{
 		public Page2ViewModel()
 		{
@@ -55,10 +57,10 @@ namespace DynamicMelt.ViewModel
 
 		public double ChugunFact
 		{
-			get { return _chugunFact; }
+			get { return Tube.Чугун.GChug[0]; }
 			set
 			{
-				_chugunFact = value;
+				Tube.Чугун.GChug[0] = value;
 				RaisePropertyChanged("ChugunFact");
 			}
 		}
@@ -185,10 +187,10 @@ namespace DynamicMelt.ViewModel
 
 		public double LomFact
 		{
-			get { return _lomFact; }
+			get { return Tube.Лом.G; }
 			set
 			{
-				_lomFact = value;
+				Tube.Лом.G = value;
 				RaisePropertyChanged("LomFact");
 			}
 		}
@@ -355,18 +357,40 @@ namespace DynamicMelt.ViewModel
 		}
 
 		private double _aglomeratNoise;
-		private double _chugunFact;
 		private double _dolomitNoise;
 		private double _imfNoise;
 		private double _izvestNoise;
 		private double _izvestnyakNoise;
 		private double _koksNoise;
-		private double _lomFact;
 		private double _okalinaNoise;
 		private double _okatyshiNoise;
 		private double _pesokNoise;
 		private double _plavShpatNoise;
 		private double _rudaNoise;
 		private double _dolomitVlagaNoise;
+
+		public string this[string columnName]
+		{
+			get
+			{
+				if (columnName == "ChugunFact")
+				{
+
+					if (Math.Sqrt(Math.Pow((LomEstimated - LomFact)/LomEstimated, 2)) < 10 / 1000 || Math.Abs(LomFact) < 0.0)
+					{ }
+
+					
+				}
+
+				if (columnName == "LomFact")
+				{
+					
+				}
+
+				return "Error prop";
+			}
+		}
+
+		public string Error { get; private set; }
 	}
 }

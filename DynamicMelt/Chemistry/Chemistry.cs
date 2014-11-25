@@ -380,6 +380,11 @@ namespace DynamicMelt.Chemistry
 
 	public class Чугун : Навеска
 	{
+		public Чугун()
+		{
+			GChug = new double[5001];
+		}
+
 		public double C { get; set; }
 		public double Mn { get; set; }
 		public double P { get; set; }
@@ -388,6 +393,7 @@ namespace DynamicMelt.Chemistry
 		public double T { get; set; }
 		public double GEstimated { get; set; }
 		public double TCool { get; set; }
+		public double[] GChug { get; set; }
 	}
 
 	public class Сталь : Навеска
