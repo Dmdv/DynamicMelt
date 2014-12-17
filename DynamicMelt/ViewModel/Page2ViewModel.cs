@@ -375,11 +375,12 @@ namespace DynamicMelt.ViewModel
 			{
 				if (columnName == "ChugunFact")
 				{
+					var sqrt = Math.Sqrt(Math.Pow((LomEstimated - LomFact) / LomEstimated, 2));
 
-					if (Math.Sqrt(Math.Pow((LomEstimated - LomFact)/LomEstimated, 2)) < 10 / 1000 || Math.Abs(LomFact) < 0.0)
-					{ }
-
-					
+					if (sqrt < 10 / 100 || Math.Abs(LomFact) < 0.0)
+					{
+						
+					}
 				}
 
 				if (columnName == "LomFact")
