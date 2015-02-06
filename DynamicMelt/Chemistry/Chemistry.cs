@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using Common.Extensions;
 using DynamicMelt.Converters;
 using DynamicMelt.Extensions;
 using DynamicMelt.Helpers;
 using DynamicMelt.Model;
 using DynamicMelt.Providers;
 using DynamicMelt.Types;
+using Net.Common.Extensions;
 
 namespace DynamicMelt.Chemistry
 {

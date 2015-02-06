@@ -1,5 +1,5 @@
 using System;
-using Common.Contracts;
+using Net.Common.Contracts;
 
 namespace DynamicMelt.Extensions
 {

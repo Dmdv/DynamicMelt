@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Common.Contracts;
+using Net.Common.Contracts;
 
 namespace DynamicMelt.Extensions
 {
