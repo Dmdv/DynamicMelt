@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace DynamicMelt.Providers
 {
-	public abstract class MdbReader
+	public abstract class MdbProvider
 	{
 		public string Path { get; private set; }
 
@@ -12,14 +12,14 @@ namespace DynamicMelt.Providers
 			get { return _cacheReader; }
 		}
 
-		public IReadOnlyList<string> Tables { get; set; }
+		public IReadOnlyList<string> Tables { get; private set; }
 
 		public int RowCount(string table)
 		{
 			return Reader.FetchTable(table).Rows.Count;
 		}
 
-		protected MdbReader(string path)
+		protected MdbProvider(string path)
 		{
 			_cacheReader = new TableCacheReader(path);
 			Path = _cacheReader.MdbFile;

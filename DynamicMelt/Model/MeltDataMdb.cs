@@ -7,7 +7,7 @@ using DynamicMelt.Providers;
 
 namespace DynamicMelt.Model
 {
-	public class MeltDataMdb : MdbReader
+	public class MeltDataMdb : MdbProvider
 	{
 		public MeltDataMdb()
 			: base(Settings.Default.MeltDataMdb)

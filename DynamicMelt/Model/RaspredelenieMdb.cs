@@ -4,7 +4,7 @@ using DynamicMelt.Providers;
 
 namespace DynamicMelt.Model
 {
-	public class RaspredelenieMdb : MdbReader
+	public class RaspredelenieMdb : MdbProvider
 	{
 		public RaspredelenieMdb()
 			: base(Settings.Default.RaspredelenieMdb)

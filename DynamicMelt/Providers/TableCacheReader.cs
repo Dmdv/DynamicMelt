@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Common.Contracts;
 using DynamicMelt.Extensions;
+using Net.Common.Contracts;
 
 namespace DynamicMelt.Providers
 {

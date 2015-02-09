@@ -55,9 +55,9 @@ namespace UnitTests
 				.NotBeNull("The table 'StraightCount' should exist");
 		}
 
-		private static void MdbReaderTestDataShouldExist(MdbReader reader, string tableName)
+		private static void MdbReaderTestDataShouldExist(MdbProvider provider, string tableName)
 		{
-			reader
+			provider
 				.Reader
 				.SelectAllRows(tableName)
 				.Should()

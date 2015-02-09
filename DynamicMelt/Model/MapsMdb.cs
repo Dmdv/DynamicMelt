@@ -3,7 +3,7 @@ using DynamicMelt.Providers;
 
 namespace DynamicMelt.Model
 {
-	public class MapsMdb : MdbReader
+	public class MapsMdb : MdbProvider
 	{
 		public MapsMdb()
 			: base(Settings.Default.MapsMdb)

@@ -369,6 +369,12 @@ namespace DynamicMelt.ViewModel
 		private double _rudaNoise;
 		private double _dolomitVlagaNoise;
 
+		/// <summary>
+		/// Provides the functionality to offer custom error information that a user interface can bind to.
+		/// Gets the error message for the property with the given name.
+		/// The error message for the property. The default is an empty string ("").
+		/// </summary>
+		/// <param name="columnName">The name of the property whose error message to get.</param>
 		public string this[string columnName]
 		{
 			get

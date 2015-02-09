@@ -4,7 +4,7 @@ using DynamicMelt.Providers;
 
 namespace DynamicMelt.Model
 {
-	public class ParamsMdb : MdbReader
+	public class ParamsMdb : MdbProvider
 	{
 		public ParamsMdb()
 			: base(Settings.Default.ParamsMdb)

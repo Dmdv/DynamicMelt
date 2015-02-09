@@ -3,13 +3,13 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Common.Contracts;
-using Common.Extensions;
 using DynamicMelt.Chemistry;
 using DynamicMelt.Extensions;
 using DynamicMelt.Model;
 using DynamicMelt.Shell;
 using GalaSoft.MvvmLight;
+using Net.Common.Contracts;
+using Net.Common.Extensions;
 
 namespace DynamicMelt.ViewModel
 {

@@ -3,7 +3,7 @@ using DynamicMelt.Providers;
 
 namespace DynamicMelt.Model
 {
-	public class LooseMdb : MdbReader
+	public class LooseMdb : MdbProvider
 	{
 		public LooseMdb()
 			: base(Settings.Default.LooseMdb)

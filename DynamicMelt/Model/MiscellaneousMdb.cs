@@ -3,7 +3,7 @@ using DynamicMelt.Providers;
 
 namespace DynamicMelt.Model
 {
-	public class MiscellaneousMdb : MdbReader
+	public class MiscellaneousMdb : MdbProvider
 	{
 		public MiscellaneousMdb()
 			: base(Settings.Default.MiscellaneousMdb)

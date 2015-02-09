@@ -9,13 +9,13 @@ namespace DynamicMelt.Extensions
 	public static class MdbHelper
 	{
 		public static void FillBoxes(
-			this MdbReader reader,
+			this MdbProvider provider,
 			string tableName,
 			int rowindex,
 			IList<TextBox> boxes,
 			int shift = 0)
 		{
-			var values = reader.Reader.SelectRowRange(tableName, rowindex);
+			var values = provider.Reader.SelectRowRange(tableName, rowindex);
 			if (boxes.Count + shift > values.Length)
 			{
 				throw new Exception("shift");
@@ -26,11 +26,11 @@ namespace DynamicMelt.Extensions
 			}
 		}
 
-		public static void FillComboBox(this MdbReader reader, string tablename, string columnname, ComboBox comboBox)
+		public static void FillComboBox(this MdbProvider provider, string tablename, string columnname, ComboBox comboBox)
 		{
 			try
 			{
-				foreach (var name in reader.Reader.SelectColumnRange<string>(tablename, columnname))
+				foreach (var name in provider.Reader.SelectColumnRange<string>(tablename, columnname))
 				{
 					comboBox.Items.Add(name);
 				}

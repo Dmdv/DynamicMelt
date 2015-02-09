@@ -29,7 +29,7 @@
         <ControlTemplate x:Key="ValidationTemplate">
             <DockPanel>
                 <AdornedElementPlaceholder/>
-                <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+                <TextBlock Foreground="Red" FontSize="18"> *</TextBlock>
             </DockPanel>
         </ControlTemplate>
     </Page.Resources>
@@ -87,11 +87,16 @@
                                 <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" 
                                            Text="Фактическая масса, т"
                                            VerticalAlignment="Center" Width="120" d:IsLocked="True" />
+                               
+                                <!-- Validate throw IDataErrorInfo -->
                                 
                                 <TextBox Grid.Row="1" Grid.Column="1"
                                          Text="{Binding ChugunFact, ValidatesOnDataErrors=True}"
-                                         HorizontalAlignment="Center" Height="26" TextWrapping="Wrap"
-                                         VerticalAlignment="Top" Width="111" Margin="0,3,0,0"
+                                         HorizontalAlignment="Center"
+                                         Height="26" Width="111"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Top"
+                                         Margin="0,3,0,0"
                                          VerticalContentAlignment="Center" d:IsLocked="True"
                                          Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                                          Style="{StaticResource CustomTextBoxTextStyle}"/>
@@ -177,10 +182,12 @@
                                          VerticalAlignment="Top" Height="26" Margin="0,3,0,0"
                                          VerticalContentAlignment="Center" d:IsLocked="True" />
 
-                                <TextBox Grid.Row="1" 
+                                <!-- Validated throw IDataErrorInfo -->
+
+                                <TextBox Grid.Row="1"
                                          Grid.Column="1"
                                          Text="{Binding LomFact, ValidatesOnDataErrors=True}"
-                                         HorizontalAlignment="Center" 
+                                         HorizontalAlignment="Center"
                                          Height="26" Width="111"
                                          TextWrapping="Wrap"
                                          VerticalAlignment="Top"
