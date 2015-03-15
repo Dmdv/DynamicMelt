@@ -31,7 +31,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_imageIznos = value;
-				RaisePropertyChanged("ImageIznos");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -42,7 +42,7 @@ namespace DynamicMelt.ViewModel
 			{
 				_meltNumber = value;
 				Params.MeltNumber = value;
-				RaisePropertyChanged("MeltNumber");
+				RaisePropertyChanged();
 			}
 		}
 

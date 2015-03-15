@@ -31,7 +31,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Агломерат.G = value;
-				RaisePropertyChanged("Aglomerat");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -41,7 +41,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_aglomeratNoise = value;
-				RaisePropertyChanged("AglomeratNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -51,7 +51,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Чугун.GEstimated = value;
-				RaisePropertyChanged("ChugunEstimated");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -61,7 +61,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				Tube.Чугун.GChug[0] = value;
-				RaisePropertyChanged("ChugunFact");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -71,7 +71,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Доломит.G = value;
-				RaisePropertyChanged("Dolomit");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -81,7 +81,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_dolomitNoise = value;
-				RaisePropertyChanged("DolomitNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -91,7 +91,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Дутье.V = value;
-				RaisePropertyChanged("Dutie");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -101,7 +101,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Имф.G = value;
-				RaisePropertyChanged("Imf");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -111,17 +111,17 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_imfNoise = value;
-				RaisePropertyChanged("ImfNoise");
+				RaisePropertyChanged();
 			}
 		}
 
 		public double Izvest
 		{
-			get { return Tube.Известь.G / 1000; }
+			get { return Tube.Известь.G / 1000.0; }
 			private set
 			{
 				Tube.Известь.G = value;
-				RaisePropertyChanged("Izvest");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -131,17 +131,17 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_izvestNoise = value;
-				RaisePropertyChanged("IzvestNoise");
+				RaisePropertyChanged();
 			}
 		}
 
 		public double Izvestnyak
 		{
-			get { return Tube.Известняк.G / 1000; }
+			get { return Tube.Известняк.G / 1000.0; }
 			private set
 			{
 				Tube.Известняк.G = value;
-				RaisePropertyChanged("Izvestnyak");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -151,7 +151,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_izvestnyakNoise = value;
-				RaisePropertyChanged("IzvestnyakNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -161,7 +161,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Кокс.G = value;
-				RaisePropertyChanged("Koks");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -171,7 +171,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_koksNoise = value;
-				RaisePropertyChanged("KoksNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -181,7 +181,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Лом.GEstimated = value;
-				RaisePropertyChanged("LomEstimated");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -191,7 +191,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				Tube.Лом.G = value;
-				RaisePropertyChanged("LomFact");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -201,7 +201,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Окалина.G = value;
-				RaisePropertyChanged("Okalina");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -211,7 +211,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_okalinaNoise = value;
-				RaisePropertyChanged("OkalinaNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -221,7 +221,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Окатыши.G = value;
-				RaisePropertyChanged("Okatyshi");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -231,7 +231,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_okatyshiNoise = value;
-				RaisePropertyChanged("OkatyshiNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -241,7 +241,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Песок.G = value;
-				RaisePropertyChanged("Pesok");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -251,7 +251,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_pesokNoise = value;
-				RaisePropertyChanged("PesokNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -261,7 +261,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Шпат.G = value;
-				RaisePropertyChanged("PlavShpat");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -271,7 +271,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_plavShpatNoise = value;
-				RaisePropertyChanged("PlavShpatNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -281,7 +281,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Руда.G = value;
-				RaisePropertyChanged("Ruda");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -291,17 +291,17 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_rudaNoise = value;
-				RaisePropertyChanged("RudaNoise");
+				RaisePropertyChanged();
 			}
 		}
 
 		public double DolomitVlaga
 		{
-			get { return Tube.ВлажныйДоломит.G / 1000; }
+			get { return Tube.ВлажныйДоломит.G / 1000.0; }
 			private set
 			{
 				Tube.ВлажныйДоломит.G = value;
-				RaisePropertyChanged("DolomitVlaga");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -311,7 +311,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				_dolomitVlagaNoise = value;
-				RaisePropertyChanged("DolomitVlagaNoise");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -321,7 +321,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Сталь.C = value;
-				RaisePropertyChanged("SteelCarbon");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -331,7 +331,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Сталь.P = value;
-				RaisePropertyChanged("SteelPhosphor");
+				RaisePropertyChanged();
 				
 			}
 		}
@@ -342,7 +342,7 @@ namespace DynamicMelt.ViewModel
 			private set
 			{
 				Tube.Сталь.T = value + 273;
-				RaisePropertyChanged("SteelTemperature");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -352,7 +352,7 @@ namespace DynamicMelt.ViewModel
 			set
 			{
 				Tube.Чугун.TCool = value;
-				RaisePropertyChanged("TСhugCool");
+				RaisePropertyChanged();
 			}
 		}
 
@@ -383,7 +383,7 @@ namespace DynamicMelt.ViewModel
 				{
 					var sqrt = Math.Sqrt(Math.Pow((LomEstimated - LomFact) / LomEstimated, 2));
 
-					if (sqrt < 10 / 100 || Math.Abs(LomFact) < 0.0)
+					if (sqrt < 10.0 / 100.0 || Math.Abs(LomFact) < 0.0)
 					{
 						
 					}
