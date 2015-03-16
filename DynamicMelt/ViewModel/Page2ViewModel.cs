@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Common.Annotations;
 using DynamicMelt.Chemistry;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace DynamicMelt.ViewModel
 {
@@ -12,6 +13,20 @@ namespace DynamicMelt.ViewModel
 	[UsedImplicitly]
 	public class Page2ViewModel : ViewModelBase, IDataErrorInfo
 	{
+		private readonly Random _random = new Random();
+		private double _aglomeratNoise;
+		private double _dolomitNoise;
+		private double _dolomitVlagaNoise;
+		private double _imfNoise;
+		private double _izvestNoise;
+		private double _izvestnyakNoise;
+		private double _koksNoise;
+		private double _okalinaNoise;
+		private double _okatyshiNoise;
+		private double _pesokNoise;
+		private double _plavShpatNoise;
+		private double _rudaNoise;
+
 		public Page2ViewModel()
 		{
 			if (IsInDesignMode)
@@ -23,7 +38,15 @@ namespace DynamicMelt.ViewModel
 			}
 
 			TСhugCool = 150;
+
+			MakeNoiseChugunCommand = new RelayCommand(MakeNoiseChugun, () => true);
+
+			MakeNoiseLomCommand = new RelayCommand(MakeNoiseLom, () => true);
 		}
+
+		public RelayCommand MakeNoiseChugunCommand { get; set; }
+
+		public RelayCommand MakeNoiseLomCommand { get; set; }
 
 		public double Aglomerat
 		{
@@ -332,7 +355,6 @@ namespace DynamicMelt.ViewModel
 			{
 				Tube.Сталь.P = value;
 				RaisePropertyChanged();
-				
 			}
 		}
 
@@ -356,19 +378,6 @@ namespace DynamicMelt.ViewModel
 			}
 		}
 
-		private double _aglomeratNoise;
-		private double _dolomitNoise;
-		private double _imfNoise;
-		private double _izvestNoise;
-		private double _izvestnyakNoise;
-		private double _koksNoise;
-		private double _okalinaNoise;
-		private double _okatyshiNoise;
-		private double _pesokNoise;
-		private double _plavShpatNoise;
-		private double _rudaNoise;
-		private double _dolomitVlagaNoise;
-
 		/// <summary>
 		/// Provides the functionality to offer custom error information that a user interface can bind to.
 		/// Gets the error message for the property with the given name.
@@ -385,13 +394,12 @@ namespace DynamicMelt.ViewModel
 
 					if (sqrt < 10.0 / 100.0 || Math.Abs(LomFact) < 0.0)
 					{
-						
+						return string.Empty;
 					}
 				}
 
 				if (columnName == "LomFact")
 				{
-					
 				}
 
 				return "Error prop";
@@ -399,5 +407,17 @@ namespace DynamicMelt.ViewModel
 		}
 
 		public string Error { get; private set; }
+
+		private void MakeNoiseLom()
+		{
+			var rasprIdx = Vars.Raspredelenie[_random.Next(1, 2000)] / 10000;
+			LomFact = Tube.Лом.GEstimated + Tube.Лом.GEstimated * 0.015 * rasprIdx;
+		}
+
+		private void MakeNoiseChugun()
+		{
+			var rasprIdx = Vars.Raspredelenie[_random.Next(1, 2000)] / 10000.0;
+			ChugunFact = Tube.Чугун.GEstimated + Tube.Чугун.GEstimated * 0.015 * rasprIdx;
+		}
 	}
 }
