@@ -71,7 +71,7 @@ namespace DynamicMelt.ViewModel
 		public double ChugunEstimated
 		{
 			get { return Tube.Чугун.GEstimated; }
-			private set
+			set
 			{
 				Tube.Чугун.GEstimated = value;
 				RaisePropertyChanged();
@@ -390,19 +390,47 @@ namespace DynamicMelt.ViewModel
 			{
 				if (columnName == "ChugunFact")
 				{
-					var sqrt = Math.Sqrt(Math.Pow((LomEstimated - LomFact) / LomEstimated, 2));
+					var division = (ChugunEstimated - ChugunFact) / ChugunEstimated;
+					var pow = Math.Pow(division, 2);
+					var sqrt = Math.Sqrt(pow);
 
-					if (sqrt < 10.0 / 100.0 || Math.Abs(LomFact) < 0.0)
+					if (sqrt < 5.0 / 100.0 || (int)ChugunFact == 0)
 					{
-						return string.Empty;
+						if ((int)ChugunFact == 0)
+						{
+							ChugunFact = ChugunEstimated;
+						}
+
+						return null;
 					}
+
+					return "Вы ввели недопустимое значение массы чугуна, " +
+					       "слишком велико отклонение от рассчитанной величины." +
+					       "Расчёт не может быть продолжен.";
 				}
 
 				if (columnName == "LomFact")
 				{
+					var division = (LomEstimated - LomFact) / LomEstimated;
+					var pow = Math.Pow(division, 2);
+					var sqrt = Math.Sqrt(pow);
+
+					if (sqrt < 10.0 / 100.0 || (int)LomFact == 0)
+					{
+						if ((int)LomFact == 0)
+						{
+							LomFact = LomEstimated;
+						}
+
+						return null;
+					}
+
+					return "Вы ввели недопустимое значение массы лома, " +
+					       "слишком велико отклонение от рассчитанной величины." +
+					       "Расчёт не может быть продолжен.";
 				}
 
-				return "Error prop";
+				return null;
 			}
 		}
 
