@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using DynamicMelt.ViewModel;
 
 namespace DynamicMelt.Pages
 {
@@ -21,6 +22,7 @@ namespace DynamicMelt.Pages
 		{
 			if (NavigationService != null)
 			{
+				ViewModelLocator.Page2Model.ExecuteNext();
 				NavigationService.Navigate(new Page3());
 			}
 		}

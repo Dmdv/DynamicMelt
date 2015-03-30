@@ -394,9 +394,9 @@ namespace DynamicMelt.ViewModel
 					var pow = Math.Pow(division, 2);
 					var sqrt = Math.Sqrt(pow);
 
-					if (sqrt < 5.0 / 100.0 || (int)ChugunFact == 0)
+					if (sqrt < 5.0 / 100.0 || (int) ChugunFact == 0)
 					{
-						if ((int)ChugunFact == 0)
+						if ((int) ChugunFact == 0)
 						{
 							ChugunFact = ChugunEstimated;
 						}
@@ -415,9 +415,9 @@ namespace DynamicMelt.ViewModel
 					var pow = Math.Pow(division, 2);
 					var sqrt = Math.Sqrt(pow);
 
-					if (sqrt < 10.0 / 100.0 || (int)LomFact == 0)
+					if (sqrt < 10.0 / 100.0 || (int) LomFact == 0)
 					{
-						if ((int)LomFact == 0)
+						if ((int) LomFact == 0)
 						{
 							LomFact = LomEstimated;
 						}
@@ -435,6 +435,12 @@ namespace DynamicMelt.ViewModel
 		}
 
 		public string Error { get; private set; }
+
+		public void ExecuteNext()
+		{
+			Tube.Чугун.GChug[0] = ChugunFact * 1000;
+			Tube.Лом.G = LomFact * 1000;
+		}
 
 		private void MakeNoiseLom()
 		{

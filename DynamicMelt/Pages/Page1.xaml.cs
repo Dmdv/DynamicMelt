@@ -10,6 +10,8 @@ namespace DynamicMelt.Pages
 
 	public partial class Page1
 	{
+		private readonly Page1ViewModel _model;
+
 		public Page1()
 		{
 			_model = ViewModelLocator.Page1Model;
@@ -35,10 +37,9 @@ namespace DynamicMelt.Pages
 
 		private void NextExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
-			_model.ExecuteNext();
-
 			if (NavigationService != null)
 			{
+				_model.ExecuteNext();
 				NavigationService.Navigate(new Page2());
 			}
 		}
@@ -47,7 +48,5 @@ namespace DynamicMelt.Pages
 		{
 			_model.Iznos_Refresh(e.NewValue, Intervals);
 		}
-
-		private readonly Page1ViewModel _model;
 	}
 }
