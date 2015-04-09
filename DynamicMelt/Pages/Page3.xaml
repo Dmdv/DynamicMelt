@@ -1,43 +1,118 @@
-﻿<Page
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="clr-namespace:DynamicMelt"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-	x:Class="DynamicMelt.Pages.Page3"
-	x:Name="_pageControl"
-	WindowTitle="Шаг 3"
-	FlowDirection="LeftToRight"
-	Width="700" Height="500"
-	WindowWidth="640" WindowHeight="480">
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:DynamicMelt"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:chemistry="clr-namespace:DynamicMelt.Chemistry"
+      mc:Ignorable="d"
+      x:Class="DynamicMelt.Pages.Page3"
+      x:Name="_pageControl"
+      WindowTitle="Шаг 3"
+      FlowDirection="LeftToRight"
+      Width="700"
+      Height="500"
+      WindowWidth="640"
+      WindowHeight="480">
 
-	<Grid x:Name="_layoutRootControl" Margin="3,0" d:IsLocked="True">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="76"/>
-			<RowDefinition Height="76"/>
-			<RowDefinition Height="76"/>
-			<RowDefinition Height="76"/>
-			<RowDefinition Height="76"/>
-			<RowDefinition Height="76"/>
-			<RowDefinition Height="45"/>
-		</Grid.RowDefinitions>
-		<local:ComponentAmountControl Grid.Row="0" Grid.Column="0" ComponentName="Известь" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="1" Grid.Column="0" ComponentName="Известняк" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="2" Grid.Column="0" ComponentName="Доломит" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="3" Grid.Column="0" ComponentName="Сырой доломит" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="4" Grid.Column="0" ComponentName="ИМФ" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="5" Grid.Column="0" ComponentName="Песок" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="0" Grid.Column="1" ComponentName="Кокс" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="1" Grid.Column="1" ComponentName="Окатыши" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="2" Grid.Column="1" ComponentName="Руда" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="3" Grid.Column="1" ComponentName="Окалина" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="4" Grid.Column="1" ComponentName="Агломерат" d:IsLocked="True"/>
-		<local:ComponentAmountControl Grid.Row="5" Grid.Column="1" ComponentName="Плавиковый шпат" d:IsLocked="True"/>
-		<Button Content="Назад" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Grid.Row="6" Grid.Column="0"
-		        Height="26" Margin="5,0,0,0" d:IsLocked="True"/>
-		<Button Content="Шаг 4 &gt;" HorizontalAlignment="Right" VerticalAlignment="Center" Width="120" Grid.Row="6" Grid.Column="1" Height="26" Margin="0,0,5,0" d:IsLocked="True"/>
-	</Grid>
+    <Grid x:Name="_layoutRootControl" Margin="3,0" d:IsLocked="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="76" />
+            <RowDefinition Height="76" />
+            <RowDefinition Height="76" />
+            <RowDefinition Height="76" />
+            <RowDefinition Height="76" />
+            <RowDefinition Height="76" />
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
+
+        <local:ComponentAmountControl Grid.Row="0"
+                                      Grid.Column="0"
+                                      ComponentName="Известь"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Известь}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="1"
+                                      Grid.Column="0"
+                                      ComponentName="Известняк"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Известняк}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="2"
+                                      Grid.Column="0"
+                                      ComponentName="Доломит"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Доломит}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="3"
+                                      Grid.Column="0"
+                                      ComponentName="Сырой доломит"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.ВлажныйДоломит}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="4"
+                                      Grid.Column="0"
+                                      ComponentName="ИМФ"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Имф}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="5"
+                                      Grid.Column="0"
+                                      ComponentName="Песок"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Песок}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="0"
+                                      Grid.Column="1"
+                                      ComponentName="Кокс"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Кокс}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="1"
+                                      Grid.Column="1"
+                                      ComponentName="Окатыши"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Окатыши}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="2"
+                                      Grid.Column="1"
+                                      ComponentName="Руда"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Руда}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="3"
+                                      Grid.Column="1"
+                                      ComponentName="Окалина"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Окалина}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="4"
+                                      Grid.Column="1"
+                                      ComponentName="Агломерат"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Агломерат}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <local:ComponentAmountControl Grid.Row="5"
+                                      Grid.Column="1"
+                                      ComponentName="Плавиковый шпат"
+                                      MassFull="{Binding G, Source={x:Static chemistry:Tube.Шпат}, Mode=OneWay}"
+                                      d:IsLocked="True" />
+
+        <Button Grid.Row="6"
+                Grid.Column="0"
+                Content="Назад"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="120"
+                Height="26"
+                Margin="5,0,0,0"
+                d:IsLocked="True" />
+
+        <Button Content="Шаг 4 &gt;" HorizontalAlignment="Right" VerticalAlignment="Center" Width="120" Grid.Row="6"
+                Grid.Column="1" Height="26" Margin="0,0,5,0" d:IsLocked="True" />
+
+    </Grid>
 </Page>

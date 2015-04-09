@@ -1,7 +1,9 @@
 using System;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.IO;
 using DynamicMelt.Properties;
+using Net.Common.Extensions;
 
 namespace DynamicMelt.Providers
 {
@@ -29,6 +31,7 @@ namespace DynamicMelt.Providers
 		protected MdbTable(string file)
 		{
 			file = Path.Combine(Environment.CurrentDirectory, Settings.Default.DatabaseRelativePath, file);
+			Trace.WriteLine("Opening '{0}'".FormatString(file));
 			ValidatePath(file);
 			MdbFile = file;
 			SubKey = Path.GetFileName(MdbFile);

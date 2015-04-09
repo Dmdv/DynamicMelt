@@ -6,7 +6,8 @@
     mc:Ignorable="d"
     x:Class="DynamicMelt.ComponentAmountControl"
     x:Name="_userControl"
-    d:DesignWidth="471.877" d:DesignHeight="95.093">
+    d:DesignWidth="471.877" 
+    d:DesignHeight="95.093">
 
     <Grid UseLayoutRounding="True">
         <GroupBox x:Name="_groupBoxControl" Header="Component">
@@ -36,10 +37,24 @@
                                Grid.Column="1" />
                     <Slider VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Margin="0,5,0,0" />
                 </Grid>
-                <TextBlock TextWrapping="Wrap" Text="Масса полная, кг" Grid.Row="0" Grid.Column="1"
-                           HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="26" />
-                <TextBox TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Height="20"
-                         Margin="5,5,5,2" VerticalContentAlignment="Center" />
+                
+                <TextBlock TextWrapping="Wrap" 
+                           Text="Масса полная, кг"
+                           Grid.Row="0" 
+                           Grid.Column="1"
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Bottom" 
+                           Height="26" />
+                
+                <TextBox TextWrapping="Wrap"
+                         Text="{Binding ElementName=_userControl, Path=MassFull}" 
+                         VerticalAlignment="Top" 
+                         Grid.Column="1" 
+                         Grid.Row="1" 
+                         Height="20"
+                         Margin="5,5,5,2" 
+                         VerticalContentAlignment="Center" />
+                
                 <TextBlock TextWrapping="Wrap" Text="Масса на лом, кг" Grid.Row="0" Grid.Column="2"
                            HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="26" />
                 <TextBox Height="20" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Grid.Column="2"

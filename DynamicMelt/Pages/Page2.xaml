@@ -295,31 +295,31 @@
                                                VerticalAlignment="Center"
                                                TextWrapping="Wrap" d:IsLocked="True" />
                                     
-                                    <TextBox Text="{Binding Izvest, Mode=OneWay}"
+                                    <TextBox Text="{Binding Izvest, Mode=TwoWay}"
                                              Grid.Row="0" Grid.Column="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Известняк"
                                                Grid.Row="1" Grid.Column="0"
                                                VerticalAlignment="Center" TextWrapping="Wrap" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Izvestnyak, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding Izvestnyak, Mode=TwoWay}"
                                              Grid.Column="1" Grid.Row="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Доломит"
                                                Grid.Row="2" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Dolomit, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding Dolomit, Mode=TwoWay}"
                                              Grid.Column="1" Grid.Row="2"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Ср. доломит"
                                                Grid.Row="3" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding DolomitVlaga, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding DolomitVlaga, Mode=TwoWay}"
                                              Grid.Column="1" Grid.Row="3"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
@@ -338,32 +338,32 @@
                                     <TextBlock Text="Имф"
                                                Grid.Row="0" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Imf, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding Imf, Mode=TwoWay}"
                                              Grid.Row="0" Grid.Column="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Песок"
                                                Grid.Row="1" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Pesok, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding Pesok, Mode=TwoWay}"
                                              Grid.Column="1" Grid.Row="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Кокс"
                                                Grid.Row="2" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Koks, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding Koks, Mode=TwoWay}"
                                              Grid.Column="1" Grid.Row="2"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Окатыши"
                                                Grid.Row="3" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Okatyshi, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding Okatyshi, Mode=TwoWay}"
                                              Grid.Column="1" Grid.Row="3"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
@@ -382,32 +382,32 @@
                                     <TextBlock Text="Руда"
                                                Grid.Row="0" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Ruda, Mode=OneTime}"
+
+                                    <TextBox Text="{Binding Ruda, Mode=TwoWay}"
                                              Grid.Row="0" Grid.Column="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Окалина"
                                                Grid.Row="1" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Okalina, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding Okalina, Mode=TwoWay}"
                                              Grid.Column="1" Grid.Row="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Агломерат"
                                                Grid.Row="2" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding Aglomerat, Mode=OneWay}"
+
+                                    <TextBox Text="{Binding Aglomerat, Mode=TwoWay}"
                                              Grid.Column="1" Grid.Row="2"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Плав. шпат"
                                                Grid.Row="3" Grid.Column="0"
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
-                                    
-                                    <TextBox Text="{Binding PlavShpat, Mode=OneWay}" 
+
+                                    <TextBox Text="{Binding PlavShpat, Mode=TwoWay}" 
                                              Grid.Column="1" Grid.Row="3"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
