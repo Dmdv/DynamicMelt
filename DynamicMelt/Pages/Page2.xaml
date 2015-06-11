@@ -151,9 +151,10 @@
                                            TextWrapping="Wrap"
                                            Margin="2,0,0,0" d:IsLocked="True" />
                                 
-                                <TextBox Text="{Binding Dutie, Mode=OneWay}" 
-                                         Height="26" TextWrapping="Wrap" VerticalAlignment="Top" 
-                                         Grid.Row="1" Grid.Column="0" 
+                                <TextBox Text="{Binding Dutie, Mode=OneWay}"
+                                         Height="26" TextWrapping="Wrap" VerticalAlignment="Top"
+                                         Grid.Row="1" Grid.Column="0"
+                                         IsEnabled="False"
                                          Margin="0,3,4,0" VerticalContentAlignment="Center" d:IsLocked="True" />
                                 
                                 <Button Content="Информация"
@@ -244,7 +245,8 @@
 
                                 <TextBox Text="{Binding SteelTemperature, Mode=OneWay}"
                                          Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
-                                         TextWrapping="Wrap" 
+                                         TextWrapping="Wrap"
+                                         IsEnabled="False"
                                          VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
 
                                 <TextBlock Text="[C], %"
@@ -254,7 +256,8 @@
                                 
                                 <TextBox Text="{Binding SteelCarbon, Mode=OneWay}"
                                          Grid.Row="0" Grid.Column="3"
-                                         TextWrapping="Wrap" 
+                                         TextWrapping="Wrap"
+                                         IsEnabled="False"
                                          VerticalContentAlignment="Center" Margin="2,0,0,0" Height="26" d:IsLocked="True" />
                                 
                                 <TextBlock Text="макс. [P], %"
@@ -264,7 +267,8 @@
 
                                 <TextBox Text="{Binding SteelPhosphor, Mode=OneWay}" VerticalContentAlignment="Center"
                                          Grid.Row="1" Grid.Column="3"
-                                         TextWrapping="Wrap" 
+                                         TextWrapping="Wrap"
+                                         IsEnabled="False"
                                          Height="26" Margin="2,0,0,0" d:IsLocked="True" />
                             </Grid>
                         </GroupBox>
@@ -296,6 +300,7 @@
                                                TextWrapping="Wrap" d:IsLocked="True" />
                                     
                                     <TextBox Text="{Binding Izvest, Mode=TwoWay}"
+                                             IsEnabled="False"
                                              Grid.Row="0" Grid.Column="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -304,6 +309,7 @@
                                                VerticalAlignment="Center" TextWrapping="Wrap" d:IsLocked="True" />
 
                                     <TextBox Text="{Binding Izvestnyak, Mode=TwoWay}"
+                                             IsEnabled="False"
                                              Grid.Column="1" Grid.Row="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -312,6 +318,7 @@
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
 
                                     <TextBox Text="{Binding Dolomit, Mode=TwoWay}"
+                                             IsEnabled="False"
                                              Grid.Column="1" Grid.Row="2"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -320,6 +327,7 @@
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
 
                                     <TextBox Text="{Binding DolomitVlaga, Mode=TwoWay}"
+                                             IsEnabled="False"
                                              Grid.Column="1" Grid.Row="3"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>
@@ -341,6 +349,7 @@
 
                                     <TextBox Text="{Binding Imf, Mode=TwoWay}"
                                              Grid.Row="0" Grid.Column="1"
+                                             IsEnabled="False"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
                                     <TextBlock Text="Песок"
@@ -348,6 +357,7 @@
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
 
                                     <TextBox Text="{Binding Pesok, Mode=TwoWay}"
+                                             IsEnabled="False"
                                              Grid.Column="1" Grid.Row="1"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -356,6 +366,7 @@
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
 
                                     <TextBox Text="{Binding Koks, Mode=TwoWay}"
+                                             IsEnabled="False"
                                              Grid.Column="1" Grid.Row="2"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                     
@@ -364,6 +375,7 @@
                                                TextWrapping="Wrap" VerticalAlignment="Center" d:IsLocked="True" />
 
                                     <TextBox Text="{Binding Okatyshi, Mode=TwoWay}"
+                                             IsEnabled="False"
                                              Grid.Column="1" Grid.Row="3"
                                              TextWrapping="Wrap" VerticalContentAlignment="Center" Height="26" d:IsLocked="True" />
                                 </Grid>

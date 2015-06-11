@@ -42,7 +42,7 @@
                 <TextBox Height="23" TextWrapping="Wrap"
                          Text="{Binding MeltNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120"
                          Grid.Row="0" Grid.Column="1" />
-                <Button Content="Button" Grid.Column="1" Grid.Row="1" Width="120" Margin="2" Height="30" />
+                <Button Content="Обновить" Grid.Column="1" Grid.Row="1" Width="120" Margin="2" Height="30" />
             </Grid>
         </GroupBox>
         <Grid Grid.Row="2" Margin="5,0">
