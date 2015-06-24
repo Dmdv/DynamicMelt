@@ -17,6 +17,7 @@ namespace DynamicMelt.ViewModel
 			SimpleIoc.Default.Register<MainViewModel>();
 			SimpleIoc.Default.Register<Page1ViewModel>();
 			SimpleIoc.Default.Register<Page2ViewModel>();
+			SimpleIoc.Default.Register<Page3ViewModel>();
 		}
 
 		/// <summary>
@@ -44,6 +45,11 @@ namespace DynamicMelt.ViewModel
 		public static Page2ViewModel Page2Model
 		{
 			get { return ServiceLocator.Current.GetInstance<Page2ViewModel>(); }
+		}
+
+		public static Page3ViewModel Page3Model
+		{
+			get { return ServiceLocator.Current.GetInstance<Page3ViewModel>(); }
 		}
 
 		public static void Cleanup()
