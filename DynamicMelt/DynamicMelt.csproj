@@ -123,6 +123,7 @@
     <Compile Include="ComponentAmountControl.xaml.cs">
       <DependentUpon>ComponentAmountControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\MassConverter.cs" />
     <Compile Include="Model\DinamicMdb.cs" />
     <Compile Include="Model\MapsMdb.cs" />
     <Compile Include="Model\MiscellaneousMdb.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Page1ViewModel.cs" />
     <Compile Include="ViewModel\Page2ViewModel.cs" />
+    <Compile Include="ViewModel\Page3ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="ComponentAmountControl.xaml">
       <Generator>MSBuild:Compile</Generator>

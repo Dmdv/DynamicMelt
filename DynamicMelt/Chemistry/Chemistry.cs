@@ -36,6 +36,12 @@ namespace DynamicMelt.Chemistry
 		/// Масса
 		/// </summary>
 		public double G { get; set; }
+
+		/// <summary>
+		/// Доступная масса
+		/// </summary>
+		public double GOnHand { get; set; }
+
 		/// <summary>
 		/// Усвоение
 		/// </summary>

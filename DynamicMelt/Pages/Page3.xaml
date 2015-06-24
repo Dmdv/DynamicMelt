@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:chemistry="clr-namespace:DynamicMelt.Chemistry"
+      xmlns:converters="clr-namespace:DynamicMelt.Converters"
       mc:Ignorable="d"
       x:Class="DynamicMelt.Pages.Page3"
       x:Name="_pageControl"
@@ -33,72 +34,84 @@
                                       Grid.Column="0"
                                       ComponentName="Известь"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Известь}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Известь}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="1"
                                       Grid.Column="0"
                                       ComponentName="Известняк"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Известняк}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Известняк}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="2"
                                       Grid.Column="0"
                                       ComponentName="Доломит"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Доломит}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Доломит}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="3"
                                       Grid.Column="0"
                                       ComponentName="Сырой доломит"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.ВлажныйДоломит}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.ВлажныйДоломит}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="4"
                                       Grid.Column="0"
                                       ComponentName="ИМФ"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Имф}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Имф}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="5"
                                       Grid.Column="0"
                                       ComponentName="Песок"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Песок}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Песок}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="0"
                                       Grid.Column="1"
                                       ComponentName="Кокс"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Кокс}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Кокс}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="1"
                                       Grid.Column="1"
                                       ComponentName="Окатыши"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Окатыши}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Окатыши}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="2"
                                       Grid.Column="1"
                                       ComponentName="Руда"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Руда}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Руда}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="3"
                                       Grid.Column="1"
                                       ComponentName="Окалина"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Окалина}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Окалина}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="4"
                                       Grid.Column="1"
                                       ComponentName="Агломерат"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Агломерат}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Агломерат}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <local:ComponentAmountControl Grid.Row="5"
                                       Grid.Column="1"
                                       ComponentName="Плавиковый шпат"
                                       MassFull="{Binding G, Source={x:Static chemistry:Tube.Шпат}, Mode=OneWay}"
+                                      Mass="{Binding GOnHand, Source={x:Static chemistry:Tube.Шпат}, Mode=OneWayToSource}"
                                       d:IsLocked="True" />
 
         <Button Grid.Row="6"
