@@ -4,7 +4,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:chemistry="clr-namespace:DynamicMelt.Chemistry"
-      xmlns:converters="clr-namespace:DynamicMelt.Converters"
       mc:Ignorable="d"
       x:Class="DynamicMelt.Pages.Page3"
       x:Name="_pageControl"
@@ -15,7 +14,7 @@
       WindowWidth="640"
       WindowHeight="480">
 
-    <Grid x:Name="_layoutRootControl" Margin="3,0" d:IsLocked="True">
+    <Grid Margin="3,0" d:IsLocked="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />

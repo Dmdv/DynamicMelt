@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace DynamicMelt
 {
@@ -67,5 +68,9 @@ namespace DynamicMelt
 			control.Header = args.NewValue.ToString();
 		}
 
+		private void OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		{
+			Mass = Math.Round(MassFull * e.NewValue / 100, 2);
+		}
 	}
 }

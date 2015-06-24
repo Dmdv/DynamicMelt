@@ -123,7 +123,6 @@
     <Compile Include="ComponentAmountControl.xaml.cs">
       <DependentUpon>ComponentAmountControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\MassConverter.cs" />
     <Compile Include="Model\DinamicMdb.cs" />
     <Compile Include="Model\MapsMdb.cs" />
     <Compile Include="Model\MiscellaneousMdb.cs" />

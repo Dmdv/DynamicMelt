@@ -3,16 +3,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converters="clr-namespace:DynamicMelt.Converters"
     mc:Ignorable="d"
     x:Class="DynamicMelt.ComponentAmountControl"
     x:Name="_userControl"
     d:DesignWidth="472"
     d:DesignHeight="96">
-
-    <UserControl.Resources>
-        <converters:MassConverter x:Key="MassConverter" />
-    </UserControl.Resources>
 
     <Grid UseLayoutRounding="True">
         <GroupBox x:Name="_groupBoxControl" Header="Component">
@@ -48,15 +43,15 @@
                                Grid.Row="0"
                                Grid.Column="1" />
 
-                    <Slider
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        Minimum="0"
-                        Maximum="100"
-                        Margin="0,5,0,0"
-                        Value="{Binding ElementName=_userControl, Path=Mass, Mode=OneWayToSource, Converter={StaticResource MassConverter}}" />
+                    <Slider Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Grid.Column="0"
+                            DataContext="{Binding ElementName=_userControl, Path=MassFull}"
+                            VerticalAlignment="Top"
+                            Minimum="0"
+                            Maximum="100"
+                            Margin="0,5,0,0"
+                            ValueChanged="OnValueChanged" />
                 </Grid>
 
                 <TextBlock TextWrapping="Wrap"
