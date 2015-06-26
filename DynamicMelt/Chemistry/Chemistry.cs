@@ -270,6 +270,11 @@ namespace DynamicMelt.Chemistry
 
 	public class Шлак : Навеска
 	{
+		public Шлак()
+		{
+			Hshl = new double[3001];
+		}
+
 		public double Al2O3 { get; set; }
 		public double B { get; set; }
 		public double Bmax { get; set; }
@@ -293,6 +298,7 @@ namespace DynamicMelt.Chemistry
 		public double MnOEnd { get; set; }
 		public double P2O5End { get; set; }
 		public double Al2O3End { get; set; }
+		public double[] Hshl { get; set; }
 	}
 
 	public class ОставленныйШлак : Навеска

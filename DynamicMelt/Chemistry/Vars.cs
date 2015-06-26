@@ -6,6 +6,7 @@
 		static Vars()
 		{
 			Raspredelenie = new int[2002];
+			Gscrap = new double[5001];
 		}
 
 		/// <summary>
@@ -51,5 +52,7 @@
 		/// Массив нормального распределения.
 		/// </summary>
 		public static int[] Raspredelenie;
+
+		public static double Hpuz;
 	}
 }

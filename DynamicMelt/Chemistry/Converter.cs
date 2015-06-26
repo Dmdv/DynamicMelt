@@ -43,6 +43,9 @@
 
 		public static double[] GrudaPortion { get; set; }
 
+		/// <summary>
+		/// Лом в конвертере (при продувке.)
+		/// </summary>
 		public static double[] Gscrap { get; set; }
 
 		public static double[] GshpPortion { get; set; }

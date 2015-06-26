@@ -5,7 +5,9 @@ namespace DynamicMelt.Chemistry
 		public const int IterationNumber = 6;
 
 		public static double alfaFe;
-		public static double L;
+		public static double alfaFeSUMM;
+		public static double[] ValfaFe, Lfact;
+		public static double L, Lsumm;
 		public static double StAndShlLoss;
 		public static double TAUprost;
 		public static double TAUprostREAL;
@@ -50,6 +52,8 @@ namespace DynamicMelt.Chemistry
 		public static string dbName;
 		public static string tableName;
 
+		public static double[] SummVDUT;
+
 		static Params()
 		{
 			Ћомћелкий = new Ћомћелкий();
@@ -57,6 +61,9 @@ namespace DynamicMelt.Chemistry
 			Ћом рупный = new Ћом рупный();
 			Tog = new double[3001];
 			GchugSolid = new double[3001];
+			ValfaFe = new double[3001];
+			Lfact = new double[5001];
+			SummVDUT = new double[5001];
 		}
 
 		public static Ћом рупный Ћом рупный { get; set; }

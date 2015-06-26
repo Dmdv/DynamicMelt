@@ -33,6 +33,7 @@ namespace DynamicMelt.Chemistry
 			ВлажныйДоломит = new ВлажныйДоломит(_registry);
 			Пакеты = new Packets();
 			Шлакообразующий = 0;
+			Шлаки = new Шлак[5001];
 		}
 
 		public static Агломерат Агломерат { get; set; }
@@ -76,6 +77,8 @@ namespace DynamicMelt.Chemistry
 		public static Чугун Чугун { get; set; }
 
 		public static Шлак Шлак { get; set; }
+
+		public static Шлак[] Шлаки { get; set; }
 
 		public static Materials Шлакообразующий { get; set; }
 

@@ -1,13 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DynamicMelt.Chemistry
+﻿namespace DynamicMelt.Chemistry
 {
 	public class Metall
 	{
+		public Metall()
+		{
+			G = new double[5001];
+			Fe = new double[5001];
+			C = new double[5001];
+			Si = new double[5001];
+			Mn = new double[5001];
+			P = new double[5001];
+			S = new double[5001];
+			O = new double[5001];
+			T = new double[5001];
+			TPlav = new double[5001];
+		}
+
 		public double[] G { get; set; }
 
 		public double[] Fe { get; set; }
