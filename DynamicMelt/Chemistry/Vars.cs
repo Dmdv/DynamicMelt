@@ -6,7 +6,6 @@
 		static Vars()
 		{
 			Raspredelenie = new int[2002];
-			Gscrap = new double[5001];
 		}
 
 		/// <summary>

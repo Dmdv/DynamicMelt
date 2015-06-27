@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Documents;
 using DynamicMelt.Types;
 
 namespace DynamicMelt.Chemistry
@@ -33,7 +34,10 @@ namespace DynamicMelt.Chemistry
 			ВлажныйДоломит = new ВлажныйДоломит(_registry);
 			Пакеты = new Packets();
 			Шлакообразующий = 0;
-			Шлаки = new Шлак[5001];
+			Шлаки = new List<Шлак>
+			{
+				new Шлак()
+			};
 		}
 
 		public static Агломерат Агломерат { get; set; }
@@ -78,7 +82,7 @@ namespace DynamicMelt.Chemistry
 
 		public static Шлак Шлак { get; set; }
 
-		public static Шлак[] Шлаки { get; set; }
+		public static List<Шлак> Шлаки { get; set; }
 
 		public static Materials Шлакообразующий { get; set; }
 

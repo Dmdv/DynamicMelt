@@ -406,6 +406,7 @@ namespace DynamicMelt.Chemistry
 		public double GEstimated { get; set; }
 		public double TCool { get; set; }
 		public double[] GChug { get; set; }
+		public double Tlom { get; set; }
 	}
 
 	public class Сталь : Навеска

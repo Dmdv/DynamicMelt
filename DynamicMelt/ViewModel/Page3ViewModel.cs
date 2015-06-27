@@ -24,7 +24,7 @@ namespace DynamicMelt.ViewModel
 			PrecountStep3();
 		}
 
-		private void PrecountStep3()
+		private static void PrecountStep3()
 		{
 			Cp.izv = 4.1868 * 1000 * (11.86 + 0.00108 * Params.AirTemp - 166000 / Math.Pow(Params.AirTemp, 2)) * 1 / 44.0;
 			Cp.izk = 4.1868 * 1000 * (24.98 + 0.00524 * Params.AirTemp - 620000 / Math.Pow(Params.AirTemp, 2)) * 1 / 100.0;
@@ -118,6 +118,30 @@ namespace DynamicMelt.ViewModel
 				- Converter.Metall.Mn[0]
 				- Converter.Metall.P[0]
 				- Converter.Metall.S[0];
+
+			// Расчет температуры твердой фазы на момент начала продувки (тепловой баланс)
+
+			Tube.Чугун.Tlom = 273 +
+			                  (Tube.Лом.G * Cp.LomSolid * (Params.AirTemp - 273) +
+			                   Tube.Чугун.GChug[0] * Cp.ChugLiquid * (Tube.Чугун.T - 273) + Hp.dHchugPlavl * Params.GchugSolid[0] -
+			                   Calc.Ggidk[0] * Cp.ChugLiquid * (Tube.Чугун.T - 273 - Tube.Чугун.TCool)) /
+			                  (Params.GchugSolid[0] * Cp.ChugSolid + Tube.Лом.G * Cp.LomSolid);
+
+			// Объем газовой полости конвертера.
+
+			ConverterSize.Vpolost[0] = 1.0 / 3.0 * 3.1415 * ConverterSize.HUpperConus *
+									   (Math.Pow((ConverterSize.D / 2.0), 2) + ConverterSize.D / 2.0 * ConverterSize.Dgorl / 2.0 + Math.Pow((ConverterSize.Dgorl / 2), 2)) +
+									   3.1415 * (Math.Pow(ConverterSize.D / 2.0, 2) * (ConverterSize.Hmain + ConverterSize.H1 + ConverterSize.H2 - Levels.H0));
+
+			// кмоль
+
+			Calc.Jso2_GAS[0] = Calc.nUl;
+			Calc.Jco_GAS[0] = Calc.nUl;
+			Calc.Jco2_GAS[0] = Calc.nUl;
+			Calc.Jn2_GAS[0] = 0.79 * ConverterSize.Vpolost[0] / 24.8 * 298 / Params.Tog[0];
+			Calc.Jo2_GAS[0] = 0.21 * ConverterSize.Vpolost[0] / 24.8 * 298 / Params.Tog[0];
+
+			// Состав газовой фазы в нулевой момент времени.
 		}
 	}
 }
