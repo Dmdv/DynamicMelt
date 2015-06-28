@@ -172,6 +172,7 @@ namespace DynamicMelt.Chemistry
 
 		public static int MapEntry;
 
+		public static double CpH2O, CpCO, CpCO2, CpAr, CpFeO, CpFe, CpO2, CpN2, tK;
 
 		static Calc()
 		{

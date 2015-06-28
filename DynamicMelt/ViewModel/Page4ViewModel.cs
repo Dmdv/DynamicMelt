@@ -9,6 +9,13 @@ namespace DynamicMelt.ViewModel
 {
 	public class Page4ViewModel
 	{
+		private void Cp()
+		{
+			Calc.CpCO = 0.0000823 * Calc.tK + 1.0277021;
+			Calc.CpCO2 = 0.0001254 * Calc.tK + 0.9673658;
+			Calc.CpO2 = 0.0000698 * Calc.tK + 0.9478846;
+			Calc.CpN2 = 0.0000829 * Calc.tK + 1.0136983;
+		}
 
 		private void Vagner()
 		{
