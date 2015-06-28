@@ -240,7 +240,7 @@ namespace DynamicMelt.ViewModel
 			Params.AirTemp = Convert.ToInt32(range[40]) + 273;
 			Tube.Чугун.T = range[41] + 273;
 			Tube.Сталь.T = range[42] + 273;
-			Tube.Дутье.VArBlow[0] = range[43];
+			Tube.Дутье.VarBlow[0] = range[43];
 			Tube.Лом.DolyaLegkovesa = range[51];
 
 			Regress.Load();

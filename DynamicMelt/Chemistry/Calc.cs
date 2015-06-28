@@ -6,6 +6,7 @@ namespace DynamicMelt.Chemistry
 	{
 		public const double nUl = 0.000001;
 
+		public static double Q_aFe_vix, Q_aFe_FeO_vix;
 		public static string MapMode, MapName;
 		public static int MapStroka, MapBaseLenth;
 		public static double Okislitel, Basis;

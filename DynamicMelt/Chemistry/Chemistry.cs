@@ -544,14 +544,14 @@ namespace DynamicMelt.Chemistry
 	{
 		public Дутье()
 		{
-			VArBlow = new double[3001];
+			VarBlow = new double[3001];
 		}
 
 		public double Ar { get; set; }
 		public double N2 { get; set; }
 		public double O2 { get; set; }
 		public double V { get; set; }
-		public double[] VArBlow { get; set; }
+		public double[] VarBlow { get; set; }
 	}
 
 	public class Имф : Навеска
