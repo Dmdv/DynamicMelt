@@ -455,6 +455,8 @@ namespace DynamicMelt.Chemistry
 			Part = ReadValue("Доля лома");
 		}
 
+		public double Fe { get; set; }
+
 		public double C { get; set; }
 		public double DolyaLegkovesa { get; set; }
 		public double Mn { get; set; }

@@ -45,9 +45,9 @@ namespace DynamicMelt.ViewModel
 			Volumes.Vm = Tube.Лом.G / 7800.0 + Tube.Чугун.GChug[0] / 7000;
 
 			Volumes.Vk = 3.14 * ConverterSize.H1 / 6 *
-			             (3.0 / 4.0 * Math.Pow(ConverterSize.D1, 2) + Math.Pow(ConverterSize.H1, 2)) +
-			             3.14 * ConverterSize.H2 / 12 *
-			             (Math.Pow(ConverterSize.D, 2) + ConverterSize.D * ConverterSize.D1 + Math.Pow(ConverterSize.D1, 2));
+						 (3.0 / 4.0 * Math.Pow(ConverterSize.D1, 2) + Math.Pow(ConverterSize.H1, 2)) +
+						 3.14 * ConverterSize.H2 / 12 *
+						 (Math.Pow(ConverterSize.D, 2) + ConverterSize.D * ConverterSize.D1 + Math.Pow(ConverterSize.D1, 2));
 
 			Volumes.Vshl = (Tube.ОставленныйШлак.G + Tube.МиксерныйШлак.G) / 3000.0;
 
@@ -56,14 +56,14 @@ namespace DynamicMelt.ViewModel
 			if (Volumes.Vm >= Volumes.Vk)
 			{
 				Levels.H0 = ConverterSize.H1 + ConverterSize.H2 +
-				            (Volumes.Vm - Volumes.Vk) * 4 / 3.14 / Math.Pow(ConverterSize.D, 2);
+							(Volumes.Vm - Volumes.Vk) * 4 / 3.14 / Math.Pow(ConverterSize.D, 2);
 			}
 			else
 			{
 				Levels.H0 = ConverterSize.H1 + ConverterSize.H2 +
-				            (Volumes.Vm - Volumes.Vk) * 12 / 3.14 / (Math.Pow(ConverterSize.D, 2)
-				                                                     + ConverterSize.D * ConverterSize.D1 +
-				                                                     Math.Pow(ConverterSize.D1, 2));
+							(Volumes.Vm - Volumes.Vk) * 12 / 3.14 / (Math.Pow(ConverterSize.D, 2)
+																	 + ConverterSize.D * ConverterSize.D1 +
+																	 Math.Pow(ConverterSize.D1, 2));
 			}
 
 			// Расчет толщины шлака
@@ -71,15 +71,15 @@ namespace DynamicMelt.ViewModel
 			if (Volumes.Vm + Volumes.Vshl >= Volumes.Vk)
 			{
 				Tube.Шлак.Hshl[0] = ConverterSize.H1 + ConverterSize.H2 +
-				                    (Volumes.Vm + Volumes.Vshl - Volumes.Vk) * 4 / 3.14 /
+									(Volumes.Vm + Volumes.Vshl - Volumes.Vk) * 4 / 3.14 /
 									Math.Pow(ConverterSize.D, 2) - Levels.H0;
 			}
 			else
 			{
 				Tube.Шлак.Hshl[0] = ConverterSize.H1 + ConverterSize.H2 +
-				                    (Volumes.Vm + Volumes.Vshl - Volumes.Vk) * 12 / 3.14 /
-				                    (Math.Pow(ConverterSize.D, 2) + ConverterSize.D * ConverterSize.D1 +
-				                     Math.Pow(ConverterSize.D1, 2)) - Levels.H0;
+									(Volumes.Vm + Volumes.Vshl - Volumes.Vk) * 12 / 3.14 /
+									(Math.Pow(ConverterSize.D, 2) + ConverterSize.D * ConverterSize.D1 +
+									 Math.Pow(ConverterSize.D1, 2)) - Levels.H0;
 			}
 
 			Vars.Hpuz = 0.5 * Levels.H0;
@@ -99,8 +99,8 @@ namespace DynamicMelt.ViewModel
 			Params.Tog[0] = Converter.Metall.T[0];
 
 			Params.GchugSolid[0] = 32000 +
-			                       30334 * (Converter.Gscrap[0] * Tube.Лом.Nsov * Math.Pow(Converter.Gscrap[0], 0.66)) /
-			                       (Tube.Чугун.GChug[0] * Converter.Metall.T[0]);
+								   30334 * (Converter.Gscrap[0] * Tube.Лом.Nsov * Math.Pow(Converter.Gscrap[0], 0.66)) /
+								   (Tube.Чугун.GChug[0] * Converter.Metall.T[0]);
 
 			Calc.Ggidk[0] = Tube.Чугун.GChug[0] - Params.GchugSolid[0];
 
@@ -122,10 +122,10 @@ namespace DynamicMelt.ViewModel
 			// Расчет температуры твердой фазы на момент начала продувки (тепловой баланс)
 
 			Tube.Чугун.Tlom = 273 +
-			                  (Tube.Лом.G * Cp.LomSolid * (Params.AirTemp - 273) +
-			                   Tube.Чугун.GChug[0] * Cp.ChugLiquid * (Tube.Чугун.T - 273) + Hp.dHchugPlavl * Params.GchugSolid[0] -
-			                   Calc.Ggidk[0] * Cp.ChugLiquid * (Tube.Чугун.T - 273 - Tube.Чугун.TCool)) /
-			                  (Params.GchugSolid[0] * Cp.ChugSolid + Tube.Лом.G * Cp.LomSolid);
+							  (Tube.Лом.G * Cp.LomSolid * (Params.AirTemp - 273) +
+							   Tube.Чугун.GChug[0] * Cp.ChugLiquid * (Tube.Чугун.T - 273) + Hp.dHchugPlavl * Params.GchugSolid[0] -
+							   Calc.Ggidk[0] * Cp.ChugLiquid * (Tube.Чугун.T - 273 - Tube.Чугун.TCool)) /
+							  (Params.GchugSolid[0] * Cp.ChugSolid + Tube.Лом.G * Cp.LomSolid);
 
 			// Объем газовой полости конвертера.
 
@@ -142,6 +142,72 @@ namespace DynamicMelt.ViewModel
 			Calc.Jo2_GAS[0] = 0.21 * ConverterSize.Vpolost[0] / 24.8 * 298 / Params.Tog[0];
 
 			// Состав газовой фазы в нулевой момент времени.
+
+			Calc.COgas[0] = Calc.nUl;
+			Calc.CO2gas[0] = Calc.nUl;
+			Calc.O2gas[0] = 21;
+
+			Calc.N2gas[0] = 79;
+			Calc.pCOgas[0] = Calc.COgas[0] / 100.0;
+
+			// XC шлака
+
+			Tube.Шлаки[0].FeO = (Tube.ОставленныйШлак.FeO * Tube.ОставленныйШлак.G +
+			                     Tube.МиксерныйШлак.FeO * Tube.МиксерныйШлак.G) / Tube.Шлаки[0].G;
+
+			Tube.Шлаки[0].Fe2O3 = (Tube.ОставленныйШлак.Fe2O3 * Tube.ОставленныйШлак.G +
+			                       Tube.МиксерныйШлак.Fe2O3 * Tube.МиксерныйШлак.G) / Tube.Шлаки[0].G;
+
+			Tube.Шлаки[0].TOTALFeO = Tube.Шлаки[0].FeO + Tube.Шлаки[0].Fe2O3;
+
+
+			Tube.Шлаки[0].SiO2 = (Tube.ОставленныйШлак.SiO2 * Tube.ОставленныйШлак.G +
+			                      Tube.МиксерныйШлак.SiO2 * Tube.МиксерныйШлак.G) / Tube.Шлаки[0].G;
+
+			Tube.Шлаки[0].MnO = (Tube.ОставленныйШлак.MnO * Tube.ОставленныйШлак.G +
+			                     Tube.МиксерныйШлак.MnO * Tube.МиксерныйШлак.G) / Tube.Шлаки[0].G;
+
+			Tube.Шлаки[0].MgO = (Tube.ОставленныйШлак.MgO * Tube.ОставленныйШлак.G +
+			                     Tube.МиксерныйШлак.MgO * Tube.МиксерныйШлак.G) / Tube.Шлаки[0].G;
+
+			Tube.Шлаки[0].P2O5 = (Tube.ОставленныйШлак.P2O5 * Tube.ОставленныйШлак.G +
+			                      Tube.МиксерныйШлак.P2O5 * Tube.МиксерныйШлак.G) / Tube.Шлаки[0].G;
+
+			Tube.Шлаки[0].CaO = 100 -
+			                    Tube.Шлаки[0].TOTALFeO -
+			                    Tube.Шлаки[0].SiO2 -
+			                    Tube.Шлаки[0].MnO -
+			                    Tube.Шлаки[0].MgO -
+			                    Tube.Шлаки[0].P2O5;
+
+			Calc.GTOTALFeOshl[0] = Tube.Шлаки[0].TOTALFeO * Tube.Шлаки[0].G / 100.0;
+
+			Calc.GcaoShl[0] = Tube.Шлаки[0].CaO * Tube.Шлаки[0].G / 100.0;
+			Calc.Gsio2Shl[0] = Tube.Шлаки[0].SiO2 * Tube.Шлаки[0].G / 100.0;
+			Calc.GmnoShl[0] = Tube.Шлаки[0].MnO * Tube.Шлаки[0].G / 100.0;
+			Calc.GmgoShl[0] = Tube.Шлаки[0].MgO * Tube.Шлаки[0].G / 100.0;
+			Calc.Gp2o5Shl[0] = Tube.Шлаки[0].P2O5 * Tube.Шлаки[0].G / 100.0;
+
+
+			// Мольные доли компонентов расплава
+
+			Calc.nFe[0] = (Converter.Metall.Fe[0] * Calc.Ggidk[0] / 100) / 0.056;
+			Calc.nC[0] = (Converter.Metall.C[0] * Calc.Ggidk[0] / 100) / 0.012;
+			Calc.nSi[0] = (Converter.Metall.Si[0] * Calc.Ggidk[0] / 100) / 0.028;
+			Calc.nMn[0] = (Converter.Metall.Mn[0] * Calc.Ggidk[0] / 100) / 0.055;
+			Calc.nP[0] = (Converter.Metall.P[0] * Calc.Ggidk[0] / 100) / 0.03;
+
+			// Температура исходящего из сопла кислорода
+			Calc.Tsopla = 150;
+
+
+			Tube.Лом.Fe = 100 - (Tube.Лом.C + Tube.Лом.Si + Tube.Лом.Mn + Tube.Лом.P + Tube.Лом.S);
+
+			Calc.nFeLom = (Tube.Лом.Fe / 56.0) /
+			              (Tube.Лом.Fe / 56.0 + Tube.Лом.C / 12.0 + Tube.Лом.Si / 28.0 + Tube.Лом.Mn / 55.0 + Tube.Лом.P / 32.0 +
+			               Tube.Лом.S / 16.0);
+
+			Calc.CmetCRITICAL = 0.13;
 		}
 	}
 }
