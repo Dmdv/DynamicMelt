@@ -33,6 +33,67 @@ namespace DynamicMelt.ViewModel
 
 
 			// Парциальные давления газов.
+
+			Calc.Po2COMMON[0] = Calc.nUl + (Calc.Jo2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
+			Calc.Pco2COMMON[0] = Calc.nUl + (Calc.Jco2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
+			Calc.PcoCOMMON[0] = Calc.nUl + (Calc.Jcostr2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
+			Calc.Pso2COMMON[0] = Calc.nUl;
+			Calc.Pn2COMMON[0] = Calc.nUl + (Calc.Jn2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
+
+			var metall = Converter.Metall;
+
+			Calc.rzTmet[0] = metall.T[i - 6];
+			Calc.rzTgas[0] = Calc.Tstr[i];
+
+			Calc.rzCmet[0] = metall.C[i - 6];
+			Calc.rzSimet[0] = metall.Si[i - 6];
+			Calc.rzMnmet[0] = metall.Mn[i - 6];
+			Calc.rzPmet[0] = metall.P[i - 6];
+			Calc.rzSmet[0] = metall.S[i - 6];
+			Calc.rzFemet[0] = metall.Fe[i - 6];
+
+			var шлак = Tube.Шлаки[i - 6];
+
+
+			Calc.rzFeOshl[0] = шлак.FeO;
+			Calc.rzFe2O3shl[0] = шлак.Fe2O3;
+			Calc.rzTOTALFeOshl[0] = шлак.TOTALFeO;
+			Calc.rzCaOshl[0] = шлак.CaO;
+			Calc.rzSiO2shl[0] = шлак.SiO2;
+			Calc.rzMnOshl[0] = шлак.MnO;
+			Calc.rzP2O5shl[0] = шлак.P2O5;
+			Calc.rzMgOshl[0] = шлак.MgO;
+
+			// Количество газа в РЗ в начале расчета.
+
+			Calc.rzjO2summ[0] = Calc.Jo2str2[i] - Params.ValfaFe[i] / 56 * 0.5 * 0.7;
+			Calc.rzjCOsumm[0] = Calc.Jcostr2[i];
+			Calc.rzjCO2summ[0] = Calc.Jco2str2[i];
+			Calc.rzjN2summ[0] = Calc.Jn2str2[i];
+			Calc.rzjSO2summ[0] = Calc.nUl;
+
+			j = 0;
+
+			// а - элемент
+			// В - окислитель
+			// NotValid - ноль или 1, показывающая невозможность протекания реакции
+
+			int a, B, StoppP;
+
+			var NotValid = new int[6, 2];
+
+			Calc.Basis = Calc.Fe;
+			Calc.Okislitel = Calc.O2;
+			StoppP = 0;
+
+			if (metall.Si[i - 6] <= Tube.Сталь.Si)
+			{
+				NotValid[Calc.Si, Calc.O2] = 1;
+				NotValid[Calc.Si, Calc.CO2] = 1;
+			}
+
+			// Do Until StoppP = 1
+
 		}
 
 		private void Tepl_Balans()
