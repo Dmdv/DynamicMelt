@@ -85,8 +85,6 @@ namespace DynamicMelt.Chemistry
 
 		public static double[] Jco2str2, Jcostr2, Jn2str2, Jo2str2, SummJstr2;
 
-		public static double KpCO_O2, KpFe_CO2;
-
 		public static double[] VcShl, VmnShl, VsiShl, VpShl, VsShl, VcMnO;
 
 		public static int NOfLooseAdded;
@@ -175,8 +173,208 @@ namespace DynamicMelt.Chemistry
 
 		public static double CpH2O, CpCO, CpCO2, CpAr, CpFeO, CpFe, CpO2, CpN2, tK;
 
+		// Далее из файла komolova
+
+		public static double[] Po2COMMON, Pco2COMMON, PcoCOMMON, Pn2COMMON, Pso2COMMON;
+
+		public static double Gfe_O2_ostatok;
+
+		public static double[] rzCmet, rzSimet, rzMnmet, rzPmet, rzSmet, rzFemet;
+
+		public static double[] rzTmet, rzTgas, rzGshl, rzGmet;
+
+		public static double[] rzFeOshl, rzFe2O3shl, rzTOTALFeOshl, rzCaOshl, rzSiO2shl, rzMnOshl, rzP2O5shl, rzMgOshl;
+
+		// Образование РЗ в рез-те О-В реакций.
+
+		public static double[] rzjCOincome, rzjCO2income, rzjO2income;
+
+		public static double[] rzjCOsumm, rzjCO2summ, rzjO2summ, rzjN2summ, rzjSO2summ, rzjGASsumm, ln_KFe_fakt_ravn;
+
+		public static double v_Fe_O2, v_C_O2, v_Mn_O2, v_Si_O2, v_P_O2, v_S_O2;
+
+		public static double[,,] Vj;
+
+		// Эффективная доля массы РЗ.
+
+		public static double[] rzK;
+
+		// Эффективная масса РЗ по i и j
+
+		public static double[,] rzGmetEff;
+
+		public static double[] Dlunki;
+
+		public static double[] KFe_CO2, KMn_CO2, KC_CO2, KSi_CO2, kP_CO2, kS_CO2;
+
+		public static double V_Fe_CO2, v_C_CO2, v_Mn_CO2, v_Si_CO2, v_P_CO2, v_S_CO2;
+
+		public static double[] Q_aFe_O2;
+
+		public static double Q_CO_prixod, Q_CO2_prixod, Q_O2_prixod, Q_N2_prixod, Q_SO2_prixod;
+
+		public static double Q_Fe_O2, Q_C_O2, Q_Mn_O2, Q_Si_O2, Q_P_O2, Q_S_O2;
+
+		public static double[] Q_metRZ_prihod,
+		                       Q_shlRZ_prihod,
+		                       Q_metRZ_exit,
+		                       Q_shlRZ_exit,
+		                       QgasRZ_prihod,
+		                       QgasRZ_exit,
+		                       Prihod_Tepla,
+		                       Rashod_Tepla;
+
+		public static double Q_CO_exit, Q_CO2_exit, Q_O2_exit, Q_N2_exit, Q_SO2_exit;
+
+		public static double Q_Fe_CO2, Q_C_CO2, Q_Mn_CO2, Q_Si_CO2, Q_P_CO2, Q_S_CO2;
+
+		public static double[] Q_REAKCII;
+
+		public static double[,] OSHIBKA_TEPLA;
+
+		public static double OSHIBKA_SAVE;
+
+		public static double[] QsummRZ, QsummRZExit;
+
+		public static double[] rzGmet_Loose, rzGshlak_Income;
+
+		public static double[] KFe_O2, KMn_O2, KSi_O2, KC_O2, KP_O2, KS_O2;
+
+		public static double[] summ_v_c_rz, summ_v_fe_rz, summ_v_si_rz, summ_v_mn_rz, summ_v_s_rz, summ_v_p_rz;
+
+		public static double[] summ_v_c_rz_o2,
+		                       summ_v_c_rz_co2,
+		                       summ_v_fe_rz_o2,
+		                       summ_v_fe_rz_co2,
+		                       summ_v_mn_rz_o2,
+		                       summ_v_mn_rz_co2,
+		                       summ_v_si_rz_o2,
+		                       summ_v_si_rz_co2,
+		                       summ_v_s_rz_o2,
+		                       summ_v_s_rz_co2,
+		                       summ_v_p_rz_o2,
+		                       summ_v_p_rz_co2;
+
+		public static double[] feo_rz, mn_rz, sio2_rz, p2o5_rz;
+
+		public static double[] SLDfe, SLDc, SLDmn, SLDsi, SLDfe1;
+
 		static Calc()
 		{
+			SLDfe = new double[1000];
+			SLDc = new double[1000];
+			SLDmn = new double[1000];
+			SLDsi = new double[1000];
+			SLDfe1 = new double[1000];
+
+			feo_rz = new double[1000];
+			mn_rz = new double[1000];
+			sio2_rz = new double[1000];
+			p2o5_rz = new double[1000];
+
+			summ_v_c_rz_o2 = new double[1000];
+			summ_v_c_rz_co2 = new double[1000];
+			summ_v_fe_rz_o2 = new double[1000];
+			summ_v_fe_rz_co2 = new double[1000];
+			summ_v_mn_rz_o2 = new double[1000];
+			summ_v_mn_rz_co2 = new double[1000];
+			summ_v_si_rz_o2 = new double[1000];
+			summ_v_si_rz_co2 = new double[1000];
+			summ_v_s_rz_o2 = new double[1000];
+			summ_v_s_rz_co2 = new double[1000];
+			summ_v_p_rz_o2 = new double[1000];
+			summ_v_p_rz_co2 = new double[1000];
+
+			summ_v_c_rz = new double[1000];
+			summ_v_fe_rz = new double[1000];
+			summ_v_si_rz = new double[1000];
+			summ_v_mn_rz = new double[1000];
+			summ_v_s_rz = new double[1000];
+			summ_v_p_rz = new double[1000];
+
+			KFe_O2 = new double[1000];
+			KMn_O2 = new double[1000];
+			KSi_O2 = new double[1000];
+			KC_O2 = new double[1000];
+			KP_O2 = new double[1000];
+			KS_O2 = new double[1000];
+
+			rzGmet_Loose = new double[1000];
+			rzGshlak_Income = new double[1000];
+
+			QsummRZ = new double[3000];
+			QsummRZExit = new double[3000];
+
+			OSHIBKA_TEPLA = new double[1000, 1000];
+
+			Q_REAKCII = new double[1000];
+
+			Q_metRZ_prihod = new double[1000];
+			Q_shlRZ_prihod = new double[1000];
+			Q_metRZ_exit = new double[1000];
+			Q_shlRZ_exit = new double[1000];
+			QgasRZ_prihod = new double[1000];
+			QgasRZ_exit = new double[1000];
+			Prihod_Tepla = new double[1000];
+			Rashod_Tepla = new double[1000];
+
+			Q_aFe_O2 = new double[1000];
+
+			KFe_CO2 = new double[1000];
+			KMn_CO2 = new double[1000];
+			KC_CO2 = new double[1000];
+			KSi_CO2 = new double[1000];
+			kP_CO2 = new double[1000];
+			kS_CO2 = new double[1000];
+
+			Dlunki = new double[3993];
+
+			rzGmetEff = new double[3000,998];
+
+			rzK = new double[3000];
+
+			Vj = new double[6, 2, 998];
+
+			ln_KFe_fakt_ravn = new double[1000];
+
+			rzjCOsumm = new double[1000];
+			rzjCO2summ = new double[1000];
+			rzjO2summ = new double[1000];
+			rzjN2summ = new double[1000];
+			rzjSO2summ = new double[1000];
+			rzjGASsumm = new double[1000];
+
+			rzjCOincome = new double[1000];
+			rzjCO2income = new double[1000];
+			rzjO2income = new double[1000];
+
+			rzFeOshl = new double[1000];
+			rzFe2O3shl = new double[1000];
+			rzTOTALFeOshl = new double[1000];
+			rzCaOshl = new double[1000];
+			rzSiO2shl = new double[1000];
+			rzMnOshl = new double[1000];
+			rzP2O5shl = new double[1000];
+			rzMgOshl = new double[1000];
+
+			rzTmet = new double[1000];
+			rzTgas = new double[1000];
+			rzGshl = new double[1000];
+			rzGmet = new double[1000];
+
+			rzCmet = new double[1000];
+			rzSimet = new double[1000];
+			rzMnmet = new double[1000];
+			rzPmet = new double[1000];
+			rzSmet = new double[1000];
+			rzFemet = new double[1000];
+
+			Po2COMMON = new double[1000];
+			Pco2COMMON = new double[1000];
+			PcoCOMMON = new double[1000];
+			Pn2COMMON = new double[1000];
+			Pso2COMMON = new double[1000];
+
 			SimetRavn = new double[3001];
 			vSi_TEST = new double[3001];
 
