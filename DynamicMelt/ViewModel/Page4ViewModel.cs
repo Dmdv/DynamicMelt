@@ -1,15 +1,38 @@
 ﻿using System;
 using DynamicMelt.Chemistry;
+using GalaSoft.MvvmLight;
 
 namespace DynamicMelt.ViewModel
 {
-	public class Page4ViewModel
+	public class Page4ViewModel : ViewModelBase
 	{
+		private readonly DebuViewModel _debugViewModel;
+
+		public Page4ViewModel(DebuViewModel debugViewModel)
+		{
+			_debugViewModel = debugViewModel;
+		}
+
 		private void RZ_New()
 		{
 			var j = 0;
 			var rzCmetMid = new double[4000];
 			Calc.rzGmet[0] = Calc.GmeRZ[i];
+
+			// Доля металла, поступающего в РЗ
+
+			Calc.rzK[i] = _debugViewModel.slrzK / 100.0;
+			Calc.rzGmetEff[i, 0] = Calc.rzGmet[0] * Calc.rzK[i];
+
+			// Доля шлака, поступающего в РЗ.
+			// 100% это не весь шлак, а его масса к массе Gmerz равна соотношениям масс шлака и Ме в ванне
+
+			Calc.AdaptK[32] = _debugViewModel.slrzGshl / 100.0;
+
+			Calc.rzGshl[0] = Calc.AdaptK[32] * Calc.rzGmet[0] * (Tube.Шлаки[i - 6].G / Calc.Ggidk[i - 6]);
+
+
+			// Парциальные давления газов.
 		}
 
 		private void Tepl_Balans()
