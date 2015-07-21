@@ -270,11 +270,6 @@ namespace DynamicMelt.Chemistry
 
 	public class Шлак : Навеска
 	{
-		public Шлак()
-		{
-			Hshl = new double[3001];
-		}
-
 		public double Al2O3 { get; set; }
 		public double B { get; set; }
 		public double Bmax { get; set; }
