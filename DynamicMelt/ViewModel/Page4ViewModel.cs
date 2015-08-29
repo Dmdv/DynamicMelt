@@ -11,6 +11,7 @@ namespace DynamicMelt.ViewModel
 		public Page4ViewModel(DebuViewModel debugViewModel)
 		{
 			_debugViewModel = debugViewModel;
+			// Test
 		}
 
 		private void RZ_New()
