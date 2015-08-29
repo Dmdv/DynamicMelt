@@ -87,6 +87,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MiscellaneousTests.cs" />
     <Compile Include="Page1Tests.cs" />
     <Compile Include="MeltDataMdbTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

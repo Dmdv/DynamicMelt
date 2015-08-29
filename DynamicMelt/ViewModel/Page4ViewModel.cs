@@ -1,5 +1,6 @@
 ﻿using System;
 using DynamicMelt.Chemistry;
+using DynamicMelt.Model;
 using GalaSoft.MvvmLight;
 
 namespace DynamicMelt.ViewModel
@@ -14,8 +15,17 @@ namespace DynamicMelt.ViewModel
 			// Test
 		}
 
+		private void DebugValuesLoad()
+		{
+			var misc = new MiscellaneousMdb();
+			var doubles = misc.Reader.SelectColumnRange<double>("Adapt", 2);
+		}
+
 		private void RZ_New()
 		{
+			// TODO: delete;
+			var i = 0;
+
 			var j = 0;
 			var rzCmetMid = new double[4000];
 			Calc.rzGmet[0] = Calc.GmeRZ[i];
@@ -32,14 +42,17 @@ namespace DynamicMelt.ViewModel
 
 			Calc.rzGshl[0] = Calc.AdaptK[32] * Calc.rzGmet[0] * (Tube.Шлаки[i - 6].G / Calc.Ggidk[i - 6]);
 
-
 			// Парциальные давления газов.
 
-			Calc.Po2COMMON[0] = Calc.nUl + (Calc.Jo2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
-			Calc.Pco2COMMON[0] = Calc.nUl + (Calc.Jco2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
-			Calc.PcoCOMMON[0] = Calc.nUl + (Calc.Jcostr2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
+			Calc.Po2COMMON[0] = Calc.nUl +
+			                    (Calc.Jo2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
+			Calc.Pco2COMMON[0] = Calc.nUl +
+			                     (Calc.Jco2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
+			Calc.PcoCOMMON[0] = Calc.nUl +
+			                    (Calc.Jcostr2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
 			Calc.Pso2COMMON[0] = Calc.nUl;
-			Calc.Pn2COMMON[0] = Calc.nUl + (Calc.Jn2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
+			Calc.Pn2COMMON[0] = Calc.nUl +
+			                    (Calc.Jn2str2[i]) / (Calc.Jcostr2[i] + Calc.Jco2str2[i] + Calc.Jn2str2[i] + Calc.Jo2str2[i]);
 
 			var metall = Converter.Metall;
 
@@ -54,7 +67,6 @@ namespace DynamicMelt.ViewModel
 			Calc.rzFemet[0] = metall.Fe[i - 6];
 
 			var шлак = Tube.Шлаки[i - 6];
-
 
 			Calc.rzFeOshl[0] = шлак.FeO;
 			Calc.rzFe2O3shl[0] = шлак.Fe2O3;
@@ -94,12 +106,57 @@ namespace DynamicMelt.ViewModel
 			}
 
 			// Do Until StoppP = 1
+			// Равновесная константа
+
+			Calc.KFe_O2[j] = Math.Exp(-(Hp.dHfe_O2_mol - Hp.dSfe_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
+
+			// По Явойскому стр. 259
+
+			Calc.KMn_O2[j] = Math.Exp(-(Hp.dHmn_O2_mol - Hp.dSmn_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
+			Calc.KC_O2[j] = Math.Exp(-(Hp.dHc_O2_mol - Hp.dSc_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
+			Calc.KSi_O2[j] = Math.Exp(-(Hp.dHsi_O2_mol - Hp.dSsi_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
+			Calc.KP_O2[j] = Math.Exp(-5.0 / 4.0 * (Hp.dHp_O2_mol - Hp.dSp_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
+			// Посчитано по Явойскому с газообразным кислородом.ы
+			Calc.KS_O2[j] = Math.Exp(-(Hp.dHs_O2_mol - Hp.dSs_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
+
+
+			//Calc.KFe_CO2[j] = Val(frmDebug.slKfe_co2.Value) / 100 *
+			//				  Math.Exp(
+			//					  -(Hp.dHfe_O2_mol - Hp.dHco_co2_mol - (Hp.dSfe_O2_mol - Hp.dSco_co2_mol) * Calc.rzTmet[j]) /
+			//					  Calc.rzTmet[j] / 8.31);
+
+			Calc.KMn_CO2[j] =
+				Math.Exp(-(Hp.dHmn_O2_mol - Hp.dHco_co2_mol - (Hp.dSmn_O2_mol - Hp.dSco_co2_mol) * Calc.rzTmet[j]) / Calc.rzTmet[j] /
+				         8.31);
+
+			Calc.KC_CO2[j] =
+				Math.Exp(-(Hp.dHc_O2_mol - Hp.dHco_co2_mol - (Hp.dSc_O2_mol - Hp.dSco_co2_mol) * Calc.rzTmet[j]) / Calc.rzTmet[j] /
+				         8.31);
+
+			Calc.KSi_CO2[j] =
+				Math.Exp(-(Hp.dHsi_O2_mol + 2 * -Hp.dHco_co2_mol - (Hp.dSsi_O2_mol - 2.0 * Hp.dSco_co2_mol) * Calc.rzTmet[j]) /
+				         Calc.rzTmet[j] / 8.31);
+
+			Calc.kP_CO2[j] =
+				Math.Exp(
+					-(5.0 / 4.0 * (Hp.dHp_O2_mol - Hp.dSp_O2_mol * Calc.rzTmet[j]) -
+					  5.0 / 2.0 * (Hp.dHco_co2_mol - Hp.dSco_co2_mol * Calc.rzTmet[j])) /
+					Calc.rzTmet[j] / 8.31);
+
+			Calc.kS_CO2[j] =
+				Math.Exp(
+					-(Hp.dHs_O2_mol - Hp.dSs_O2_mol * Calc.rzTmet[j] - 2.0 * (Hp.dHco_co2_mol - Hp.dSco_co2_mol * Calc.rzTmet[j])) /
+					Calc.rzTmet[j] / 8.31);
+
 
 		}
 
 		private void Tepl_Balans()
 		{
-			double Prop = 1.0 / 1000000.0;
+			// TODO: delete;
+			var i = 0;
+
+			var Prop = 1.0 / 1000000.0;
 
 			// тепло жидкого металла
 
@@ -116,14 +173,14 @@ namespace DynamicMelt.ViewModel
 			Calc.LeftTepl[4] = Prop * 6 * Calc.CpO2 * Calc.Tsopla * Продувка.Q[i] / 60 * 1.42;
 
 			Calc.LeftTepl[5] = Prop *
-							   (Tube.Шлаки[i].G *
-								(Tube.Шлаки[i].FeO / 100.0 * -Hp.dHfe_O2_mol / 72.0 +
-								 Tube.Шлаки[i].Fe2O3 / 100.0 * -Hp.dHfe_fe2o3_o2_mol / 160.0 * 2 +
-								 Tube.Шлаки[i].MnO / 100.0 * -Hp.dHmn_O2_mol / 71.0) -
-								Tube.Шлаки[i - 6].G *
-								(Tube.Шлаки[i - 6].FeO / 100.0 * -Hp.dHfe_O2_mol / 72.0 +
-								 Tube.Шлаки[i - 6].Fe2O3 / 100.0 * -Hp.dHfe_fe2o3_o2_mol / 160.0 * 2 +
-								 Tube.Шлаки[i - 6].MnO / 100.0 * -Hp.dHmn_O2_mol / 71.0));
+			                   (Tube.Шлаки[i].G *
+			                    (Tube.Шлаки[i].FeO / 100.0 * -Hp.dHfe_O2_mol / 72.0 +
+			                     Tube.Шлаки[i].Fe2O3 / 100.0 * -Hp.dHfe_fe2o3_o2_mol / 160.0 * 2 +
+			                     Tube.Шлаки[i].MnO / 100.0 * -Hp.dHmn_O2_mol / 71.0) -
+			                    Tube.Шлаки[i - 6].G *
+			                    (Tube.Шлаки[i - 6].FeO / 100.0 * -Hp.dHfe_O2_mol / 72.0 +
+			                     Tube.Шлаки[i - 6].Fe2O3 / 100.0 * -Hp.dHfe_fe2o3_o2_mol / 160.0 * 2 +
+			                     Tube.Шлаки[i - 6].MnO / 100.0 * -Hp.dHmn_O2_mol / 71.0));
 
 			// Поступающие сыпучие.
 
@@ -153,7 +210,7 @@ namespace DynamicMelt.ViewModel
 			Calc.LeftTepl[8] = Prop * 6 * (-Hp.dHsio2_2caosio2 * Calc.VSi[i] / 28 + -Hp.dHp2o5_3caop2o5 * Calc.VP[i] / 31 * 0.5);
 
 			Calc.LeftTepl[9] = Prop * 6 * ((Cp.ChugSolid * Calc.Vchug[i] + Cp.LomSolid * Calc.Vlom[i]) * Tube.Чугун.Tlom
-									  - (Hp.dHchugPlavl * Calc.Vchug[i] + Hp.dHlomPlavl * Calc.Vlom[i]));
+			                               - (Hp.dHchugPlavl * Calc.Vchug[i] + Hp.dHlomPlavl * Calc.Vlom[i]));
 
 			// Суммарно левая часть баланса
 
@@ -174,12 +231,12 @@ namespace DynamicMelt.ViewModel
 			Calc.RightTepl[3] = Prop * 6 * Params.Tog[i] *
 			                    (Calc.CpCO * 28 * (Calc.Jco_MET[i] - Calc.Jco_PODM[i]) +
 			                     Calc.CpCO2 * 44 * (Calc.Jco2_MET[i] - Calc.Jco2_PODM[i]));
-			
+
 			// Потери тепла на футеровку и нагрев Ar продувки
 
 			Calc.RightTepl[4] = Prop * 6 *
 			                    (Params.TeplLoss * Продувка.Q[i] / 60 / Tube.Дутье.V +
-								 Tube.Дутье.VarBlow[i] / 60 * 1.784 * Cp.Ar * (Converter.Metall.T[i] - Params.AirTemp));
+			                     Tube.Дутье.VarBlow[i] / 60 * 1.784 * Cp.Ar * (Converter.Metall.T[i] - Params.AirTemp));
 
 			// Потери тепла с угаром железа
 
@@ -189,7 +246,6 @@ namespace DynamicMelt.ViewModel
 			// Теплосодержание FeO в дыме.
 			Calc.Q_aFe_FeO_vix = Calc.VO2aFe[i] * 72 / 16 * Cp.FeORZ * Converter.Metall.T[i];
 
-
 			Calc.RightTepl[5] = Prop * 6 * (Calc.Q_aFe_vix + Calc.Q_aFe_FeO_vix);
 
 			// Суммарно правая часть баланса
@@ -197,7 +253,6 @@ namespace DynamicMelt.ViewModel
 			Calc.RightTeplSumm[i] = 1 / Prop *
 			                        (Calc.RightTepl[1] + Calc.RightTepl[2] + Calc.RightTepl[3] + Calc.RightTepl[4] +
 			                         Calc.RightTepl[5] + Calc.RightTepl[6]);
-
 		}
 
 		private void CpCalc()
@@ -210,6 +265,9 @@ namespace DynamicMelt.ViewModel
 
 		private void Vagner()
 		{
+			// TODO: delete;
+			var i = 0;
+
 			// Активности компонентов металла
 
 			var metall = Converter.Metall;
@@ -262,16 +320,23 @@ namespace DynamicMelt.ViewModel
 
 			Calc.SummNj = Calc.nFe[i - 6] + Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6];
 
-			Calc.dHfec = Calc.Qfec * Calc.nC[i - 6] * (Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj ^ 2;
-			Calc.dHfesi = Calc.Qfesi * Calc.nSi[i - 6] * (Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj ^ 2;
-			Calc.dHfemn = Calc.Qfemn * Calc.nMn[i - 6] * (Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj ^ 2;
-			Calc.dHfep = Calc.Qfep * Calc.nP[i - 6] * (Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj ^ 2;
+			Calc.dHfec = Calc.Qfec * Calc.nC[i - 6] *
+			             Math.Pow((Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj, 2);
+
+			Calc.dHfesi = Calc.Qfesi * Calc.nSi[i - 6] *
+			              Math.Pow((Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj, 2);
+
+			Calc.dHfemn = Calc.Qfemn * Calc.nMn[i - 6] *
+			              Math.Pow((Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj, 2);
+
+			Calc.dHfep = Calc.Qfep * Calc.nP[i - 6] *
+			             Math.Pow((Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj, 2);
+
 			Calc.dHFe = Calc.dHfec + Calc.dHfesi + Calc.dHfemn + Calc.dHfep;
 
 			Calc.GammaFe = Math.Exp(1 / Calc.R / metall.T[i - 6] * Calc.dHFe);
 			Calc.AdaptK[33] = 1;
 			Calc.aFe[i] = Calc.AdaptK[33] * metall.Fe[i - 6] * Calc.GammaFe;
-
 		}
 	}
 }
