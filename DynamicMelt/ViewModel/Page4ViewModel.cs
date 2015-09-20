@@ -91,7 +91,7 @@ namespace DynamicMelt.ViewModel
 
 			// а - элемент
 			// В - окислитель
-			// NotValid - ноль или 1, показывающая невозможность протекания реакции
+			// NotValid - 0 или 1, показывающая невозможность протекания реакции
 
 			int a, B, StoppP;
 
@@ -191,6 +191,55 @@ namespace DynamicMelt.ViewModel
 		    Calc.Lgr[Calc.S, Calc.CO2, j] = 0;
 
             // Блокировка реакций, невозможных термодинамически.
+
+		    for (var v = 1; v <= 6; v++)
+		    {
+		        for (var n = 1; n <= 2; n++)
+		        {
+                    if (Calc.Lgr[v, n, j] <= 1)
+                        NotValid[v, n] = 1;
+		        }
+		    }
+
+            // Поиск нового базисного компонента расплава, если реакция прежнего базиса невозможна.
+		    if (NotValid[Calc.Basis, Calc.Okislitel] == 1)
+		    {
+		        var temp02 = 0.0d;
+
+		        for (var v = 1; v <= 6; v++)
+		        {
+                    for (var n = Calc.Okislitel; n <= 2; n++)
+		            {
+		                if (NotValid[v, n] == 0 && Calc.Lgr[v, n, j] > temp02)
+		                {
+		                    temp02 = Calc.Lgr[v, n, j];
+		                    Calc.Basis = v;
+		                }
+		            }    
+		        }
+		    }
+
+            // кмоль/сек - шаг скнирования
+		    Calc.Vj[Calc.Basis, Calc.Okislitel, j] = 0.1 / 20.0;
+
+            // Скорость окисления компонентов засчет кислорода, кмоль/сек
+		    for (var v = 1; v <= 6; v++)
+		    {
+		        for (var n = Calc.Okislitel; n <= 2; n++)
+		        {
+		            Calc.Vj[v, n, j] = (1 - NotValid[v, n]) *
+		                               Calc.Vj[Calc.Basis, Calc.Okislitel, j] *
+		                               Calc.Lgr[v, n, j] /
+		                               Calc.Lgr[Calc.Basis, Calc.Okislitel, j];
+
+		            if (Calc.Vj[v, n, j] < 0)
+		                Calc.Vj[v, n, j] = 0;
+		        }
+		    }
+
+		    var temp01 = 0.0d;
+
+            // Проверка того, что скорость не больше, чем запас.
 
 		}
 

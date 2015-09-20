@@ -11,7 +11,7 @@ namespace DynamicMelt.Chemistry
 		public static double Q_aFe_vix, Q_aFe_FeO_vix;
 		public static string MapMode, MapName;
 		public static int MapStroka, MapBaseLenth;
-		public static double Okislitel, Basis;
+		public static int Okislitel, Basis;
 		public static int columnCounter, rowCounter;
 		public static int i, counter;
 		public static int[] jMAX;
