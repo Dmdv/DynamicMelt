@@ -5,7 +5,9 @@ using GalaSoft.MvvmLight;
 
 namespace DynamicMelt.ViewModel
 {
-	public class Page4ViewModel : ViewModelBase
+    // ReSharper disable InconsistentNaming
+
+    public class Page4ViewModel : ViewModelBase
 	{
 		private readonly DebuViewModel _debugViewModel;
 
@@ -108,10 +110,8 @@ namespace DynamicMelt.ViewModel
 			// Do Until StoppP = 1
 			// Равновесная константа
 
+            // По Явойскому стр. 259 здесь и ниже.
 			Calc.KFe_O2[j] = Math.Exp(-(Hp.dHfe_O2_mol - Hp.dSfe_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
-
-			// По Явойскому стр. 259
-
 			Calc.KMn_O2[j] = Math.Exp(-(Hp.dHmn_O2_mol - Hp.dSmn_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
 			Calc.KC_O2[j] = Math.Exp(-(Hp.dHc_O2_mol - Hp.dSc_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
 			Calc.KSi_O2[j] = Math.Exp(-(Hp.dHsi_O2_mol - Hp.dSsi_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
@@ -120,34 +120,77 @@ namespace DynamicMelt.ViewModel
 			Calc.KS_O2[j] = Math.Exp(-(Hp.dHs_O2_mol - Hp.dSs_O2_mol * Calc.rzTmet[j]) / Calc.rzTmet[j] / 8.31);
 
 
-			//Calc.KFe_CO2[j] = Val(frmDebug.slKfe_co2.Value) / 100 *
-			//				  Math.Exp(
-			//					  -(Hp.dHfe_O2_mol - Hp.dHco_co2_mol - (Hp.dSfe_O2_mol - Hp.dSco_co2_mol) * Calc.rzTmet[j]) /
-			//					  Calc.rzTmet[j] / 8.31);
-
+            Calc.KFe_CO2[j] = frmDebug.slKfe_co2 / 100.0 *
+                              Math.Exp(
+                                  -(Hp.dHfe_O2_mol - Hp.dHco_co2_mol - (Hp.dSfe_O2_mol - Hp.dSco_co2_mol) * Calc.rzTmet[j]) /
+                                  Calc.rzTmet[j] / 8.31);
 			Calc.KMn_CO2[j] =
 				Math.Exp(-(Hp.dHmn_O2_mol - Hp.dHco_co2_mol - (Hp.dSmn_O2_mol - Hp.dSco_co2_mol) * Calc.rzTmet[j]) / Calc.rzTmet[j] /
 				         8.31);
-
 			Calc.KC_CO2[j] =
 				Math.Exp(-(Hp.dHc_O2_mol - Hp.dHco_co2_mol - (Hp.dSc_O2_mol - Hp.dSco_co2_mol) * Calc.rzTmet[j]) / Calc.rzTmet[j] /
 				         8.31);
-
 			Calc.KSi_CO2[j] =
 				Math.Exp(-(Hp.dHsi_O2_mol + 2 * -Hp.dHco_co2_mol - (Hp.dSsi_O2_mol - 2.0 * Hp.dSco_co2_mol) * Calc.rzTmet[j]) /
 				         Calc.rzTmet[j] / 8.31);
-
 			Calc.kP_CO2[j] =
 				Math.Exp(
 					-(5.0 / 4.0 * (Hp.dHp_O2_mol - Hp.dSp_O2_mol * Calc.rzTmet[j]) -
 					  5.0 / 2.0 * (Hp.dHco_co2_mol - Hp.dSco_co2_mol * Calc.rzTmet[j])) /
 					Calc.rzTmet[j] / 8.31);
-
 			Calc.kS_CO2[j] =
 				Math.Exp(
 					-(Hp.dHs_O2_mol - Hp.dSs_O2_mol * Calc.rzTmet[j] - 2.0 * (Hp.dHco_co2_mol - Hp.dSco_co2_mol * Calc.rzTmet[j])) /
 					Calc.rzTmet[j] / 8.31);
 
+            // TODO: Check precedense of Math.Pow over division.
+            // логарифмы соотношений констант (движущая сила)
+
+            // Железо + О2, равновесная на фактическую.
+
+            // O2
+		    Calc.Lgr[Calc.Fe, Calc.O2, j] =
+                Math.Log(Calc.KFe_O2[j] / (Calc.rzTOTALFeOshl[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
+
+		    Calc.Lgr[Calc.Mn, Calc.O2, j] =
+		        Math.Log(Calc.KMn_O2[j] / (Calc.rzMnOshl[j] / Calc.rzMnmet[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
+
+            Calc.Lgr[Calc.C, Calc.O2, j] =
+                Math.Log(Calc.KC_O2[j] / (Calc.PcoCOMMON[j] / Calc.rzCmet[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
+
+            Calc.Lgr[Calc.Si, Calc.O2, j] =
+                Math.Log(Calc.KSi_O2[j] / (Calc.rzSiO2shl[j] / Calc.rzSimet[j] / Calc.Po2COMMON[j]));
+
+		    Calc.Lgr[Calc.P, Calc.O2, j] =
+		        Math.Log(Calc.KP_O2[j] / (Math.Pow(Calc.rzP2O5shl[j], 0.5) / Calc.rzPmet[j] / Math.Pow(Calc.Po2COMMON[j], 1.25)));
+
+		    Calc.Lgr[Calc.S, Calc.O2, j] = 
+                Math.Log(Calc.KS_O2[j] / (Calc.Pso2COMMON[j] / Calc.rzSmet[j] / Calc.Po2COMMON[j]));
+
+            // CO2
+
+            Calc.Lgr[Calc.Fe, Calc.CO2, j] =
+                Math.Log(Calc.KFe_CO2[j] / (Calc.rzTOTALFeOshl[j] * Calc.PcoCOMMON[j] / Calc.Pco2COMMON[j]));
+
+            Calc.Lgr[Calc.Mn, Calc.CO2, j] =
+                Math.Log(Calc.KMn_CO2[j] / (Calc.rzMnOshl[j] * Calc.PcoCOMMON[j] / Calc.rzMnmet[j] / Calc.Pco2COMMON[j]));
+
+		    Calc.Lgr[Calc.C, Calc.CO2, j] =
+		        Math.Log(Calc.KC_CO2[j] / (Math.Pow(Calc.PcoCOMMON[j], 2) / Calc.rzCmet[j] / Calc.Pco2COMMON[j]));
+
+		    Calc.Lgr[Calc.Si, Calc.CO2, j] =
+		        Math.Log(Calc.KSi_CO2[j] /
+		                 (Calc.rzSiO2shl[j] * Math.Pow(Calc.PcoCOMMON[j], 2) / Calc.rzSimet[j] /
+		                  Math.Pow(Calc.Pco2COMMON[j], 2)));
+
+		    Calc.Lgr[Calc.P, Calc.CO2, j] =
+		        Math.Log(Calc.kP_CO2[j] /
+		                 (Math.Pow(Calc.rzP2O5shl[j], 0.5) * Math.Pow(Calc.PcoCOMMON[j], 2.5) / Calc.rzPmet[j] /
+		                  Math.Pow(Calc.Pco2COMMON[j], 2.5)));
+
+		    Calc.Lgr[Calc.S, Calc.CO2, j] = 0;
+
+            // Блокировка реакций, невозможных термодинамически.
 
 		}
 
@@ -321,16 +364,16 @@ namespace DynamicMelt.ViewModel
 			Calc.SummNj = Calc.nFe[i - 6] + Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6];
 
 			Calc.dHfec = Calc.Qfec * Calc.nC[i - 6] *
-			             Math.Pow((Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj, 2);
+			             (Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Math.Pow(Calc.SummNj, 2);
 
 			Calc.dHfesi = Calc.Qfesi * Calc.nSi[i - 6] *
-			              Math.Pow((Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj, 2);
+                          (Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Math.Pow(Calc.SummNj, 2);
 
 			Calc.dHfemn = Calc.Qfemn * Calc.nMn[i - 6] *
-			              Math.Pow((Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj, 2);
+                          (Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Math.Pow(Calc.SummNj, 2);
 
 			Calc.dHfep = Calc.Qfep * Calc.nP[i - 6] *
-			             Math.Pow((Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Calc.SummNj, 2);
+                         (Calc.nC[i - 6] + Calc.nSi[i - 6] + Calc.nMn[i - 6] + Calc.nP[i - 6] + Calc.nS[i - 6]) / Math.Pow(Calc.SummNj, 2);
 
 			Calc.dHFe = Calc.dHfec + Calc.dHfesi + Calc.dHfemn + Calc.dHfep;
 
