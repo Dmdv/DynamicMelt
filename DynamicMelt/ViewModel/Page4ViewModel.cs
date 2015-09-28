@@ -10,6 +10,13 @@ namespace DynamicMelt.ViewModel
     public class Page4ViewModel : ViewModelBase
 	{
 		private readonly DebuViewModel _debugViewModel;
+        public static double[, ,] Vj;
+        public const int Fe = 1, Mn = 2, C = 3, Si = 4, P = 5, S = 6, O2 = 1, CO2 = 2;
+
+        static Page4ViewModel()
+        {
+            Vj = new double[6, 2, 998];
+        }
 
 		public Page4ViewModel(DebuViewModel debugViewModel)
 		{
@@ -97,14 +104,14 @@ namespace DynamicMelt.ViewModel
 
 			var NotValid = new int[6, 2];
 
-			Calc.Basis = Calc.Fe;
-			Calc.Okislitel = Calc.O2;
+			Calc.Basis = Fe;
+			Calc.Okislitel = O2;
 			StoppP = 0;
 
 			if (metall.Si[i - 6] <= Tube.Сталь.Si)
 			{
-				NotValid[Calc.Si, Calc.O2] = 1;
-				NotValid[Calc.Si, Calc.CO2] = 1;
+				NotValid[Si, O2] = 1;
+				NotValid[Si, CO2] = 1;
 			}
 
 			// Do Until StoppP = 1
@@ -149,46 +156,46 @@ namespace DynamicMelt.ViewModel
             // Железо + О2, равновесная на фактическую.
 
             // O2
-		    Calc.Lgr[Calc.Fe, Calc.O2, j] =
+		    Calc.Lgr[Fe, O2, j] =
                 Math.Log(Calc.KFe_O2[j] / (Calc.rzTOTALFeOshl[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
 
-		    Calc.Lgr[Calc.Mn, Calc.O2, j] =
+		    Calc.Lgr[Mn, O2, j] =
 		        Math.Log(Calc.KMn_O2[j] / (Calc.rzMnOshl[j] / Calc.rzMnmet[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
 
-            Calc.Lgr[Calc.C, Calc.O2, j] =
+            Calc.Lgr[C, O2, j] =
                 Math.Log(Calc.KC_O2[j] / (Calc.PcoCOMMON[j] / Calc.rzCmet[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
 
-            Calc.Lgr[Calc.Si, Calc.O2, j] =
+            Calc.Lgr[Si, O2, j] =
                 Math.Log(Calc.KSi_O2[j] / (Calc.rzSiO2shl[j] / Calc.rzSimet[j] / Calc.Po2COMMON[j]));
 
-		    Calc.Lgr[Calc.P, Calc.O2, j] =
+		    Calc.Lgr[P, O2, j] =
 		        Math.Log(Calc.KP_O2[j] / (Math.Pow(Calc.rzP2O5shl[j], 0.5) / Calc.rzPmet[j] / Math.Pow(Calc.Po2COMMON[j], 1.25)));
 
-		    Calc.Lgr[Calc.S, Calc.O2, j] = 
+		    Calc.Lgr[S, O2, j] = 
                 Math.Log(Calc.KS_O2[j] / (Calc.Pso2COMMON[j] / Calc.rzSmet[j] / Calc.Po2COMMON[j]));
 
             // CO2
 
-            Calc.Lgr[Calc.Fe, Calc.CO2, j] =
+            Calc.Lgr[Fe, CO2, j] =
                 Math.Log(Calc.KFe_CO2[j] / (Calc.rzTOTALFeOshl[j] * Calc.PcoCOMMON[j] / Calc.Pco2COMMON[j]));
 
-            Calc.Lgr[Calc.Mn, Calc.CO2, j] =
+            Calc.Lgr[Mn, CO2, j] =
                 Math.Log(Calc.KMn_CO2[j] / (Calc.rzMnOshl[j] * Calc.PcoCOMMON[j] / Calc.rzMnmet[j] / Calc.Pco2COMMON[j]));
 
-		    Calc.Lgr[Calc.C, Calc.CO2, j] =
+		    Calc.Lgr[C, CO2, j] =
 		        Math.Log(Calc.KC_CO2[j] / (Math.Pow(Calc.PcoCOMMON[j], 2) / Calc.rzCmet[j] / Calc.Pco2COMMON[j]));
 
-		    Calc.Lgr[Calc.Si, Calc.CO2, j] =
+		    Calc.Lgr[Si, CO2, j] =
 		        Math.Log(Calc.KSi_CO2[j] /
 		                 (Calc.rzSiO2shl[j] * Math.Pow(Calc.PcoCOMMON[j], 2) / Calc.rzSimet[j] /
 		                  Math.Pow(Calc.Pco2COMMON[j], 2)));
 
-		    Calc.Lgr[Calc.P, Calc.CO2, j] =
+		    Calc.Lgr[P, CO2, j] =
 		        Math.Log(Calc.kP_CO2[j] /
 		                 (Math.Pow(Calc.rzP2O5shl[j], 0.5) * Math.Pow(Calc.PcoCOMMON[j], 2.5) / Calc.rzPmet[j] /
 		                  Math.Pow(Calc.Pco2COMMON[j], 2.5)));
 
-		    Calc.Lgr[Calc.S, Calc.CO2, j] = 0;
+		    Calc.Lgr[S, CO2, j] = 0;
 
             // Блокировка реакций, невозможных термодинамически.
 
@@ -220,27 +227,104 @@ namespace DynamicMelt.ViewModel
 		    }
 
             // кмоль/сек - шаг скнирования
-		    Calc.Vj[Calc.Basis, Calc.Okislitel, j] = 0.1 / 20.0;
+		    Vj[Calc.Basis, Calc.Okislitel, j] = 0.1 / 20.0;
 
             // Скорость окисления компонентов засчет кислорода, кмоль/сек
 		    for (var v = 1; v <= 6; v++)
 		    {
 		        for (var n = Calc.Okislitel; n <= 2; n++)
 		        {
-		            Calc.Vj[v, n, j] = (1 - NotValid[v, n]) *
-		                               Calc.Vj[Calc.Basis, Calc.Okislitel, j] *
+		            Vj[v, n, j] = (1 - NotValid[v, n]) *
+		                               Vj[Calc.Basis, Calc.Okislitel, j] *
 		                               Calc.Lgr[v, n, j] /
 		                               Calc.Lgr[Calc.Basis, Calc.Okislitel, j];
 
-		            if (Calc.Vj[v, n, j] < 0)
-		                Calc.Vj[v, n, j] = 0;
+		            if (Vj[v, n, j] < 0)
+		                Vj[v, n, j] = 0;
 		        }
 		    }
 
 		    var temp01 = 0.0d;
 
             // Проверка того, что скорость не больше, чем запас.
+		    while (true)
+		    {
+		        if (Vj[C, O2, j] + Vj[C, CO2, j] <
+		            Calc.rzCmet[j] / 100 * Calc.rzGmetEff[i, j] / 12)
+		        {
+                    // Если сумма скоростей меньше запаса
+		            break;
+		        }
 
+                Vj[C, O2, j] = 0.9 * Vj[C, O2, j];
+                Vj[C, CO2, j] = 0.9 * Vj[C, CO2, j];
+
+                if (Vj[C, O2, j] + Vj[C, CO2, j] < 1.0 / 1000000.0)
+		        {
+                    Vj[C, O2, j] = 0;
+                    Vj[C, CO2, j] = 0;
+		        }
+		    }
+
+		    while (true)
+		    {
+		        if (Vj[Mn, O2, j] + Vj[Mn, CO2, j] <
+		            Calc.rzMnmet[j] / 100 * Calc.rzGmetEff[i, j] / 55.0)
+		        {
+		            break;
+		        }
+
+                Vj[Mn, O2, j] = 0.9 * Vj[Mn, O2, j];
+                Vj[Mn, CO2, j] = 0.9 * Vj[Mn, CO2, j];
+		    }
+
+		    while (true)
+		    {
+		        if (Vj[Si, O2, j] + Vj[Si, CO2, j] <
+		            Calc.rzSimet[j] / 100 * Calc.rzGmetEff[i, j] / 28.0)
+		        {
+		            break;
+		        }
+
+		        Vj[Si, O2, j] = 0.9 * Vj[Si, O2, j];
+		        Vj[Si, CO2, j] = 0.9 * Vj[Si, CO2, j];
+		    }
+
+		    while (true)
+		    {
+		        if (Vj[P, O2, j] + Vj[P, CO2, j] <
+		            Calc.rzPmet[j] / 100 * Calc.rzGmetEff[i, j] / 31.0)
+		        {
+		            break;
+		        }
+
+		        Vj[P, O2, j] = 0.9 * Vj[P, O2, j];
+		        Vj[P, CO2, j] = 0.9 * Vj[P, CO2, j];
+		    }
+
+		    while (true)
+		    {
+		        if (Vj[S, O2, j] + Vj[S, CO2, j] <
+		            Calc.rzSmet[j] / 100 * Calc.rzGmetEff[i, j] / 32.0)
+		        {
+		            break;
+		        }
+
+		        Vj[S, O2, j] = 0.9 * Vj[S, O2, j];
+		        Vj[S, CO2, j] = 0.9 * Vj[S, CO2, j];
+		    }
+
+            // Баланс газовой фазы (кмоль)
+		    Calc.rzjO2income[j] =
+		        -(0.5 * Vj[Fe, O2, j] + Vj[Si, O2, j] + 0.5 * Vj[Mn, O2, j] + 0.5 * Vj[C, O2, j] + 5.0 / 4.0 * Vj[P, O2, j] +
+		          Vj[S, O2, j]);
+
+		    Calc.rzjCOincome[j] = Vj[C, O2, j] + Vj[Fe, CO2, j] + 2 * Vj[Si, CO2, j] + Vj[Mn, CO2, j] + 2 * Vj[C, CO2, j] +
+		                          5.0 / 2.0 * Vj[P, CO2, j] + 2 * Vj[S, CO2, j];
+
+		    Calc.rzjCO2income[j] =
+		        -(Vj[Fe, CO2, j] + Vj[C, CO2, j] + 2 * Vj[Si, CO2, j] + Vj[Mn, CO2, j] + 5 / 2 * Vj[P, CO2, j] +
+		          2 * Vj[S, CO2, j]);
 		}
 
 		private void Tepl_Balans()

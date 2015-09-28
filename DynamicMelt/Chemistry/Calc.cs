@@ -6,8 +6,6 @@ namespace DynamicMelt.Chemistry
 	{
 		public const double nUl = 0.000001;
 
-		public const int Fe = 1, Mn = 2, C = 3, Si = 4, P = 5, S = 6, O2 = 1, CO2 = 2;
-
 		public static double Q_aFe_vix, Q_aFe_FeO_vix;
 		public static string MapMode, MapName;
 		public static int MapStroka, MapBaseLenth;
@@ -195,7 +193,8 @@ namespace DynamicMelt.Chemistry
 
 		public static double v_Fe_O2, v_C_O2, v_Mn_O2, v_Si_O2, v_P_O2, v_S_O2;
 
-		public static double[,,] Vj;
+        // Перенесено в 4 step viewmodel
+		// public static double[,,] Vj;
 
 		// Эффективная доля массы РЗ.
 
@@ -335,7 +334,8 @@ namespace DynamicMelt.Chemistry
 
 			rzK = new double[3000];
 
-			Vj = new double[6, 2, 998];
+            // Перенесено в 4 step view model
+			// Vj = new double[6, 2, 998];
 
 			ln_KFe_fakt_ravn = new double[1000];
 
