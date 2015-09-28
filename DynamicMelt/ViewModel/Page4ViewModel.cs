@@ -323,8 +323,15 @@ namespace DynamicMelt.ViewModel
 		                          5.0 / 2.0 * Vj[P, CO2, j] + 2 * Vj[S, CO2, j];
 
 		    Calc.rzjCO2income[j] =
-		        -(Vj[Fe, CO2, j] + Vj[C, CO2, j] + 2 * Vj[Si, CO2, j] + Vj[Mn, CO2, j] + 5 / 2 * Vj[P, CO2, j] +
+		        -(Vj[Fe, CO2, j] + Vj[C, CO2, j] + 2 * Vj[Si, CO2, j] + Vj[Mn, CO2, j] + 5.0 / 2.0 * Vj[P, CO2, j] +
 		          2 * Vj[S, CO2, j]);
+
+		    Calc.rzjCOsumm[j + 1] = Calc.rzjCOsumm[j] + Calc.rzjCOincome[j];
+            Calc.rzjN2summ[j + 1] = Calc.rzjN2summ[j];
+            Calc.rzjSO2summ[j + 1] = Calc.rzjSO2summ[j] + Vj[S, O2, j] + Vj[S, CO2, j];
+            Calc.rzjO2summ[j + 1] = Calc.rzjO2summ[j] + Calc.rzjO2income[j];
+
+            // Баланс металла и шлака
 		}
 
 		private void Tepl_Balans()
