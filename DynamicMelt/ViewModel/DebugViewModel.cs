@@ -2,7 +2,7 @@
 
 namespace DynamicMelt.ViewModel
 {
-	public class DebuViewModel : ViewModelBase
+	public class DebugViewModel : ViewModelBase
 	{
 		public double slrzK { get; set; }
 

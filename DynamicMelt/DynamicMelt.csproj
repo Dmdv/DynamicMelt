@@ -144,7 +144,7 @@
     <Compile Include="Providers\TableWriter.cs" />
     <Compile Include="Shell\Run.cs" />
     <Compile Include="ViewModel\DataLoad.cs" />
-    <Compile Include="ViewModel\DebuViewModel.cs" />
+    <Compile Include="ViewModel\DebugViewModel.cs" />
     <Compile Include="ViewModel\frmDebug.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Page1ViewModel.cs" />

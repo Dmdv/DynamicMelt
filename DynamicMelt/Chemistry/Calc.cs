@@ -1,4 +1,5 @@
 ﻿using System;
+using DynamicMelt.ViewModel;
 
 namespace DynamicMelt.Chemistry
 {
@@ -187,9 +188,7 @@ namespace DynamicMelt.Chemistry
 
 		// Образование РЗ в рез-те О-В реакций.
 
-		public static double[] rzjCOincome, rzjCO2income, rzjO2income;
-
-		public static double[] rzjCOsumm, rzjCO2summ, rzjO2summ, rzjN2summ, rzjSO2summ, rzjGASsumm, ln_KFe_fakt_ravn;
+	    public static double[] rzjCO2summ, rzjGASsumm, ln_KFe_fakt_ravn;
 
 		public static double v_Fe_O2, v_C_O2, v_Mn_O2, v_Si_O2, v_P_O2, v_S_O2;
 
@@ -339,16 +338,8 @@ namespace DynamicMelt.Chemistry
 
 			ln_KFe_fakt_ravn = new double[1000];
 
-			rzjCOsumm = new double[1000];
 			rzjCO2summ = new double[1000];
-			rzjO2summ = new double[1000];
-			rzjN2summ = new double[1000];
-			rzjSO2summ = new double[1000];
 			rzjGASsumm = new double[1000];
-
-			rzjCOincome = new double[1000];
-			rzjCO2income = new double[1000];
-			rzjO2income = new double[1000];
 
 			rzFeOshl = new double[1000];
 			rzFe2O3shl = new double[1000];

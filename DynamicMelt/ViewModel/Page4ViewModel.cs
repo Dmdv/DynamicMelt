@@ -9,21 +9,15 @@ namespace DynamicMelt.ViewModel
 
     public class Page4ViewModel : ViewModelBase
 	{
-		private readonly DebuViewModel _debugViewModel;
-        public static double[, ,] Vj;
-        public const int Fe = 1, Mn = 2, C = 3, Si = 4, P = 5, S = 6, O2 = 1, CO2 = 2;
+		private readonly DebugViewModel _debugViewModel;
 
-        static Page4ViewModel()
-        {
-            Vj = new double[6, 2, 998];
-        }
-
-		public Page4ViewModel(DebuViewModel debugViewModel)
+		public Page4ViewModel(DebugViewModel debugViewModel)
 		{
 			_debugViewModel = debugViewModel;
 			// Test
 		}
 
+        // TODO: Load from IOC
 		private void DebugValuesLoad()
 		{
 			var misc = new MiscellaneousMdb();
@@ -88,11 +82,11 @@ namespace DynamicMelt.ViewModel
 
 			// Количество газа в РЗ в начале расчета.
 
-			Calc.rzjO2summ[0] = Calc.Jo2str2[i] - Params.ValfaFe[i] / 56 * 0.5 * 0.7;
-			Calc.rzjCOsumm[0] = Calc.Jcostr2[i];
+			rzjO2summ[0] = Calc.Jo2str2[i] - Params.ValfaFe[i] / 56 * 0.5 * 0.7;
+			rzjCOsumm[0] = Calc.Jcostr2[i];
 			Calc.rzjCO2summ[0] = Calc.Jco2str2[i];
-			Calc.rzjN2summ[0] = Calc.Jn2str2[i];
-			Calc.rzjSO2summ[0] = Calc.nUl;
+			rzjN2summ[0] = Calc.Jn2str2[i];
+			rzjSO2summ[0] = Calc.nUl;
 
 			j = 0;
 
@@ -315,21 +309,21 @@ namespace DynamicMelt.ViewModel
 		    }
 
             // Баланс газовой фазы (кмоль)
-		    Calc.rzjO2income[j] =
+		    rzjO2income[j] =
 		        -(0.5 * Vj[Fe, O2, j] + Vj[Si, O2, j] + 0.5 * Vj[Mn, O2, j] + 0.5 * Vj[C, O2, j] + 5.0 / 4.0 * Vj[P, O2, j] +
 		          Vj[S, O2, j]);
 
-		    Calc.rzjCOincome[j] = Vj[C, O2, j] + Vj[Fe, CO2, j] + 2 * Vj[Si, CO2, j] + Vj[Mn, CO2, j] + 2 * Vj[C, CO2, j] +
+		    rzjCOincome[j] = Vj[C, O2, j] + Vj[Fe, CO2, j] + 2 * Vj[Si, CO2, j] + Vj[Mn, CO2, j] + 2 * Vj[C, CO2, j] +
 		                          5.0 / 2.0 * Vj[P, CO2, j] + 2 * Vj[S, CO2, j];
 
-		    Calc.rzjCO2income[j] =
+		    rzjCO2income[j] =
 		        -(Vj[Fe, CO2, j] + Vj[C, CO2, j] + 2 * Vj[Si, CO2, j] + Vj[Mn, CO2, j] + 5.0 / 2.0 * Vj[P, CO2, j] +
 		          2 * Vj[S, CO2, j]);
 
-		    Calc.rzjCOsumm[j + 1] = Calc.rzjCOsumm[j] + Calc.rzjCOincome[j];
-            Calc.rzjN2summ[j + 1] = Calc.rzjN2summ[j];
-            Calc.rzjSO2summ[j + 1] = Calc.rzjSO2summ[j] + Vj[S, O2, j] + Vj[S, CO2, j];
-            Calc.rzjO2summ[j + 1] = Calc.rzjO2summ[j] + Calc.rzjO2income[j];
+		    rzjCOsumm[j + 1] = rzjCOsumm[j] + rzjCOincome[j];
+            rzjN2summ[j + 1] = rzjN2summ[j];
+            rzjSO2summ[j + 1] = rzjSO2summ[j] + Vj[S, O2, j] + Vj[S, CO2, j];
+            rzjO2summ[j + 1] = rzjO2summ[j] + rzjO2income[j];
 
             // Баланс металла и шлака
 		}
@@ -521,5 +515,16 @@ namespace DynamicMelt.ViewModel
 			Calc.AdaptK[33] = 1;
 			Calc.aFe[i] = Calc.AdaptK[33] * metall.Fe[i - 6] * Calc.GammaFe;
 		}
+
+        private static readonly double[] rzjCOsumm = new double[1000];
+        private static readonly double[,,] Vj = new double[6, 2, 998];
+        private static readonly double[] rzjCO2income = new double[1000];
+
+        public const int Fe = 1, Mn = 2, C = 3, Si = 4, P = 5, S = 6, O2 = 1, CO2 = 2;
+        public static double[] rzjN2summ = new double[1000];
+        public static double[] rzjSO2summ = new double[1000];
+        public static double[] rzjO2income = new double[1000];
+        public static double[] rzjO2summ = new double[1000];
+        public static double[] rzjCOincome = new double[1000];
 	}
 }
