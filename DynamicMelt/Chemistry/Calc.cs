@@ -180,11 +180,9 @@ namespace DynamicMelt.Chemistry
 
 		public static double Gfe_O2_ostatok;
 
-		public static double[] rzCmet, rzSimet, rzMnmet, rzPmet, rzSmet, rzFemet;
+	    public static double[] rzTmet, rzTgas;
 
-		public static double[] rzTmet, rzTgas, rzGshl, rzGmet;
-
-		public static double[] rzFeOshl, rzFe2O3shl, rzTOTALFeOshl, rzCaOshl, rzSiO2shl, rzMnOshl, rzP2O5shl, rzMgOshl;
+		public static double[] rzFeOshl, rzFe2O3shl;
 
 		// Образование РЗ в рез-те О-В реакций.
 
@@ -197,13 +195,9 @@ namespace DynamicMelt.Chemistry
 
 		// Эффективная доля массы РЗ.
 
-		public static double[] rzK;
+	    // Эффективная масса РЗ по i и j
 
-		// Эффективная масса РЗ по i и j
-
-		public static double[,] rzGmetEff;
-
-		public static double[] Dlunki;
+	    public static double[] Dlunki;
 
 		public static double[] KFe_CO2, KMn_CO2, KC_CO2, KSi_CO2, kP_CO2, kS_CO2;
 
@@ -236,9 +230,7 @@ namespace DynamicMelt.Chemistry
 
 		public static double[] QsummRZ, QsummRZExit;
 
-		public static double[] rzGmet_Loose, rzGshlak_Income;
-
-		public static double[] KFe_O2, KMn_O2, KSi_O2, KC_O2, KP_O2, KS_O2;
+	    public static double[] KFe_O2, KMn_O2, KSi_O2, KC_O2, KP_O2, KS_O2;
 
 		public static double[] summ_v_c_rz, summ_v_fe_rz, summ_v_si_rz, summ_v_mn_rz, summ_v_s_rz, summ_v_p_rz;
 
@@ -299,9 +291,6 @@ namespace DynamicMelt.Chemistry
 			KP_O2 = new double[1000];
 			KS_O2 = new double[1000];
 
-			rzGmet_Loose = new double[1000];
-			rzGshlak_Income = new double[1000];
-
 			QsummRZ = new double[3000];
 			QsummRZExit = new double[3000];
 
@@ -329,13 +318,6 @@ namespace DynamicMelt.Chemistry
 
 			Dlunki = new double[3993];
 
-			rzGmetEff = new double[3000,998];
-
-			rzK = new double[3000];
-
-            // Перенесено в 4 step view model
-			// Vj = new double[6, 2, 998];
-
 			ln_KFe_fakt_ravn = new double[1000];
 
 			rzjCO2summ = new double[1000];
@@ -343,24 +325,9 @@ namespace DynamicMelt.Chemistry
 
 			rzFeOshl = new double[1000];
 			rzFe2O3shl = new double[1000];
-			rzTOTALFeOshl = new double[1000];
-			rzCaOshl = new double[1000];
-			rzSiO2shl = new double[1000];
-			rzMnOshl = new double[1000];
-			rzP2O5shl = new double[1000];
-			rzMgOshl = new double[1000];
 
 			rzTmet = new double[1000];
 			rzTgas = new double[1000];
-			rzGshl = new double[1000];
-			rzGmet = new double[1000];
-
-			rzCmet = new double[1000];
-			rzSimet = new double[1000];
-			rzMnmet = new double[1000];
-			rzPmet = new double[1000];
-			rzSmet = new double[1000];
-			rzFemet = new double[1000];
 
 			Po2COMMON = new double[1000];
 			Pco2COMMON = new double[1000];

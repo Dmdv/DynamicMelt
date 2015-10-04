@@ -31,19 +31,19 @@ namespace DynamicMelt.ViewModel
 
 			var j = 0;
 			var rzCmetMid = new double[4000];
-			Calc.rzGmet[0] = Calc.GmeRZ[i];
+			rzGmet[0] = Calc.GmeRZ[i];
 
 			// Доля металла, поступающего в РЗ
 
-			Calc.rzK[i] = _debugViewModel.slrzK / 100.0;
-			Calc.rzGmetEff[i, 0] = Calc.rzGmet[0] * Calc.rzK[i];
+			rzK[i] = _debugViewModel.slrzK / 100.0;
+			rzGmetEff[i, 0] = rzGmet[0] * rzK[i];
 
 			// Доля шлака, поступающего в РЗ.
 			// 100% это не весь шлак, а его масса к массе Gmerz равна соотношениям масс шлака и Ме в ванне
 
 			Calc.AdaptK[32] = _debugViewModel.slrzGshl / 100.0;
 
-			Calc.rzGshl[0] = Calc.AdaptK[32] * Calc.rzGmet[0] * (Tube.Шлаки[i - 6].G / Calc.Ggidk[i - 6]);
+			rzGshl[0] = Calc.AdaptK[32] * rzGmet[0] * (Tube.Шлаки[i - 6].G / Calc.Ggidk[i - 6]);
 
 			// Парциальные давления газов.
 
@@ -62,23 +62,23 @@ namespace DynamicMelt.ViewModel
 			Calc.rzTmet[0] = metall.T[i - 6];
 			Calc.rzTgas[0] = Calc.Tstr[i];
 
-			Calc.rzCmet[0] = metall.C[i - 6];
-			Calc.rzSimet[0] = metall.Si[i - 6];
-			Calc.rzMnmet[0] = metall.Mn[i - 6];
-			Calc.rzPmet[0] = metall.P[i - 6];
-			Calc.rzSmet[0] = metall.S[i - 6];
-			Calc.rzFemet[0] = metall.Fe[i - 6];
+			rzCmet[0] = metall.C[i - 6];
+			rzSimet[0] = metall.Si[i - 6];
+			rzMnmet[0] = metall.Mn[i - 6];
+			rzPmet[0] = metall.P[i - 6];
+			rzSmet[0] = metall.S[i - 6];
+			rzFemet[0] = metall.Fe[i - 6];
 
 			var шлак = Tube.Шлаки[i - 6];
 
 			Calc.rzFeOshl[0] = шлак.FeO;
 			Calc.rzFe2O3shl[0] = шлак.Fe2O3;
-			Calc.rzTOTALFeOshl[0] = шлак.TOTALFeO;
-			Calc.rzCaOshl[0] = шлак.CaO;
-			Calc.rzSiO2shl[0] = шлак.SiO2;
-			Calc.rzMnOshl[0] = шлак.MnO;
-			Calc.rzP2O5shl[0] = шлак.P2O5;
-			Calc.rzMgOshl[0] = шлак.MgO;
+			rzTOTALFeOshl[0] = шлак.TOTALFeO;
+			rzCaOshl[0] = шлак.CaO;
+			rzSiO2shl[0] = шлак.SiO2;
+			rzMnOshl[0] = шлак.MnO;
+			rzP2O5shl[0] = шлак.P2O5;
+			rzMgOshl[0] = шлак.MgO;
 
 			// Количество газа в РЗ в начале расчета.
 
@@ -94,13 +94,11 @@ namespace DynamicMelt.ViewModel
 			// В - окислитель
 			// NotValid - 0 или 1, показывающая невозможность протекания реакции
 
-			int a, B, StoppP;
-
-			var NotValid = new int[6, 2];
+			var StoppP = 0;
+			var NotValid = new int[7, 3];
 
 			Calc.Basis = Fe;
 			Calc.Okislitel = O2;
-			StoppP = 0;
 
 			if (metall.Si[i - 6] <= Tube.Сталь.Si)
 			{
@@ -151,42 +149,42 @@ namespace DynamicMelt.ViewModel
 
             // O2
 		    Calc.Lgr[Fe, O2, j] =
-                Math.Log(Calc.KFe_O2[j] / (Calc.rzTOTALFeOshl[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
+                Math.Log(Calc.KFe_O2[j] / (rzTOTALFeOshl[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
 
 		    Calc.Lgr[Mn, O2, j] =
-		        Math.Log(Calc.KMn_O2[j] / (Calc.rzMnOshl[j] / Calc.rzMnmet[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
+		        Math.Log(Calc.KMn_O2[j] / (rzMnOshl[j] / rzMnmet[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
 
             Calc.Lgr[C, O2, j] =
-                Math.Log(Calc.KC_O2[j] / (Calc.PcoCOMMON[j] / Calc.rzCmet[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
+                Math.Log(Calc.KC_O2[j] / (Calc.PcoCOMMON[j] / rzCmet[j] / Math.Pow(Calc.Po2COMMON[j], 0.5)));
 
             Calc.Lgr[Si, O2, j] =
-                Math.Log(Calc.KSi_O2[j] / (Calc.rzSiO2shl[j] / Calc.rzSimet[j] / Calc.Po2COMMON[j]));
+                Math.Log(Calc.KSi_O2[j] / (rzSiO2shl[j] / rzSimet[j] / Calc.Po2COMMON[j]));
 
 		    Calc.Lgr[P, O2, j] =
-		        Math.Log(Calc.KP_O2[j] / (Math.Pow(Calc.rzP2O5shl[j], 0.5) / Calc.rzPmet[j] / Math.Pow(Calc.Po2COMMON[j], 1.25)));
+		        Math.Log(Calc.KP_O2[j] / (Math.Pow(rzP2O5shl[j], 0.5) / rzPmet[j] / Math.Pow(Calc.Po2COMMON[j], 1.25)));
 
 		    Calc.Lgr[S, O2, j] = 
-                Math.Log(Calc.KS_O2[j] / (Calc.Pso2COMMON[j] / Calc.rzSmet[j] / Calc.Po2COMMON[j]));
+                Math.Log(Calc.KS_O2[j] / (Calc.Pso2COMMON[j] / rzSmet[j] / Calc.Po2COMMON[j]));
 
             // CO2
 
             Calc.Lgr[Fe, CO2, j] =
-                Math.Log(Calc.KFe_CO2[j] / (Calc.rzTOTALFeOshl[j] * Calc.PcoCOMMON[j] / Calc.Pco2COMMON[j]));
+                Math.Log(Calc.KFe_CO2[j] / (rzTOTALFeOshl[j] * Calc.PcoCOMMON[j] / Calc.Pco2COMMON[j]));
 
             Calc.Lgr[Mn, CO2, j] =
-                Math.Log(Calc.KMn_CO2[j] / (Calc.rzMnOshl[j] * Calc.PcoCOMMON[j] / Calc.rzMnmet[j] / Calc.Pco2COMMON[j]));
+                Math.Log(Calc.KMn_CO2[j] / (rzMnOshl[j] * Calc.PcoCOMMON[j] / rzMnmet[j] / Calc.Pco2COMMON[j]));
 
 		    Calc.Lgr[C, CO2, j] =
-		        Math.Log(Calc.KC_CO2[j] / (Math.Pow(Calc.PcoCOMMON[j], 2) / Calc.rzCmet[j] / Calc.Pco2COMMON[j]));
+		        Math.Log(Calc.KC_CO2[j] / (Math.Pow(Calc.PcoCOMMON[j], 2) / rzCmet[j] / Calc.Pco2COMMON[j]));
 
 		    Calc.Lgr[Si, CO2, j] =
 		        Math.Log(Calc.KSi_CO2[j] /
-		                 (Calc.rzSiO2shl[j] * Math.Pow(Calc.PcoCOMMON[j], 2) / Calc.rzSimet[j] /
+		                 (rzSiO2shl[j] * Math.Pow(Calc.PcoCOMMON[j], 2) / rzSimet[j] /
 		                  Math.Pow(Calc.Pco2COMMON[j], 2)));
 
 		    Calc.Lgr[P, CO2, j] =
 		        Math.Log(Calc.kP_CO2[j] /
-		                 (Math.Pow(Calc.rzP2O5shl[j], 0.5) * Math.Pow(Calc.PcoCOMMON[j], 2.5) / Calc.rzPmet[j] /
+		                 (Math.Pow(rzP2O5shl[j], 0.5) * Math.Pow(Calc.PcoCOMMON[j], 2.5) / rzPmet[j] /
 		                  Math.Pow(Calc.Pco2COMMON[j], 2.5)));
 
 		    Calc.Lgr[S, CO2, j] = 0;
@@ -244,7 +242,7 @@ namespace DynamicMelt.ViewModel
 		    while (true)
 		    {
 		        if (Vj[C, O2, j] + Vj[C, CO2, j] <
-		            Calc.rzCmet[j] / 100 * Calc.rzGmetEff[i, j] / 12)
+		            rzCmet[j] / 100 * rzGmetEff[i, j] / 12)
 		        {
                     // Если сумма скоростей меньше запаса
 		            break;
@@ -263,7 +261,7 @@ namespace DynamicMelt.ViewModel
 		    while (true)
 		    {
 		        if (Vj[Mn, O2, j] + Vj[Mn, CO2, j] <
-		            Calc.rzMnmet[j] / 100 * Calc.rzGmetEff[i, j] / 55.0)
+		            rzMnmet[j] / 100 * rzGmetEff[i, j] / 55.0)
 		        {
 		            break;
 		        }
@@ -275,7 +273,7 @@ namespace DynamicMelt.ViewModel
 		    while (true)
 		    {
 		        if (Vj[Si, O2, j] + Vj[Si, CO2, j] <
-		            Calc.rzSimet[j] / 100 * Calc.rzGmetEff[i, j] / 28.0)
+		            rzSimet[j] / 100 * rzGmetEff[i, j] / 28.0)
 		        {
 		            break;
 		        }
@@ -287,7 +285,7 @@ namespace DynamicMelt.ViewModel
 		    while (true)
 		    {
 		        if (Vj[P, O2, j] + Vj[P, CO2, j] <
-		            Calc.rzPmet[j] / 100 * Calc.rzGmetEff[i, j] / 31.0)
+		            rzPmet[j] / 100 * rzGmetEff[i, j] / 31.0)
 		        {
 		            break;
 		        }
@@ -299,7 +297,7 @@ namespace DynamicMelt.ViewModel
 		    while (true)
 		    {
 		        if (Vj[S, O2, j] + Vj[S, CO2, j] <
-		            Calc.rzSmet[j] / 100 * Calc.rzGmetEff[i, j] / 32.0)
+		            rzSmet[j] / 100 * rzGmetEff[i, j] / 32.0)
 		        {
 		            break;
 		        }
@@ -326,6 +324,89 @@ namespace DynamicMelt.ViewModel
             rzjO2summ[j + 1] = rzjO2summ[j] + rzjO2income[j];
 
             // Баланс металла и шлака
+
+		    rzGmet_Loose[j] = 56 * (Vj[Fe, O2, j] + Vj[Fe, CO2, j]) + 55 * (Vj[Mn, O2, j] + Vj[Mn, CO2, j]) +
+		                      12 * (Vj[C, O2, j] + Vj[C, CO2, j]) + 28 * (Vj[Si, O2, j] + Vj[Si, CO2, j]) +
+		                      31 * (Vj[P, O2, j] + Vj[P, CO2, j]) + 32 * (Vj[S, O2, j] + Vj[S, CO2, j]);
+
+		    rzGmetEff[i, j + 1] = rzGmetEff[i, j] - rzGmet_Loose[j];
+
+		    if (rzGmetEff[i, j + 1] < 0.5)
+		    {
+		        rzGmetEff[i, j + 1] = rzGmetEff[i, j];
+		        StoppP = 1;
+		        Calc.Gfe_O2_ostatok = rzjO2summ[j + 1] * 2 * 56;
+		        rzjO2summ[j + 1] = Calc.nUl;
+		        // lblGmeRZ.ForeColor = QBColor(12);
+
+                // обнуление всех скоростей
+		        for (var a = 1; a < 6; a++)
+		        {
+		            for (var b = 1; b < 2; b++)
+		            {
+		                Vj[a, b, j] = 0;
+		            }
+		        }
+		    }
+		    else
+		    {
+		        Calc.Gfe_O2_ostatok = 0;
+		        // lblGmeRZ.ForeColor = QBColor(0);
+		    }
+
+		    rzGshlak_Income[j] = ((56 + 16) * (Vj[Fe, O2, j] + Vj[Fe, CO2, j]) + (55 + 16) * (Vj[Mn, O2, j] + Vj[Mn, CO2, j]) +
+		                          (28 + 32) * (Vj[Si, O2, j] + Vj[Si, CO2, j]) +
+		                          (31 * 2 + 16 * 5) * (Vj[P, O2, j] + Vj[P, CO2, j]) * 0.5);
+
+		    rzGmet[j + 1] = rzGmet[0] * (1 - rzK[i]) + rzGmetEff[i, j + 1];
+		    rzGshl[j + 1] = rzGshl[j] + rzGshlak_Income[j];
+
+		    rzFemet[j + 1] = (rzFemet[j] / 100 * rzGmetEff[i, j] - 56 * (Vj[Fe, CO2, j] + Vj[Fe, O2, j])) /
+		                     rzGmetEff[i, j + 1] * 100;
+
+		    rzCmet[j + 1] = (rzCmet[j] / 100 * rzGmetEff[i, j] - 12 * (Vj[C, CO2, j] + Vj[C, O2, j])) /
+		                    rzGmetEff[i, j + 1] * 100;
+
+            //: If rzCmet[j + 1] < nUl Then rzCmet[j + 1] = nUl: NotValid(C, O2) = 1: NotValid(C, CO2) = 1
+
+		    rzMnmet[j + 1] = (rzMnmet[j] / 100 * rzGmetEff[i, j] - 55 * (Vj[Mn, CO2, j] + Vj[Mn, O2, j])) /
+		                     rzGmetEff[i, j + 1] * 100;
+
+		    rzSimet[j + 1] = (rzSimet[j] / 100 * rzGmetEff[i, j] - 28 * (Vj[Si, CO2, j] + Vj[Si, O2, j])) /
+		                     rzGmetEff[i, j + 1] * 100;
+
+		    rzPmet[j + 1] = (rzPmet[j] / 100 * rzGmetEff[i, j] - 31 * (Vj[P, CO2, j] + Vj[P, O2, j])) /
+		                    rzGmetEff[i, j + 1] * 100;
+
+		    rzSmet[j + 1] = (rzSmet[j] / 100 * rzGmetEff[i, j] - 32 * (Vj[S, CO2, j] + Vj[S, O2, j])) /
+		                    rzGmetEff[i, j + 1] * 100;
+
+		    rzTOTALFeOshl[j + 1] = (rzTOTALFeOshl[j] / 100 * rzGshl[j] + (56 + 16) * (Vj[Fe, O2, j] + Vj[Fe, CO2, j])) /
+		                           rzGshl[j + 1] * 100;
+
+		    rzMnOshl[j + 1] = (rzMnOshl[j] / 100 * rzGshl[j] + (55 + 16) * (Vj[Mn, O2, j] + Vj[Mn, CO2, j])) /
+		                      rzGshl[j + 1] * 100;
+
+		    rzSiO2shl[j + 1] = (rzSiO2shl[j] / 100 * rzGshl[j] + (28 + 32) * (Vj[Si, O2, j] + Vj[Si, CO2, j])) /
+		                       rzGshl[j + 1] * 100;
+
+		    rzP2O5shl[j + 1] = (rzP2O5shl[j] / 100 * rzGshl[j] + (31 * 2 + 16 * 5) * (Vj[P, O2, j] + Vj[P, CO2, j]) * 0.5) /
+		                       rzGshl[j + 1] * 100;
+
+		    rzCaOshl[j + 1] = (rzCaOshl[j] / 100 * rzGshl[j]) / rzGshl[j + 1] * 100;
+		    rzMgOshl[j + 1] = (rzMgOshl[j] / 100 * rzGshl[j]) / rzGshl[j + 1] * 100;
+
+            // Проверка неотрицательности молей О2
+
+		    if (rzjO2summ[j + 1] <= 0)
+		    {
+		        rzjO2summ[j + 1] = Calc.nUl;
+		        for (var k = 1; k <= 6; k++)
+		        {
+		            NotValid[k, O2] = 1;
+		            Calc.Okislitel = CO2;
+		        }
+		    }
 		}
 
 		private void Tepl_Balans()
@@ -517,14 +598,33 @@ namespace DynamicMelt.ViewModel
 		}
 
         private static readonly double[] rzjCOsumm = new double[1000];
-        private static readonly double[,,] Vj = new double[6, 2, 998];
+        private static readonly double[,,] Vj = new double[7, 3, 999];
         private static readonly double[] rzjCO2income = new double[1000];
 
         public const int Fe = 1, Mn = 2, C = 3, Si = 4, P = 5, S = 6, O2 = 1, CO2 = 2;
+
         public static double[] rzjN2summ = new double[1000];
         public static double[] rzjSO2summ = new double[1000];
         public static double[] rzjO2income = new double[1000];
         public static double[] rzjO2summ = new double[1000];
         public static double[] rzjCOincome = new double[1000];
+        public static double[] rzGmet_Loose = new double[1000];
+        public static double[,] rzGmetEff = new double[3000, 998];
+        public static double[] rzGshlak_Income = new double[1000];
+        public static double[] rzGmet = new double[1000];
+        public static double[] rzGshl = new double[1000];
+        public static double[] rzFemet = new double[1000];
+        public static double[] rzK = new double[3000];
+        public static double[] rzCmet = new double[1000];
+        public static double[] rzSimet = new double[1000];
+        public static double[] rzMnmet = new double[1000];
+        public static double[] rzPmet = new double[1000];
+        public static double[] rzSmet = new double[1000];
+        public static double[] rzTOTALFeOshl = new double[1000];
+        public static double[] rzMnOshl = new double[1000];
+        public static double[] rzSiO2shl = new double[1000];
+        public static double[] rzP2O5shl = new double[1000];
+        public static double[] rzCaOshl = new double[1000];
+        public static double[] rzMgOshl = new double[1000];
 	}
 }
